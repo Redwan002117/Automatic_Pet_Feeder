@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Automatic Pet Feeder</title>
+    <meta name="description" content="Log in to your Automatic Pet Feeder account to manage your devices.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.svg" alt="Pet Feeder Logo">
+                    <span>PetFeeder</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="assets/images/logo.svg" alt="Pet Feeder Logo" class="auth-logo">
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Log in to manage your pet feeders</p>
+            </div>
+
+            <div class="auth-tabs">
+                <div class="auth-option active" data-tab="login-form">Password Login</div>
+                <div class="auth-option" data-tab="magic-link-form">Magic Link</div>
+            </div>
+
+            <div class="auth-content">
+                <form id="login-form" class="auth-form active">
+                    <div class="auth-form-group">
+                        <label for="email" class="auth-form-label">Email</label>
+                        <div class="auth-form-control">
+                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="Your email address" class="auth-form-input">
+                        </div>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="password" class="auth-form-label">Password</label>
+                        <div class="auth-form-control">
+                            <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Your password" class="auth-form-input has-icon">
+                            <button type="button" class="auth-form-icon password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="auth-checkbox-wrapper">
+                        <input type="checkbox" id="remember" name="remember" class="auth-checkbox-input">
+                        <label for="remember" class="auth-checkbox-label">Remember me</label>
+                    </div>
+                    <div class="auth-form-group text-right">
+                        <a href="reset-password.html" class="auth-footer-link">Forgot password?</a>
+                    </div>
+                    <div class="auth-error" id="login-error"></div>
+                    <button type="submit" class="auth-submit" data-original-text="Login">Login</button>
+                
+                    <div class="auth-divider">
+                        <span>Or sign in with</span>
+                    </div>
+    
+                    <div class="social-buttons">
+                        <button type="button" class="social-button" id="google-login">
+                            <img src="assets/icons/google-icon.svg" alt="Google icon">
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="social-button" id="facebook-login">
+                            <img src="assets/icons/facebook-icon.svg" alt="Facebook icon">
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+                </form>
+
+                <form id="magic-link-form" class="auth-form">
+                    <div class="auth-info">
+                        <i class="fas fa-magic auth-info-icon"></i>
+                        <p>We'll send you a magic link to your email. Click the link to log in instantly, no password required.</p>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="magic-email" class="auth-form-label">Email</label>
+                        <div class="auth-form-control">
+                            <input type="email" id="magic-email" name="magic-email" required autocomplete="email" placeholder="Your email address" class="auth-form-input">
+                        </div>
+                    </div>
+                    <div class="auth-error" id="magic-link-error"></div>
+                    <div class="auth-success" id="magic-link-success"></div>
+                    <button type="submit" class="auth-submit" data-original-text="Send Magic Link">Send Magic Link</button>
+                    
+                    <div class="auth-info auth-info-note">
+                        <i class="fas fa-info-circle auth-info-icon"></i>
+                        <p>Don't receive emails from us? Check your spam folder or <a href="#" class="auth-footer-link">contact support</a>.</p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="auth-footer">
+                <p class="auth-footer-text">Don't have an account? <a href="signup.html" class="auth-footer-link">Sign up</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer auth-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 PetFeeder. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+</html> 

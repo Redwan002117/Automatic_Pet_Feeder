@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Automatic Pet Feeder</title>
+    <meta name="description" content="Manage your pet feeders, feeding schedules, and monitor your pets' feeding history.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="assets/images/logo.svg" alt="Pet Feeder Logo">
+                    <span>PetFeeder</span>
+                </div>
+                <button class="sidebar-toggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="devices.html">
+                            <i class="fas fa-tablet-alt"></i>
+                            <span>My Devices</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pets.html">
+                            <i class="fas fa-paw"></i>
+                            <span>My Pets</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="schedules.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Feeding Schedules</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="history.html">
+                            <i class="fas fa-history"></i>
+                            <span>Feeding History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <button class="notification-bell" aria-label="View notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <ul class="notification-list">
+                                <li class="notification-item unread">
+                                    <div class="notification-icon warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="notification-text">Buddy's feeder is low on food</p>
+                                        <p class="notification-time">5 minutes ago</p>
+                                    </div>
+                                    <button class="notification-close" aria-label="Close notification">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                                <li class="notification-item unread">
+                                    <div class="notification-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="notification-text">Max has been fed successfully</p>
+                                        <p class="notification-time">20 minutes ago</p>
+                                    </div>
+                                    <button class="notification-close" aria-label="Close notification">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                                <li class="notification-item">
+                                    <div class="notification-icon info">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="notification-text">Firmware update available for Living Room Feeder</p>
+                                        <p class="notification-time">1 day ago</p>
+                                    </div>
+                                    <button class="notification-close" aria-label="Close notification">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="notification-footer">
+                                <a href="notifications.html">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <button class="profile-button" aria-label="View profile">
+                            <img src="assets/images/profile-placeholder.jpg" alt="User profile picture" id="profile-image">
+                            <span id="profile-name">John Doe</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="profile-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="profile.html">
+                                        <i class="fas fa-user"></i>
+                                        My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="settings.html">
+                                        <i class="fas fa-cog"></i>
+                                        Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="dropdown-logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- Quick Stats Section -->
+                <section class="stats-cards">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-tablet-alt"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Active Devices</h3>
+                            <p class="stats-number" id="active-devices-count">2/3</p>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Pets</h3>
+                            <p class="stats-number" id="pets-count">3</p>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Active Schedules</h3>
+                            <p class="stats-number" id="schedules-count">5</p>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="stats-info">
+                            <h3>Feedings Today</h3>
+                            <p class="stats-number" id="feedings-count">7</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Device Status Section -->
+                <section class="dashboard-section device-status">
+                    <div class="section-header">
+                        <h2>Device Status</h2>
+                        <a href="devices.html" class="view-all">View All</a>
+                    </div>
+                    <div class="device-cards" id="device-status-cards">
+                        <div class="device-card">
+                            <div class="device-header">
+                                <h3>Living Room Feeder</h3>
+                                <span class="device-status online">Online</span>
+                            </div>
+                            <div class="device-info">
+                                <div class="device-metric">
+                                    <i class="fas fa-battery-three-quarters"></i>
+                                    <span>Battery: 68%</span>
+                                </div>
+                                <div class="device-metric">
+                                    <i class="fas fa-wifi"></i>
+                                    <span>Signal: Strong</span>
+                                </div>
+                                <div class="device-metric">
+                                    <i class="fas fa-drumstick-bite"></i>
+                                    <span>Food Level: 42%</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 42%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn btn-primary btn-sm" data-device-id="1">Feed Now</button>
+                                <button class="btn btn-outline btn-sm" data-device-id="1">Details</button>
+                            </div>
+                        </div>
+                        <div class="device-card">
+                            <div class="device-header">
+                                <h3>Kitchen Feeder</h3>
+                                <span class="device-status online">Online</span>
+                            </div>
+                            <div class="device-info">
+                                <div class="device-metric">
+                                    <i class="fas fa-battery-full"></i>
+                                    <span>Battery: 92%</span>
+                                </div>
+                                <div class="device-metric">
+                                    <i class="fas fa-wifi"></i>
+                                    <span>Signal: Strong</span>
+                                </div>
+                                <div class="device-metric">
+                                    <i class="fas fa-drumstick-bite"></i>
+                                    <span>Food Level: 78%</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn btn-primary btn-sm" data-device-id="2">Feed Now</button>
+                                <button class="btn btn-outline btn-sm" data-device-id="2">Details</button>
+                            </div>
+                        </div>
+                        <div class="device-card">
+                            <div class="device-header">
+                                <h3>Bedroom Feeder</h3>
+                                <span class="device-status offline">Offline</span>
+                            </div>
+                            <div class="device-info">
+                                <div class="device-metric">
+                                    <i class="fas fa-battery-empty battery-low"></i>
+                                    <span>Battery: 5%</span>
+                                </div>
+                                <div class="device-metric">
+                                    <i class="fas fa-wifi"></i>
+                                    <span>Signal: No Connection</span>
+                                </div>
+                                <div class="device-metric">
+                                    <i class="fas fa-drumstick-bite"></i>
+                                    <span>Food Level: Unknown</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn btn-primary btn-sm" data-device-id="3" disabled>Feed Now</button>
+                                <button class="btn btn-outline btn-sm" data-device-id="3">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Upcoming Feedings Section -->
+                <section class="dashboard-section upcoming-feedings">
+                    <div class="section-header">
+                        <h2>Upcoming Feedings</h2>
+                        <a href="schedules.html" class="view-all">View All</a>
+                    </div>
+                    <div class="upcoming-feedings-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pet</th>
+                                    <th>Device</th>
+                                    <th>Time</th>
+                                    <th>Portion</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="upcoming-feedings-list">
+                                <tr>
+                                    <td>
+                                        <div class="pet-info">
+                                            <img src="assets/images/pet-1.jpg" alt="Buddy">
+                                            <span>Buddy</span>
+                                        </div>
+                                    </td>
+                                    <td>Living Room Feeder</td>
+                                    <td>Today, 12:00 PM</td>
+                                    <td>1 cup</td>
+                                    <td><span class="feeding-status scheduled">Scheduled</span></td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-icon" title="Feed now">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="btn btn-icon" title="Skip">
+                                                <i class="fas fa-forward"></i>
+                                            </button>
+                                            <button class="btn btn-icon" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pet-info">
+                                            <img src="assets/images/pet-2.jpg" alt="Max">
+                                            <span>Max</span>
+                                        </div>
+                                    </td>
+                                    <td>Kitchen Feeder</td>
+                                    <td>Today, 2:30 PM</td>
+                                    <td>0.5 cup</td>
+                                    <td><span class="feeding-status scheduled">Scheduled</span></td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-icon" title="Feed now">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="btn btn-icon" title="Skip">
+                                                <i class="fas fa-forward"></i>
+                                            </button>
+                                            <button class="btn btn-icon" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pet-info">
+                                            <img src="assets/images/pet-3.jpg" alt="Bella">
+                                            <span>Bella</span>
+                                        </div>
+                                    </td>
+                                    <td>Living Room Feeder</td>
+                                    <td>Today, 5:00 PM</td>
+                                    <td>0.75 cup</td>
+                                    <td><span class="feeding-status scheduled">Scheduled</span></td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-icon" title="Feed now">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="btn btn-icon" title="Skip">
+                                                <i class="fas fa-forward"></i>
+                                            </button>
+                                            <button class="btn btn-icon" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pet-info">
+                                            <img src="assets/images/pet-1.jpg" alt="Buddy">
+                                            <span>Buddy</span>
+                                        </div>
+                                    </td>
+                                    <td>Living Room Feeder</td>
+                                    <td>Today, 7:30 PM</td>
+                                    <td>1 cup</td>
+                                    <td><span class="feeding-status scheduled">Scheduled</span></td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-icon" title="Feed now">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="btn btn-icon" title="Skip">
+                                                <i class="fas fa-forward"></i>
+                                            </button>
+                                            <button class="btn btn-icon" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Recent Feeding History Section -->
+                <section class="dashboard-section recent-history">
+                    <div class="section-header">
+                        <h2>Recent Feeding History</h2>
+                        <a href="history.html" class="view-all">View All</a>
+                    </div>
+                    <div class="recent-history-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pet</th>
+                                    <th>Device</th>
+                                    <th>Time</th>
+                                    <th>Portion</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-history-list">
+                                <tr>
+                                    <td>
+                                        <div class="pet-info">
+                                            <img src="assets/images/pet-2.jpg" alt="Max">
+                                            <span>Max</span>
+                                        </div>
+                                    </td>
+                                    <td>Kitchen Feeder</td>
+                                    <td>Today, 9:32 AM</td>
+                                    <td>0.5 cup</td>
+                                    <td>Scheduled</td>
+                                    <td><span class="feeding-status success">Success</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pet-info">
+                                            <img src="assets/images/pet-1.jpg" alt="Buddy">
+                                            <span>Buddy</span>
+                                        </div>
+                                    </td>
+                                    <td>Living Room Feeder</td>
+                                    <td>Today, 8:02 AM</td>
+                                    <td>1 cup</td>
+                                    <td>Scheduled</td>
+                                    <td><span class="feeding-status success">Success</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pet-info">
+                                            <img src="assets/images/pet-3.jpg" alt="Bella">
+                                            <span>Bella</span>
+                                        </div>
+                                    </td>
+                                    <td>Living Room Feeder</td>
+                                    <td>Today, 6:45 AM</td>
+                                    <td>0.75 cup</td>
+                                    <td>Scheduled</td>
+                                    <td><span class="feeding-status success">Success</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="pet-info">
+                                            <img src="assets/images/pet-2.jpg" alt="Max">
+                                            <span>Max</span>
+                                        </div>
+                                    </td>
+                                    <td>Kitchen Feeder</td>
+                                    <td>Yesterday, 9:15 PM</td>
+                                    <td>0.5 cup</td>
+                                    <td>Manual</td>
+                                    <td><span class="feeding-status success">Success</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Feeding Analytics Section -->
+                <section class="dashboard-section analytics">
+                    <div class="section-header">
+                        <h2>Feeding Analytics</h2>
+                        <a href="analytics.html" class="view-all">View All</a>
+                    </div>
+                    <div class="chart-grid">
+                        <div class="chart-card">
+                            <h3>Weekly Feeding Pattern</h3>
+                            <div class="chart" id="weekly-feeding-chart">
+                                <canvas></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Food Consumption by Pet</h3>
+                            <div class="chart" id="consumption-chart">
+                                <canvas></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Feed Now -->
+    <div class="modal" id="feed-now-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Feed Now</h2>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="feed-now-form">
+                    <div class="form-group">
+                        <label for="feed-pet">Select Pet</label>
+                        <select id="feed-pet" name="feed-pet" required>
+                            <option value="">Select a pet</option>
+                            <option value="1">Buddy</option>
+                            <option value="2">Max</option>
+                            <option value="3">Bella</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feed-portion">Portion Size</label>
+                        <select id="feed-portion" name="feed-portion" required>
+                            <option value="">Select portion size</option>
+                            <option value="small">Small (0.25 cup)</option>
+                            <option value="medium">Medium (0.5 cup)</option>
+                            <option value="large">Large (1 cup)</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                    <div class="form-group custom-portion" style="display: none;">
+                        <label for="custom-portion-size">Custom Portion Size</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="custom-portion-size" name="custom-portion-size" min="0.1" max="2" step="0.1">
+                            <span class="unit">cups</span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancel-feed">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Feed Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/dashboard.js"></script>
+</body>
+</html> 

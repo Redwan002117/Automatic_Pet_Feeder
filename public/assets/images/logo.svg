@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bowl outline -->
+  <path d="M120 280C120 224.8 165.3 180 221 180H291C346.7 180 392 224.8 392 280V310C392 365.2 346.7 410 291 410H221C165.3 410 120 365.2 120 310V280Z" fill="#4A6FA5" stroke="#243E63" stroke-width="16"/>
+  
+  <!-- Food in bowl -->
+  <circle cx="190" cy="290" r="25" fill="#F97316"/>
+  <circle cx="250" cy="310" r="25" fill="#F97316"/>
+  <circle cx="310" cy="290" r="25" fill="#F97316"/>
+  <circle cx="230" cy="270" r="20" fill="#F97316"/>
+  <circle cx="270" cy="270" r="20" fill="#F97316"/>
+  
+  <!-- Paw prints -->
+  <circle cx="180" cy="150" r="15" fill="#243E63"/>
+  <circle cx="150" cy="170" r="10" fill="#243E63"/>
+  <circle cx="210" cy="170" r="10" fill="#243E63"/>
+  <circle cx="165" cy="185" r="10" fill="#243E63"/>
+  <circle cx="195" cy="185" r="10" fill="#243E63"/>
+  
+  <circle cx="330" cy="150" r="15" fill="#243E63"/>
+  <circle cx="300" cy="170" r="10" fill="#243E63"/>
+  <circle cx="360" cy="170" r="10" fill="#243E63"/>
+  <circle cx="315" cy="185" r="10" fill="#243E63"/>
+  <circle cx="345" cy="185" r="10" fill="#243E63"/>
+</svg> 

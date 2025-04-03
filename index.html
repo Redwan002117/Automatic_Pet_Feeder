@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Pet Feeder - Smart Feeding Solutions</title>
+    <meta name="description" content="Automatic Pet Feeder allows you to schedule and monitor your pet's feeding remotely, ensuring they are always fed on time.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="public/styles/main.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="public/images/logo.png" alt="Automatic Pet Feeder Logo">
+                        <span>PetFeeder</span>
+                    </a>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#features" class="nav-link">Features</a></li>
+                        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                        <li><a href="#faq" class="nav-link">FAQ</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn login-button">Login</a>
+                    <a href="signup.html" class="btn btn-primary signup-button">Sign Up</a>
+                    <a href="dashboard.html" class="btn btn-primary dashboard-button" style="display: none;">Dashboard</a>
+                    <button class="btn btn-outline logout-button" style="display: none;">Logout</button>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <button class="mobile-menu-close" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="login.html" class="login-button">Login</a></li>
+                    <li><a href="signup.html" class="signup-button">Sign Up</a></li>
+                    <li><a href="dashboard.html" class="dashboard-button" style="display: none;">Dashboard</a></li>
+                    <li><button class="logout-button" style="display: none;">Logout</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate-on-scroll">
+                <h1>Never Miss a Feeding Again</h1>
+                <p>Control your pet's feeding schedule from anywhere, anytime. Get real-time updates and ensure your furry friend never goes hungry.</p>
+                <div class="hero-buttons">
+                    <a href="signup.html" class="btn btn-primary btn-lg">Get Started</a>
+                    <a href="#how-it-works" class="btn btn-outline btn-lg">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="hero-image animate-on-scroll">
+                <img src="public/images/hero-image.png" alt="Automatic Pet Feeder Device">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Smart Features for Smart Pet Parents</h2>
+                <p>Our automatic pet feeder comes with everything you need to keep your pet happy and healthy</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Scheduled Feeding</h3>
+                    <p>Set up multiple feeding times throughout the day to maintain a consistent schedule for your pet.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Remote Control</h3>
+                    <p>Trigger feeding remotely via our mobile app when you're running late or want to give an extra treat.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Feeding Alerts</h3>
+                    <p>Receive notifications when your pet has been fed or if there's an issue with the feeder.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Feeding Analytics</h3>
+                    <p>Track your pet's eating habits over time with detailed feeding reports and analytics.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3>Battery Backup</h3>
+                    <p>Built-in battery backup ensures your pet gets fed even during power outages.</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Multi-User Access</h3>
+                    <p>Share access with family members or pet sitters to ensure proper care at all times.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>How It Works</h2>
+                <p>Getting started with your automatic pet feeder is simple</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Set Up Your Device</h3>
+                        <p>Connect your feeder to Wi-Fi using our easy setup wizard in the mobile app.</p>
+                    </div>
+                </div>
+                
+                <div class="step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Create Feeding Schedule</h3>
+                        <p>Set up customized feeding times and portion sizes for your pet's specific needs.</p>
+                    </div>
+                </div>
+                
+                <div class="step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Monitor Remotely</h3>
+                        <p>Check feeding status, adjust schedules, and trigger manual feedings from anywhere.</p>
+                    </div>
+                </div>
+                
+                <div class="step animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Get Insights</h3>
+                        <p>Review feeding history and patterns to ensure your pet's health and well-being.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5 animate-on-scroll">
+                <a href="signup.html" class="btn btn-primary btn-lg">Start Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>What Our Customers Say</h2>
+                <p>Join thousands of happy pet parents who trust our automatic pet feeder</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The automatic pet feeder has been a lifesaver! I work long hours and now I can make sure my cat gets fed on time every day. The app is super easy to use and the notifications give me peace of mind."</p>
+                        <div class="testimonial-author">
+                            <img src="public/images/testimonial-1.jpg" alt="Sarah M.">
+                            <div>
+                                <h4>Sarah M.</h4>
+                                <p>Cat Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"My dog has a very specific eating schedule for his health condition, and this feeder has made it so much easier to maintain. The portion control is accurate and I love being able to check the feeding history."</p>
+                        <div class="testimonial-author">
+                            <img src="public/images/testimonial-2.jpg" alt="James T.">
+                            <div>
+                                <h4>James T.</h4>
+                                <p>Dog Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"We have two cats with different diets, and we got a feeder for each. Being able to manage both from one app is fantastic. The battery backup also came in handy during a recent power outage!"</p>
+                        <div class="testimonial-author">
+                            <img src="public/images/testimonial-3.jpg" alt="Lisa & David K.">
+                            <div>
+                                <h4>Lisa & David K.</h4>
+                                <p>Cat Owners</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <button class="testimonial-prev" aria-label="Previous testimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="testimonial-next" aria-label="Next testimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Indicators -->
+                <div class="testimonial-indicators">
+                    <button class="testimonial-indicator active" aria-label="Go to testimonial 1" aria-selected="true"></button>
+                    <button class="testimonial-indicator" aria-label="Go to testimonial 2" aria-selected="false"></button>
+                    <button class="testimonial-indicator" aria-label="Go to testimonial 3" aria-selected="false"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Choose Your Plan</h2>
+                <p>Find the perfect solution for you and your pet</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-header">
+                        <h3>Basic</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">79</span>
+                            <span class="period">.99</span>
+                        </div>
+                        <p>Perfect for single pets</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 1 Automatic Pet Feeder</li>
+                            <li><i class="fas fa-check"></i> Up to 4 scheduled feedings daily</li>
+                            <li><i class="fas fa-check"></i> Basic app features</li>
+                            <li><i class="fas fa-check"></i> Email support</li>
+                            <li><i class="fas fa-times"></i> Advanced analytics</li>
+                            <li><i class="fas fa-times"></i> Multiple user access</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pricing-action">
+                        <a href="signup.html?plan=basic" class="btn btn-outline btn-block">Choose Basic</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card featured animate-on-scroll">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">129</span>
+                            <span class="period">.99</span>
+                        </div>
+                        <p>Ideal for multiple pets</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 1 Automatic Pet Feeder</li>
+                            <li><i class="fas fa-check"></i> Unlimited scheduled feedings</li>
+                            <li><i class="fas fa-check"></i> Full app features</li>
+                            <li><i class="fas fa-check"></i> Priority email & chat support</li>
+                            <li><i class="fas fa-check"></i> Advanced analytics</li>
+                            <li><i class="fas fa-check"></i> Up to 3 user access</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pricing-action">
+                        <a href="signup.html?plan=premium" class="btn btn-primary btn-block">Choose Premium</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-header">
+                        <h3>Family Pack</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">199</span>
+                            <span class="period">.99</span>
+                        </div>
+                        <p>For multiple pets and large households</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 2 Automatic Pet Feeders</li>
+                            <li><i class="fas fa-check"></i> Unlimited scheduled feedings</li>
+                            <li><i class="fas fa-check"></i> Full app features</li>
+                            <li><i class="fas fa-check"></i> 24/7 premium support</li>
+                            <li><i class="fas fa-check"></i> Enhanced analytics and reports</li>
+                            <li><i class="fas fa-check"></i> Unlimited user access</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pricing-action">
+                        <a href="signup.html?plan=family" class="btn btn-outline btn-block">Choose Family Pack</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our automatic pet feeder</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>How does the automatic pet feeder work?</h3>
+                        <button class="faq-toggle" aria-label="Toggle answer">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our automatic pet feeder uses a programmable timing mechanism connected to a food dispensing system. You schedule feeding times through our app, and the feeder dispenses the pre-set amount of food at those times. The device connects to your home Wi-Fi, allowing you to control and monitor it remotely via our mobile application.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>What kind of pet food can be used with the feeder?</h3>
+                        <button class="faq-toggle" aria-label="Toggle answer">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our feeder works best with dry pet food (kibble) between 0.2-0.6 inches (0.5-1.5 cm) in size. It's not suitable for wet food, fresh food, or very large kibble pieces. The food container is designed to keep food fresh and prevent jamming.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>What happens if my internet connection goes down?</h3>
+                        <button class="faq-toggle" aria-label="Toggle answer">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The feeder will continue to work based on your last programmed schedule, even without an internet connection. While you won't be able to control it remotely or receive notifications during an outage, the scheduled feedings will continue uninterrupted.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>How accurate are the portion sizes?</h3>
+                        <button class="faq-toggle" aria-label="Toggle answer">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our feeder uses a precision dispensing mechanism that's accurate to within ±5% of the selected portion size. You can calibrate the portion sizes in the app based on your specific pet food to ensure the most accurate measurements.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>Is there a warranty on the pet feeder?</h3>
+                        <button class="faq-toggle" aria-label="Toggle answer">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, all our feeders come with a 1-year standard warranty that covers manufacturing defects. Premium and Family plans include an extended 2-year warranty. We also offer a 30-day money-back guarantee if you're not completely satisfied with your purchase.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <h3>How long does the battery backup last?</h3>
+                        <button class="faq-toggle" aria-label="Toggle answer">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The battery backup can power the feeder for up to 48 hours during a power outage, depending on usage. The app will notify you when the feeder switches to battery power and when the battery level is getting low.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2>Ready to Transform How You Feed Your Pet?</h2>
+                <p>Join thousands of pet parents who have simplified their lives with our smart feeding solution.</p>
+                <a href="signup.html" class="btn btn-primary btn-lg">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Contact Us</h2>
+                <p>Have questions? We're here to help</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Pet Tech Drive<br>San Francisco, CA 94105</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>support@petfeeder.com<br>sales@petfeeder.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567<br>Mon-Fri: 9am - 5pm PST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper animate-on-scroll">
+                    <form id="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="public/images/logo-white.png" alt="Automatic Pet Feeder Logo">
+                    <span>PetFeeder</span>
+                </div>
+                
+                <div class="footer-nav">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-nav">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="apps.html">Mobile Apps</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-nav">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="warranty.html">Warranty</a></li>
+                        <li><a href="shipping.html">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for product updates and pet care tips</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 PetFeeder. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="public/scripts/config.js"></script>
+    <script src="public/scripts/utils.js"></script>
+    <script src="public/scripts/main.js"></script>
+    <script src="public/scripts/landing.js"></script>
+</body>
+</html> 

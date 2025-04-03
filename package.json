@@ -1,0 +1,28 @@
+{
+  "name": "automatic-pet-feeder",
+  "version": "1.0.0",
+  "description": "A web application to manage automatic pet feeders",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx http-server ./public -p 3000",
+    "dev": "npx http-server ./public -p 3000 -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pet",
+    "feeder",
+    "automatic",
+    "iot",
+    "supabase"
+  ],
+  "author": "GamerNo002117",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@supabase/supabase-js": "^2.49.4",
+    "chart.js": "^4.4.8"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

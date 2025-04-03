@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Devices - Automatic Pet Feeder</title>
+    <meta name="description" content="Manage your pet feeder devices, check status, and update settings.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/devices.css">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="assets/images/logo.svg" alt="Pet Feeder Logo">
+                    <span>PetFeeder</span>
+                </div>
+                <button class="sidebar-toggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="devices.html">
+                            <i class="fas fa-tablet-alt"></i>
+                            <span>My Devices</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pets.html">
+                            <i class="fas fa-paw"></i>
+                            <span>My Pets</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="schedules.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Feeding Schedules</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="history.html">
+                            <i class="fas fa-history"></i>
+                            <span>Feeding History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>My Devices</h1>
+                </div>
+                <div class="header-right">
+                    <div class="theme-toggle">
+                        <button id="theme-toggle-btn" aria-label="Toggle dark mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <div class="notifications">
+                        <button class="notification-bell" aria-label="View notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <ul class="notification-list">
+                                <li class="notification-item unread">
+                                    <div class="notification-icon warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="notification-text">Buddy's feeder is low on food</p>
+                                        <p class="notification-time">5 minutes ago</p>
+                                    </div>
+                                    <button class="notification-close" aria-label="Close notification">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                                <li class="notification-item unread">
+                                    <div class="notification-icon info">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="notification-text">Firmware update available for Kitchen Feeder</p>
+                                        <p class="notification-time">20 minutes ago</p>
+                                    </div>
+                                    <button class="notification-close" aria-label="Close notification">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                                <li class="notification-item unread">
+                                    <div class="notification-icon info">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="notification-text">Battery low on Living Room Feeder</p>
+                                        <p class="notification-time">1 hour ago</p>
+                                    </div>
+                                    <button class="notification-close" aria-label="Close notification">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="notification-footer">
+                                <a href="notifications.html">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <button class="profile-button" aria-label="View profile">
+                            <img src="images/profile-placeholder.jpg" alt="User profile picture" id="profile-image">
+                            <span id="profile-name">John Doe</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="profile-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="profile.html">
+                                        <i class="fas fa-user"></i>
+                                        My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="settings.html">
+                                        <i class="fas fa-cog"></i>
+                                        Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="dropdown-logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <section class="devices-actions">
+                    <button class="btn btn-primary" id="add-device-btn">
+                        <i class="fas fa-plus"></i> Add New Device
+                    </button>
+                    <div class="devices-filter">
+                        <label for="device-status-filter">Filter:</label>
+                        <select id="device-status-filter" class="form-control">
+                            <option value="all">All Devices</option>
+                            <option value="online">Online</option>
+                            <option value="offline">Offline</option>
+                            <option value="maintenance">Maintenance</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!-- Devices List -->
+                <section class="devices-list" id="devices-container">
+                    <!-- Device Card -->
+                    <div class="device-card" data-device-id="1">
+                        <div class="device-header">
+                            <div class="device-name-status">
+                                <h3>Living Room Feeder</h3>
+                                <span class="device-status online">Online</span>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn btn-icon" data-tooltip="Edit device">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-icon feed-now-btn" data-tooltip="Feed now">
+                                    <i class="fas fa-utensils"></i>
+                                </button>
+                                <button class="btn btn-icon" data-tooltip="More options">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="device-body">
+                            <div class="device-info-grid">
+                                <div class="device-info-item">
+                                    <span class="info-label">Last Active</span>
+                                    <span class="info-value">Just now</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">IP Address</span>
+                                    <span class="info-value">192.168.1.105</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">Serial No.</span>
+                                    <span class="info-value">PF-28765432</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">Firmware</span>
+                                    <span class="info-value">v2.3.1</span>
+                                </div>
+                            </div>
+                            <div class="device-indicators">
+                                <div class="indicator-group">
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Battery</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-battery-three-quarters"></i>
+                                            <span>68%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 68%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Food Level</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-drumstick-bite"></i>
+                                            <span>45%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="indicator-group">
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Wi-Fi Signal</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-wifi"></i>
+                                            <span>Strong</span>
+                                        </div>
+                                        <div class="signal-strength">
+                                            <span class="signal-bar active"></span>
+                                            <span class="signal-bar active"></span>
+                                            <span class="signal-bar active"></span>
+                                            <span class="signal-bar active"></span>
+                                            <span class="signal-bar"></span>
+                                        </div>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Network</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-network-wired"></i>
+                                            <span>Home Wi-Fi</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline network-config-btn">
+                                            Change Network
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="device-actions-row">
+                                <button class="btn btn-primary" data-device-id="1">Feed Now</button>
+                                <button class="btn btn-outline" data-device-id="1">Device Settings</button>
+                                <button class="btn btn-warning update-firmware" data-device-id="1">
+                                    <i class="fas fa-download"></i> Update Firmware
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Device Card -->
+                    <div class="device-card" data-device-id="2">
+                        <div class="device-header">
+                            <div class="device-name-status">
+                                <h3>Kitchen Feeder</h3>
+                                <span class="device-status online">Online</span>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn btn-icon" data-tooltip="Edit device">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-icon feed-now-btn" data-tooltip="Feed now">
+                                    <i class="fas fa-utensils"></i>
+                                </button>
+                                <button class="btn btn-icon" data-tooltip="More options">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="device-body">
+                            <div class="device-info-grid">
+                                <div class="device-info-item">
+                                    <span class="info-label">Last Active</span>
+                                    <span class="info-value">2 minutes ago</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">IP Address</span>
+                                    <span class="info-value">192.168.1.106</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">Serial No.</span>
+                                    <span class="info-value">PF-28765433</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">Firmware</span>
+                                    <span class="info-value">v2.3.0</span>
+                                </div>
+                            </div>
+                            <div class="device-indicators">
+                                <div class="indicator-group">
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Battery</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-battery-full"></i>
+                                            <span>92%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 92%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Food Level</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-drumstick-bite"></i>
+                                            <span>78%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 78%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="indicator-group">
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Wi-Fi Signal</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-wifi"></i>
+                                            <span>Medium</span>
+                                        </div>
+                                        <div class="signal-strength">
+                                            <span class="signal-bar active"></span>
+                                            <span class="signal-bar active"></span>
+                                            <span class="signal-bar active"></span>
+                                            <span class="signal-bar"></span>
+                                            <span class="signal-bar"></span>
+                                        </div>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Network</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-network-wired"></i>
+                                            <span>Home Wi-Fi</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline network-config-btn">
+                                            Change Network
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="device-actions-row">
+                                <button class="btn btn-primary" data-device-id="2">Feed Now</button>
+                                <button class="btn btn-outline" data-device-id="2">Device Settings</button>
+                                <button class="btn btn-warning update-firmware" data-device-id="2">
+                                    <i class="fas fa-download"></i> Update Firmware
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Device Card -->
+                    <div class="device-card offline" data-device-id="3">
+                        <div class="device-header">
+                            <div class="device-name-status">
+                                <h3>Bedroom Feeder</h3>
+                                <span class="device-status offline">Offline</span>
+                            </div>
+                            <div class="device-actions">
+                                <button class="btn btn-icon" data-tooltip="Edit device">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-icon feed-now-btn disabled" data-tooltip="Feed now">
+                                    <i class="fas fa-utensils"></i>
+                                </button>
+                                <button class="btn btn-icon" data-tooltip="More options">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="device-body">
+                            <div class="device-info-grid">
+                                <div class="device-info-item">
+                                    <span class="info-label">Last Active</span>
+                                    <span class="info-value">2 days ago</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">IP Address</span>
+                                    <span class="info-value">Not connected</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">Serial No.</span>
+                                    <span class="info-value">PF-28765434</span>
+                                </div>
+                                <div class="device-info-item">
+                                    <span class="info-label">Firmware</span>
+                                    <span class="info-value">v2.2.5</span>
+                                </div>
+                            </div>
+                            <div class="device-indicators">
+                                <div class="indicator-group">
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Battery</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-battery-empty"></i>
+                                            <span>Unknown</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Food Level</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-drumstick-bite"></i>
+                                            <span>Unknown</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="indicator-group">
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Wi-Fi Signal</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-wifi"></i>
+                                            <span>No Signal</span>
+                                        </div>
+                                        <div class="signal-strength">
+                                            <span class="signal-bar"></span>
+                                            <span class="signal-bar"></span>
+                                            <span class="signal-bar"></span>
+                                            <span class="signal-bar"></span>
+                                            <span class="signal-bar"></span>
+                                        </div>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <div class="indicator-label">Network</div>
+                                        <div class="indicator-value">
+                                            <i class="fas fa-network-wired"></i>
+                                            <span>Not connected</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline network-config-btn">
+                                            Troubleshoot
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="device-actions-row">
+                                <button class="btn btn-primary disabled" data-device-id="3">Feed Now</button>
+                                <button class="btn btn-outline" data-device-id="3">Device Settings</button>
+                                <button class="btn btn-outline troubleshoot-btn" data-device-id="3">
+                                    <i class="fas fa-wrench"></i> Troubleshoot
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Device Modal -->
+    <div class="modal" id="add-device-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Device</h2>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-device-form">
+                    <div class="form-group">
+                        <label for="device-name">Device Name</label>
+                        <input type="text" id="device-name" name="device-name" class="form-control" placeholder="e.g. Living Room Feeder" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-serial">Serial Number</label>
+                        <input type="text" id="device-serial" name="device-serial" class="form-control" placeholder="Found on the bottom of your device" required>
+                        <small class="form-text">The serial number is located on the bottom of your device or on the box</small>
+                    </div>
+                    <div class="form-steps">
+                        <h3>Connection Steps:</h3>
+                        <ol class="setup-steps">
+                            <li>Plug in your Pet Feeder and wait for the LED to blink blue</li>
+                            <li>Press and hold the reset button for 5 seconds until the LED flashes rapidly</li>
+                            <li>Connect to the Pet Feeder Wi-Fi network on your smartphone (named "PetFeeder-XXXX")</li>
+                            <li>Return to this app to continue setup</li>
+                        </ol>
+                    </div>
+                    <div class="form-group">
+                        <label for="wifi-network">Select Wi-Fi Network</label>
+                        <select id="wifi-network" name="wifi-network" class="form-control">
+                            <option value="">Scanning for networks...</option>
+                        </select>
+                        <button type="button" class="btn btn-sm btn-outline refresh-networks">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="wifi-password">Wi-Fi Password</label>
+                        <div class="password-input">
+                            <input type="password" id="wifi-password" name="wifi-password" class="form-control">
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Device</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Configuration Modal -->
+    <div class="modal" id="network-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Network Configuration</h2>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="current-network">
+                    <h3>Current Network</h3>
+                    <div class="network-info">
+                        <p><strong>Name:</strong> <span id="current-network-name">Home Wi-Fi</span></p>
+                        <p><strong>Signal Strength:</strong> <span id="current-signal-strength">Strong</span></p>
+                        <p><strong>IP Address:</strong> <span id="current-ip-address">192.168.1.105</span></p>
+                        <p><strong>Last Connected:</strong> <span id="last-connected">Just now</span></p>
+                    </div>
+                </div>
+                <div class="available-networks">
+                    <h3>Available Networks</h3>
+                    <div class="form-group">
+                        <div class="search-box">
+                            <input type="text" id="network-search" class="form-control" placeholder="Search networks...">
+                            <button type="button" class="btn btn-sm refresh-networks">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="networks-list">
+                        <div class="network-item current">
+                            <div class="network-info">
+                                <div class="network-name">Home Wi-Fi</div>
+                                <div class="network-signal">
+                                    <i class="fas fa-wifi"></i>
+                                    <div class="signal-strength">
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="network-action">
+                                <span class="network-connected">Connected</span>
+                            </div>
+                        </div>
+                        <div class="network-item">
+                            <div class="network-info">
+                                <div class="network-name">Neighbor's Wi-Fi</div>
+                                <div class="network-signal">
+                                    <i class="fas fa-wifi"></i>
+                                    <div class="signal-strength">
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar"></span>
+                                        <span class="signal-bar"></span>
+                                        <span class="signal-bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="network-action">
+                                <button class="btn btn-sm btn-outline connect-network" data-requires-password="true">Connect</button>
+                            </div>
+                        </div>
+                        <div class="network-item">
+                            <div class="network-info">
+                                <div class="network-name">Guest Network</div>
+                                <div class="network-signal">
+                                    <i class="fas fa-wifi"></i>
+                                    <div class="signal-strength">
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar"></span>
+                                        <span class="signal-bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="network-action">
+                                <button class="btn btn-sm btn-outline connect-network" data-requires-password="true">Connect</button>
+                            </div>
+                        </div>
+                        <div class="network-item">
+                            <div class="network-info">
+                                <div class="network-name">Open Wi-Fi</div>
+                                <div class="network-signal">
+                                    <i class="fas fa-wifi"></i>
+                                    <div class="signal-strength">
+                                        <span class="signal-bar active"></span>
+                                        <span class="signal-bar"></span>
+                                        <span class="signal-bar"></span>
+                                        <span class="signal-bar"></span>
+                                        <span class="signal-bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="network-action">
+                                <button class="btn btn-sm btn-outline connect-network" data-requires-password="false">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="network-password-form" style="display: none;">
+                    <h3>Enter Network Password</h3>
+                    <div class="form-group">
+                        <label for="selected-network">Network</label>
+                        <input type="text" id="selected-network" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="network-password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="network-password" class="form-control">
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="connect-btn" class="btn btn-primary">Connect</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feed Now Modal -->
+    <div class="modal" id="feed-now-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Feed Now</h2>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="feed-now-form">
+                    <div class="form-group">
+                        <label for="feed-device">Device</label>
+                        <select id="feed-device" name="feed-device" class="form-control" required>
+                            <option value="1">Living Room Feeder</option>
+                            <option value="2">Kitchen Feeder</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feed-pet">Pet</label>
+                        <select id="feed-pet" name="feed-pet" class="form-control" required>
+                            <option value="1">Buddy (Dog)</option>
+                            <option value="2">Max (Cat)</option>
+                            <option value="3">Luna (Cat)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feed-amount">Amount (grams)</label>
+                        <input type="number" id="feed-amount" name="feed-amount" class="form-control" min="5" max="200" step="5" value="30" required>
+                        <div class="amount-slider">
+                            <input type="range" min="5" max="200" step="5" value="30" id="amount-range">
+                            <div class="amount-labels">
+                                <span>5g</span>
+                                <span>100g</span>
+                                <span>200g</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="feed-note">Note (optional)</label>
+                        <textarea id="feed-note" name="feed-note" class="form-control" rows="2" placeholder="Add a note about this feeding"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Feed Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firmware Update Modal -->
+    <div class="modal" id="firmware-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Firmware Update</h2>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="firmware-info">
+                    <h3>Update Available</h3>
+                    <div class="firmware-details">
+                        <div class="firmware-version">
+                            <p><strong>Current Version:</strong> <span id="current-firmware">v2.3.0</span></p>
+                            <p><strong>New Version:</strong> <span id="new-firmware">v2.3.1</span></p>
+                        </div>
+                        <div class="firmware-release-date">
+                            <p><strong>Release Date:</strong> <span id="firmware-date">April 2, 2023</span></p>
+                            <p><strong>Size:</strong> <span id="firmware-size">3.2 MB</span></p>
+                        </div>
+                    </div>
+                    <div class="firmware-notes">
+                        <h4>What's New</h4>
+                        <ul>
+                            <li>Improved Wi-Fi connectivity and signal stability</li>
+                            <li>Fixed issue with food level detection</li>
+                            <li>Enhanced battery life by optimizing sleep mode</li>
+                            <li>Added support for larger kibble sizes</li>
+                        </ul>
+                    </div>
+                    <div class="update-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Your device will be unavailable during the update process (approximately 2-5 minutes). Do not disconnect power during the update.</p>
+                    </div>
+                </div>
+                <div class="update-progress" style="display: none;">
+                    <h3>Updating Firmware</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress" id="update-progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span id="update-progress-text">0%</span>
+                        </div>
+                    </div>
+                    <div class="update-status">
+                        <p id="update-status-text">Preparing update...</p>
+                    </div>
+                </div>
+                <div class="update-complete" style="display: none;">
+                    <div class="update-success">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Update Complete</h3>
+                        <p>Your device has been successfully updated to <span id="completed-version">v2.3.1</span></p>
+                        <p>The device is now rebooting and will be available shortly.</p>
+                    </div>
+                </div>
+                <div class="form-actions update-actions">
+                    <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="start-update-btn" class="btn btn-primary">Update Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/devices.js"></script>
+</body>
+</html> 

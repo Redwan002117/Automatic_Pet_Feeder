@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feeding History - Automatic Pet Feeder</title>
+    <meta name="description" content="View your pets' feeding history and patterns.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="assets/images/logo.svg" alt="Pet Feeder Logo">
+                    <span>PetFeeder</span>
+                </div>
+                <button class="sidebar-toggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="devices.html">
+                            <i class="fas fa-tablet-alt"></i>
+                            <span>My Devices</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pets.html">
+                            <i class="fas fa-paw"></i>
+                            <span>My Pets</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="schedules.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Feeding Schedules</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="history.html">
+                            <i class="fas fa-history"></i>
+                            <span>Feeding History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Feeding History</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <button class="notification-bell" aria-label="View notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <ul class="notification-list">
+                                <li class="notification-item unread">
+                                    <div class="notification-icon warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="notification-text">Buddy's feeder is low on food</p>
+                                        <p class="notification-time">5 minutes ago</p>
+                                    </div>
+                                    <button class="notification-close" aria-label="Close notification">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                                <li class="notification-item unread">
+                                    <div class="notification-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="notification-text">Max has been fed successfully</p>
+                                        <p class="notification-time">20 minutes ago</p>
+                                    </div>
+                                    <button class="notification-close" aria-label="Close notification">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="notification-footer">
+                                <a href="notifications.html">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <button class="profile-button" aria-label="View profile">
+                            <img src="assets/images/profile-placeholder.jpg" alt="User profile picture" id="profile-image">
+                            <span id="profile-name">John Doe</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="profile-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="profile.html">
+                                        <i class="fas fa-user"></i>
+                                        My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="settings.html">
+                                        <i class="fas fa-cog"></i>
+                                        Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="dropdown-logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- Filter Section -->
+                <section class="filter-section card">
+                    <div class="card-header">
+                        <h2>Filter History</h2>
+                    </div>
+                    <div class="card-content">
+                        <form class="filter-form">
+                            <div class="filter-row">
+                                <div class="form-group">
+                                    <label for="pet-filter">Pet</label>
+                                    <select id="pet-filter" class="form-control">
+                                        <option value="all">All Pets</option>
+                                        <option value="1">Buddy</option>
+                                        <option value="2">Max</option>
+                                        <option value="3">Luna</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="device-filter">Device</label>
+                                    <select id="device-filter" class="form-control">
+                                        <option value="all">All Devices</option>
+                                        <option value="1">Kitchen Feeder</option>
+                                        <option value="2">Living Room Feeder</option>
+                                        <option value="3">Bedroom Feeder</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date-range">Date Range</label>
+                                    <select id="date-range" class="form-control">
+                                        <option value="7">Last 7 days</option>
+                                        <option value="30">Last 30 days</option>
+                                        <option value="90">Last 3 months</option>
+                                        <option value="custom">Custom range</option>
+                                    </select>
+                                </div>
+                                <div class="form-group date-inputs" style="display: none;">
+                                    <div class="date-input-group">
+                                        <label for="start-date">Start Date</label>
+                                        <input type="date" id="start-date" class="form-control">
+                                    </div>
+                                    <div class="date-input-group">
+                                        <label for="end-date">End Date</label>
+                                        <input type="date" id="end-date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-actions">
+                                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                                <button type="reset" class="btn btn-outline">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- History Table -->
+                <section class="history-section card">
+                    <div class="card-header">
+                        <h2>Feeding History</h2>
+                        <div class="card-actions">
+                            <button class="btn btn-outline btn-small">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Pet</th>
+                                        <th>Device</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Type</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Apr 3, 2023 - 08:00 AM</td>
+                                        <td>Buddy</td>
+                                        <td>Kitchen Feeder</td>
+                                        <td>1 cup</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                        <td>Scheduled</td>
+                                        <td>
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 2, 2023 - 08:00 PM</td>
+                                        <td>Buddy</td>
+                                        <td>Kitchen Feeder</td>
+                                        <td>1 cup</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                        <td>Scheduled</td>
+                                        <td>
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 2, 2023 - 08:00 AM</td>
+                                        <td>Buddy</td>
+                                        <td>Kitchen Feeder</td>
+                                        <td>1 cup</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                        <td>Scheduled</td>
+                                        <td>
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 1, 2023 - 03:45 PM</td>
+                                        <td>Max</td>
+                                        <td>Living Room Feeder</td>
+                                        <td>0.5 cup</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                        <td>Manual</td>
+                                        <td>
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr 1, 2023 - 08:00 AM</td>
+                                        <td>Buddy</td>
+                                        <td>Kitchen Feeder</td>
+                                        <td>1 cup</td>
+                                        <td><span class="status-badge error">Failed</span></td>
+                                        <td>Scheduled</td>
+                                        <td>
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mar 31, 2023 - 08:00 PM</td>
+                                        <td>Buddy</td>
+                                        <td>Kitchen Feeder</td>
+                                        <td>1 cup</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                        <td>Scheduled</td>
+                                        <td>
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mar 31, 2023 - 12:30 PM</td>
+                                        <td>Luna</td>
+                                        <td>Bedroom Feeder</td>
+                                        <td>0.3 cup</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                        <td>Manual</td>
+                                        <td>
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mar 31, 2023 - 08:00 AM</td>
+                                        <td>Buddy</td>
+                                        <td>Kitchen Feeder</td>
+                                        <td>1 cup</td>
+                                        <td><span class="status-badge success">Success</span></td>
+                                        <td>Scheduled</td>
+                                        <td>
+                                            <button class="btn-icon" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination">
+                            <button class="pagination-btn" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="pagination-pages">
+                                <button class="pagination-page active">1</button>
+                                <button class="pagination-page">2</button>
+                                <button class="pagination-page">3</button>
+                                <span class="pagination-ellipsis">...</span>
+                                <button class="pagination-page">10</button>
+                            </div>
+                            <button class="pagination-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/dashboard.js"></script>
+</body>
+</html> 

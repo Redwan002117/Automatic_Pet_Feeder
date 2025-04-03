@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Automatic pet feeder device -->
+  <rect x="120" y="140" width="160" height="140" rx="10" fill="#4A6FA5"/>
+  <rect x="135" y="155" width="130" height="80" rx="5" fill="#F3F4F6"/>
+  
+  <!-- Display screen -->
+  <rect x="150" y="170" width="100" height="50" rx="3" fill="#243E63"/>
+  <rect x="160" y="180" width="80" height="5" rx="1" fill="#F97316"/>
+  <rect x="160" y="190" width="60" height="5" rx="1" fill="#F97316"/>
+  <rect x="160" y="200" width="40" height="5" rx="1" fill="#F97316"/>
+  
+  <!-- Buttons -->
+  <circle cx="170" cy="225" r="8" fill="#F97316"/>
+  <circle cx="200" cy="225" r="8" fill="#F97316"/>
+  <circle cx="230" cy="225" r="8" fill="#F97316"/>
+  
+  <!-- Food container -->
+  <path d="M140 90H260V140H140V90Z" fill="#F3F4F6"/>
+  <path d="M145 95H255V135H145V95Z" fill="#E4E7EB"/>
+  
+  <!-- Food in container -->
+  <circle cx="160" cy="115" r="8" fill="#F97316"/>
+  <circle cx="180" cy="125" r="8" fill="#F97316"/>
+  <circle cx="200" cy="110" r="8" fill="#F97316"/>
+  <circle cx="220" cy="125" r="8" fill="#F97316"/>
+  <circle cx="240" cy="115" r="8" fill="#F97316"/>
+  <circle cx="170" cy="105" r="6" fill="#F97316"/>
+  <circle cx="190" cy="118" r="6" fill="#F97316"/>
+  <circle cx="210" cy="105" r="6" fill="#F97316"/>
+  <circle cx="230" cy="115" r="6" fill="#F97316"/>
+  
+  <!-- Cat silhouette -->
+  <path d="M310 160C310 160 330 150 340 160C350 170 340 180 340 180L330 190L320 180L310 160Z" fill="#243E63"/>
+  <circle cx="325" cy="170" r="3" fill="white"/>
+  <path d="M300 190C300 150 315 130 330 130C345 130 360 150 360 190L350 205L330 210L310 205L300 190Z" fill="#243E63"/>
+  <path d="M330 70L340 130" stroke="#243E63" stroke-width="8" stroke-linecap="round"/>
+  <path d="M330 70L320 130" stroke="#243E63" stroke-width="8" stroke-linecap="round"/>
+  <path d="M350 210L360 230L350 240L330 235L350 210Z" fill="#243E63"/>
+</svg> 

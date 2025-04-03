@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Automatic Pet Feeder</title>
+    <meta name="description" content="Create your Automatic Pet Feeder account to start managing your devices.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.svg" alt="Pet Feeder Logo">
+                    <span>PetFeeder</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="assets/images/logo.svg" alt="Pet Feeder Logo" class="auth-logo">
+                <h1 class="auth-title">Create Your Account</h1>
+                <p class="auth-subtitle">Join thousands of pet owners using PetFeeder</p>
+            </div>
+
+            <div class="auth-content">
+                <form id="signup-form" class="auth-form active">
+                    <div class="auth-form-group">
+                        <label for="full-name" class="auth-form-label">Full Name</label>
+                        <div class="auth-form-control">
+                            <input type="text" id="full-name" name="full-name" required autocomplete="name" placeholder="Your full name" class="auth-form-input">
+                        </div>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="username" class="auth-form-label">Username</label>
+                        <div class="auth-form-control">
+                            <input type="text" id="username" name="username" required autocomplete="username" placeholder="Choose a username" class="auth-form-input">
+                        </div>
+                        <p class="auth-form-hint text-muted">This will be your display name throughout the application</p>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="email" class="auth-form-label">Email</label>
+                        <div class="auth-form-control">
+                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="Your email address" class="auth-form-input">
+                        </div>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="password" class="auth-form-label">Password</label>
+                        <div class="auth-form-control">
+                            <input type="password" id="password" name="password" required autocomplete="new-password" minlength="8" placeholder="Create a password" class="auth-form-input has-icon">
+                            <button type="button" class="auth-form-icon password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-label">
+                                <span>Password strength</span>
+                            </div>
+                            <div class="strength-bar-container">
+                                <div class="strength-bar"></div>
+                            </div>
+                        </div>
+                        <div class="password-requirements">
+                            <div class="requirements-title">Password must contain:</div>
+                            <ul>
+                                <li data-requirement="length"><i class="fas fa-times-circle"></i> At least 8 characters</li>
+                                <li data-requirement="uppercase"><i class="fas fa-times-circle"></i> 1 uppercase letter</li>
+                                <li data-requirement="lowercase"><i class="fas fa-times-circle"></i> 1 lowercase letter</li>
+                                <li data-requirement="number"><i class="fas fa-times-circle"></i> 1 number</li>
+                                <li data-requirement="special"><i class="fas fa-times-circle"></i> 1 special character</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="confirm-password" class="auth-form-label">Confirm Password</label>
+                        <div class="auth-form-control">
+                            <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password" placeholder="Confirm your password" class="auth-form-input has-icon">
+                            <button type="button" class="auth-form-icon password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="auth-checkbox-wrapper">
+                        <input type="checkbox" id="terms" name="terms" required class="auth-checkbox-input">
+                        <label for="terms" class="auth-checkbox-label">I agree to the <a href="#" target="_blank" class="auth-footer-link">Terms of Service</a> and <a href="#" target="_blank" class="auth-footer-link">Privacy Policy</a></label>
+                    </div>
+                    <div class="auth-error" id="signup-error"></div>
+                    <button type="submit" class="auth-submit" data-original-text="Create Account">Create Account</button>
+                
+                    <div class="auth-divider">
+                        <span>Or sign up with</span>
+                    </div>
+    
+                    <div class="social-buttons">
+                        <button type="button" class="social-button" id="google-signup">
+                            <img src="assets/icons/google-icon.svg" alt="Google icon">
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="social-button" id="facebook-signup">
+                            <img src="assets/icons/facebook-icon.svg" alt="Facebook icon">
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="auth-footer">
+                <p class="auth-footer-text">Already have an account? <a href="login.html" class="auth-footer-link">Log in</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer auth-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 PetFeeder. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+</html> 
