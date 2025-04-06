@@ -41,9 +41,8 @@
                         <label for="device-status-filter">Filter:</label>
                         <select id="device-status-filter" class="ios-form-input">
                             <option value="all">All Devices</option>
-                            <option value="online">Online</option>
-                            <option value="offline">Offline</option>
-                            <option value="maintenance">Maintenance</option>
+                            <option value="online">Online Only</option>
+                            <option value="offline">Offline Only</option>
                         </select>
                     </div>
                 </section>
@@ -53,66 +52,55 @@
                     <!-- Device Card -->
                     <div class="device-card ios-card" data-device-id="1" data-device-status="online">
                         <div class="device-card-header ios-card-header">
-                            <div class="device-icon ios-device-icon">
-                                <i class="fas fa-tablet-alt"></i>
-                            </div>
-                            <div class="device-info ios-info">
-                                <h3>Living Room Feeder</h3>
-                                <span class="device-status online">Online</span>
-                            </div>
-                            <div class="card-menu ios-menu">
-                                <button class="card-menu-button ios-button-icon" aria-label="Device menu">
+                            <h3 class="device-name">Living Room Feeder</h3>
+                            <span class="device-status online">Online</span>
+                            <div class="device-menu">
+                                <button class="ios-button-icon" aria-label="Device menu">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
-                                <div class="card-menu-dropdown ios-dropdown">
-                                    <a href="#" class="edit-device ios-link" data-device-id="1">Edit</a>
-                                    <a href="#" class="view-device-details ios-link" data-device-id="1">Details</a>
-                                    <a href="#" class="delete-device ios-link" data-device-id="1">Delete</a>
+                                <div class="device-menu-dropdown">
+                                    <a href="#" class="edit-device" data-device-id="1">Edit Device</a>
+                                    <a href="#" class="view-device-details" data-device-id="1">View Details</a>
+                                    <a href="#" class="restart-device" data-device-id="1">Restart Device</a>
+                                    <a href="#" class="remove-device" data-device-id="1">Remove Device</a>
                                 </div>
                             </div>
                         </div>
                         <div class="device-body ios-card-body">
-                            <div class="device-info ios-info">
-                                <div class="device-info-item ios-info-item">
+                            <div class="device-info">
+                                <div class="device-info-item">
                                     <span class="info-label">Model:</span>
                                     <span class="info-value">PetFeeder Pro</span>
                                 </div>
-                                <div class="device-info-item ios-info-item">
+                                <div class="device-info-item">
                                     <span class="info-label">Serial:</span>
-                                    <span class="info-value">PF-2023-A1B2C3</span>
+                                    <span class="info-value">PFP1001203</span>
                                 </div>
-                                <div class="device-info-item ios-info-item">
-                                    <span class="info-label">Firmware:</span>
-                                    <span class="info-value">v2.3.1</span>
-                                </div>
-                                <div class="device-info-item ios-info-item">
+                                <div class="device-info-item">
                                     <span class="info-label">Last Active:</span>
                                     <span class="info-value">Just now</span>
                                 </div>
                             </div>
-                            <div class="device-status-info ios-status-info">
-                                <div class="status-item ios-status-item">
-                                    <span class="status-label">Food Level:</span>
-                                    <div class="status-value">
-                                        <div class="progress-bar ios-progress-bar">
-                                            <div class="progress-fill" style="width: 72%;"></div>
-                                        </div>
-                                        <span>72%</span>
+                            <div class="device-stats">
+                                <div class="device-stat">
+                                    <span class="stat-label">Food Level:</span>
+                                    <div class="progress-bar ios-progress-bar">
+                                        <div class="progress-fill" style="width: 72%"></div>
                                     </div>
+                                    <span class="stat-value">72%</span>
                                 </div>
-                                <div class="status-item ios-status-item">
-                                    <span class="status-label">Battery:</span>
-                                    <div class="status-value">
-                                        <div class="progress-bar ios-progress-bar">
-                                            <div class="progress-fill" style="width: 85%;"></div>
-                                        </div>
-                                        <span>85%</span>
+                                <div class="device-stat">
+                                    <span class="stat-label">Battery:</span>
+                                    <div class="progress-bar ios-progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
                                     </div>
+                                    <span class="stat-value">85%</span>
                                 </div>
                             </div>
-                            <div class="device-actions-row ios-actions-row">
-                                <button class="ios-button ios-button-primary btn-sm feed-now-btn" data-device-id="1">Feed Now</button>
-                                <button class="ios-button ios-button-outline btn-sm create-schedule-btn" data-device-id="1">Schedule</button>
+                            <div class="device-actions">
+                                <button class="ios-button ios-button-primary feed-now-btn" data-device-id="1">Feed Now</button>
+                                <a href="/schedules.html?device=1" class="ios-button ios-button-outline">Schedule</a>
+                                <a href="#" class="ios-button ios-button-outline view-device-details" data-device-id="1">Details</a>
                             </div>
                         </div>
                     </div>
@@ -120,66 +108,55 @@
                     <!-- Device Card -->
                     <div class="device-card ios-card" data-device-id="2" data-device-status="online">
                         <div class="device-card-header ios-card-header">
-                            <div class="device-icon ios-device-icon">
-                                <i class="fas fa-tablet-alt"></i>
-                            </div>
-                            <div class="device-info ios-info">
-                                <h3>Kitchen Feeder</h3>
-                                <span class="device-status online">Online</span>
-                            </div>
-                            <div class="card-menu ios-menu">
-                                <button class="card-menu-button ios-button-icon" aria-label="Device menu">
+                            <h3 class="device-name">Kitchen Feeder</h3>
+                            <span class="device-status online">Online</span>
+                            <div class="device-menu">
+                                <button class="ios-button-icon" aria-label="Device menu">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
-                                <div class="card-menu-dropdown ios-dropdown">
-                                    <a href="#" class="edit-device ios-link" data-device-id="2">Edit</a>
-                                    <a href="#" class="view-device-details ios-link" data-device-id="2">Details</a>
-                                    <a href="#" class="delete-device ios-link" data-device-id="2">Delete</a>
+                                <div class="device-menu-dropdown">
+                                    <a href="#" class="edit-device" data-device-id="2">Edit Device</a>
+                                    <a href="#" class="view-device-details" data-device-id="2">View Details</a>
+                                    <a href="#" class="restart-device" data-device-id="2">Restart Device</a>
+                                    <a href="#" class="remove-device" data-device-id="2">Remove Device</a>
                                 </div>
                             </div>
                         </div>
                         <div class="device-body ios-card-body">
-                            <div class="device-info ios-info">
-                                <div class="device-info-item ios-info-item">
+                            <div class="device-info">
+                                <div class="device-info-item">
                                     <span class="info-label">Model:</span>
                                     <span class="info-value">PetFeeder Standard</span>
                                 </div>
-                                <div class="device-info-item ios-info-item">
+                                <div class="device-info-item">
                                     <span class="info-label">Serial:</span>
-                                    <span class="info-value">PF-2022-X7Y8Z9</span>
+                                    <span class="info-value">PFS2005109</span>
                                 </div>
-                                <div class="device-info-item ios-info-item">
-                                    <span class="info-label">Firmware:</span>
-                                    <span class="info-value">v2.3.0 <span class="update-badge">Update available</span></span>
-                                </div>
-                                <div class="device-info-item ios-info-item">
+                                <div class="device-info-item">
                                     <span class="info-label">Last Active:</span>
-                                    <span class="info-value">5 minutes ago</span>
+                                    <span class="info-value">2 minutes ago</span>
                                 </div>
                             </div>
-                            <div class="device-status-info ios-status-info">
-                                <div class="status-item ios-status-item">
-                                    <span class="status-label">Food Level:</span>
-                                    <div class="status-value">
-                                        <div class="progress-bar ios-progress-bar">
-                                            <div class="progress-fill warning" style="width: 15%;"></div>
-                                        </div>
-                                        <span class="warning">15% (Low)</span>
+                            <div class="device-stats">
+                                <div class="device-stat">
+                                    <span class="stat-label">Food Level:</span>
+                                    <div class="progress-bar ios-progress-bar warning">
+                                        <div class="progress-fill" style="width: 15%"></div>
                                     </div>
+                                    <span class="stat-value warning">15% (Low)</span>
                                 </div>
-                                <div class="status-item ios-status-item">
-                                    <span class="status-label">Battery:</span>
-                                    <div class="status-value">
-                                        <div class="progress-bar ios-progress-bar">
-                                            <div class="progress-fill" style="width: 62%;"></div>
-                                        </div>
-                                        <span>62%</span>
+                                <div class="device-stat">
+                                    <span class="stat-label">Battery:</span>
+                                    <div class="progress-bar ios-progress-bar">
+                                        <div class="progress-fill" style="width: 62%"></div>
                                     </div>
+                                    <span class="stat-value">62%</span>
                                 </div>
                             </div>
-                            <div class="device-actions-row ios-actions-row">
-                                <button class="ios-button ios-button-primary btn-sm feed-now-btn" data-device-id="2">Feed Now</button>
-                                <button class="ios-button ios-button-outline btn-sm create-schedule-btn" data-device-id="2">Schedule</button>
+                            <div class="device-actions">
+                                <button class="ios-button ios-button-primary feed-now-btn" data-device-id="2">Feed Now</button>
+                                <a href="/schedules.html?device=2" class="ios-button ios-button-outline">Schedule</a>
+                                <a href="#" class="ios-button ios-button-outline view-device-details" data-device-id="2">Details</a>
                             </div>
                         </div>
                     </div>
@@ -187,79 +164,55 @@
                     <!-- Device Card -->
                     <div class="device-card ios-card" data-device-id="3" data-device-status="offline">
                         <div class="device-card-header ios-card-header">
-                            <div class="device-icon ios-device-icon">
-                                <i class="fas fa-tablet-alt"></i>
-                            </div>
-                            <div class="device-info ios-info">
-                                <h3>Bedroom Feeder</h3>
-                                <span class="device-status offline">Offline</span>
-                            </div>
-                            <div class="card-menu ios-menu">
-                                <button class="card-menu-button ios-button-icon" aria-label="Device menu">
+                            <h3 class="device-name">Bedroom Feeder</h3>
+                            <span class="device-status offline">Offline</span>
+                            <div class="device-menu">
+                                <button class="ios-button-icon" aria-label="Device menu">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
-                                <div class="card-menu-dropdown ios-dropdown">
-                                    <a href="#" class="edit-device ios-link" data-device-id="3">Edit</a>
-                                    <a href="#" class="view-device-details ios-link" data-device-id="3">Details</a>
-                                    <a href="#" class="delete-device ios-link" data-device-id="3">Delete</a>
+                                <div class="device-menu-dropdown">
+                                    <a href="#" class="edit-device" data-device-id="3">Edit Device</a>
+                                    <a href="#" class="view-device-details" data-device-id="3">View Details</a>
+                                    <a href="#" class="remove-device" data-device-id="3">Remove Device</a>
                                 </div>
                             </div>
                         </div>
                         <div class="device-body ios-card-body">
-                            <div class="device-info ios-info">
-                                <div class="device-info-item ios-info-item">
+                            <div class="device-info">
+                                <div class="device-info-item">
                                     <span class="info-label">Model:</span>
-                                    <span class="info-value">PetFeeder Standard</span>
+                                    <span class="info-value">PetFeeder Mini</span>
                                 </div>
-                                <div class="device-info-item ios-info-item">
+                                <div class="device-info-item">
                                     <span class="info-label">Serial:</span>
-                                    <span class="info-value">PF-2022-D4E5F6</span>
+                                    <span class="info-value">PFM3002098</span>
                                 </div>
-                                <div class="device-info-item ios-info-item">
-                                    <span class="info-label">Firmware:</span>
-                                    <span class="info-value">v2.2.5</span>
-                                </div>
-                                <div class="device-info-item ios-info-item">
+                                <div class="device-info-item">
                                     <span class="info-label">Last Active:</span>
                                     <span class="info-value">2 days ago</span>
                                 </div>
                             </div>
-                            <div class="device-status-info ios-status-info">
-                                <div class="status-item ios-status-item">
-                                    <span class="status-label">Food Level:</span>
-                                    <div class="status-value">
-                                        <div class="progress-bar ios-progress-bar inactive">
-                                            <div class="progress-fill" style="width: 48%;"></div>
-                                        </div>
-                                        <span class="inactive">48% (Offline)</span>
-                                    </div>
-                                </div>
-                                <div class="status-item ios-status-item">
-                                    <span class="status-label">Battery:</span>
-                                    <div class="status-value">
-                                        <div class="progress-bar ios-progress-bar inactive">
-                                            <div class="progress-fill danger" style="width: 5%;"></div>
-                                        </div>
-                                        <span class="danger">5% (Critical)</span>
-                                    </div>
-                                </div>
+                            <div class="device-offline-message">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p>This device appears to be offline. Check power and Wi-Fi connection.</p>
                             </div>
-                            <div class="device-actions-row ios-actions-row">
-                                <button class="ios-button ios-button-primary btn-sm feed-now-btn" data-device-id="3" disabled>Feed Now</button>
-                                <button class="ios-button ios-button-outline btn-sm troubleshoot-btn" data-device-id="3">Troubleshoot</button>
+                            <div class="device-actions">
+                                <button class="ios-button ios-button-primary feed-now-btn" disabled>Feed Now</button>
+                                <button class="ios-button ios-button-outline troubleshoot-btn" data-device-id="3">Troubleshoot</button>
+                                <a href="#" class="ios-button ios-button-outline view-device-details" data-device-id="3">Details</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Add Device Card -->
                     <div class="device-card add-device-card ios-card" id="add-device-card">
-                        <div class="add-device-content ios-card-content">
-                            <div class="add-device-icon ios-icon">
+                        <div class="add-device-content">
+                            <div class="add-device-icon">
                                 <i class="fas fa-plus-circle"></i>
                             </div>
                             <h3>Add New Device</h3>
                             <p>Connect a new PetFeeder device to your account</p>
-                            <button class="ios-button ios-button-primary btn-sm" id="add-device-card-btn">Add Device</button>
+                            <button class="ios-button ios-button-primary" id="add-device-card-btn">Add Device</button>
                         </div>
                     </div>
                 </section>
@@ -286,49 +239,48 @@
                     </div>
                     
                     <div class="form-group ios-form-group">
-                        <label for="device-serial" class="ios-form-label">Serial Number</label>
-                        <input type="text" id="device-serial" name="device-serial" class="ios-form-input" placeholder="Found on the bottom of your device" required>
-                        <small class="form-text ios-form-text">The serial number is printed on the bottom of your PetFeeder device or on the box</small>
-                    </div>
-                    
-                    <div class="form-group ios-form-group">
-                        <label for="device-model" class="ios-form-label">Model</label>
+                        <label for="device-model" class="ios-form-label">Device Model</label>
                         <select id="device-model" name="device-model" class="ios-form-input" required>
                             <option value="">Select Model</option>
-                            <option value="standard">PetFeeder Standard</option>
                             <option value="pro">PetFeeder Pro</option>
-                            <option value="plus">PetFeeder Plus</option>
+                            <option value="standard">PetFeeder Standard</option>
                             <option value="mini">PetFeeder Mini</option>
                         </select>
                     </div>
                     
                     <div class="form-group ios-form-group">
-                        <label for="device-location" class="ios-form-label">Location</label>
-                        <input type="text" id="device-location" name="device-location" class="ios-form-input" placeholder="e.g. Living Room, Kitchen">
+                        <label for="device-serial" class="ios-form-label">Serial Number</label>
+                        <input type="text" id="device-serial" name="device-serial" class="ios-form-input" placeholder="Found on the bottom of your device" required>
                     </div>
                     
                     <div class="form-group ios-form-group">
-                        <label for="device-wifi" class="ios-form-label">Wi-Fi Network</label>
-                        <select id="device-wifi" name="device-wifi" class="ios-form-input">
-                            <option value="">Select Wi-Fi Network</option>
-                            <option value="scan">Scan for Networks</option>
+                        <label for="connection-type" class="ios-form-label">Connection Type</label>
+                        <select id="connection-type" name="connection-type" class="ios-form-input" required>
+                            <option value="">Select Connection Type</option>
+                            <option value="wifi">Wi-Fi</option>
+                            <option value="bluetooth">Bluetooth</option>
+                            <option value="ethernet">Ethernet</option>
                         </select>
-                        <small class="form-text ios-form-text">Your device will connect to this Wi-Fi network</small>
+                    </div>
+                    
+                    <div class="form-group ios-form-group">
+                        <label for="wifi-network" class="ios-form-label wifi-network-label">Wi-Fi Network</label>
+                        <select id="wifi-network" name="wifi-network" class="ios-form-input">
+                            <option value="">Select Wi-Fi Network</option>
+                            <option value="home-network">Home Network</option>
+                            <option value="office-network">Office Network</option>
+                            <option value="other">Other Network</option>
+                        </select>
                     </div>
                     
                     <div class="form-group ios-form-group wifi-password-group" style="display: none;">
                         <label for="wifi-password" class="ios-form-label">Wi-Fi Password</label>
-                        <div class="auth-form-control password-field">
-                            <input type="password" id="wifi-password" name="wifi-password" class="ios-form-input has-icon" placeholder="Wi-Fi password">
-                            <button type="button" class="auth-form-icon password-toggle">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <input type="password" id="wifi-password" name="wifi-password" class="ios-form-input" placeholder="Enter Wi-Fi password">
                     </div>
                     
                     <div class="form-group ios-form-group">
-                        <label for="device-notes" class="ios-form-label">Notes (optional)</label>
-                        <textarea id="device-notes" name="device-notes" rows="2" class="ios-form-input" placeholder="Add notes about this device"></textarea>
+                        <label for="default-portion" class="ios-form-label">Default Portion Size (grams)</label>
+                        <input type="number" id="default-portion" name="default-portion" class="ios-form-input" min="5" max="200" value="30">
                     </div>
                     
                     <div class="form-actions ios-form-actions">
@@ -352,209 +304,121 @@
             <div class="modal-body ios-modal-body">
                 <div class="device-details-container ios-details-container">
                     <div class="device-details-header ios-details-header">
-                        <div class="device-details-icon ios-details-icon">
-                            <i class="fas fa-tablet-alt"></i>
+                        <div class="device-details-status">
+                            <span class="device-details-status-indicator online"></span>
+                            <span class="device-details-status-text">Online</span>
                         </div>
-                        <div class="device-details-summary ios-details-summary">
-                            <div class="device-info-grid ios-info-grid">
-                                <div class="device-info-item ios-info-item">
-                                    <span class="info-label">Status:</span>
-                                    <span class="info-value"><span class="status-indicator online"></span> Online</span>
-                                </div>
-                                <div class="device-info-item ios-info-item">
-                                    <span class="info-label">Model:</span>
-                                    <span class="info-value">PetFeeder Pro</span>
-                                </div>
-                                <div class="device-info-item ios-info-item">
-                                    <span class="info-label">Serial:</span>
-                                    <span class="info-value">PF-2023-A1B2C3</span>
-                                </div>
-                                <div class="device-info-item ios-info-item">
-                                    <span class="info-label">Firmware:</span>
-                                    <span class="info-value">v2.3.1</span>
-                                </div>
-                            </div>
+                        <div class="device-details-actions">
+                            <button class="ios-button ios-button-primary feed-now-btn" data-device-id="1">Feed Now</button>
+                            <button class="ios-button ios-button-outline edit-device" data-device-id="1">Edit Device</button>
                         </div>
                     </div>
                     
                     <div class="device-details-tabs ios-tabs">
-                        <button class="tab-button active ios-tab-button" data-tab="status">Status</button>
-                        <button class="tab-button ios-tab-button" data-tab="feeding-history">Feeding History</button>
-                        <button class="tab-button ios-tab-button" data-tab="settings">Settings</button>
+                        <button class="tab-button active" data-tab="info">Device Info</button>
+                        <button class="tab-button" data-tab="feeding">Feeding History</button>
+                        <button class="tab-button" data-tab="settings">Settings</button>
+                        <button class="tab-button" data-tab="troubleshoot">Troubleshooting</button>
                     </div>
                     
                     <div class="device-details-content ios-details-content">
-                        <!-- Status Tab -->
-                        <div class="tab-content active ios-tab-content" id="status-tab">
-                            <div class="status-cards ios-grid">
-                                <div class="status-card ios-card">
-                                    <div class="status-card-header ios-card-header">
-                                        <h3>Food Level</h3>
-                                        <span class="status-value">72%</span>
-                                    </div>
-                                    <div class="status-card-body ios-card-body">
-                                        <div class="food-level-indicator ios-indicator">
-                                            <div class="food-container">
-                                                <div class="food-fill" style="height: 72%;"></div>
-                                            </div>
+                        <!-- Info Tab Content -->
+                        <div id="info-tab" class="tab-content active">
+                            <div class="device-info-grid">
+                                <div class="device-info-section">
+                                    <h3>Device Information</h3>
+                                    <div class="device-info-list">
+                                        <div class="device-info-item">
+                                            <span class="info-label">Model:</span>
+                                            <span class="info-value" id="details-model">PetFeeder Pro</span>
                                         </div>
-                                        <div class="status-details ios-details">
-                                            <p>Estimated remaining: <strong>3.5 days</strong></p>
-                                            <p>Based on current feeding schedule</p>
-                                            <button class="ios-button ios-button-outline btn-sm">Refill</button>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Serial Number:</span>
+                                            <span class="info-value" id="details-serial">PFP1001203</span>
                                         </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="status-card ios-card">
-                                    <div class="status-card-header ios-card-header">
-                                        <h3>Battery Status</h3>
-                                        <span class="status-value">85%</span>
-                                    </div>
-                                    <div class="status-card-body ios-card-body">
-                                        <div class="battery-indicator ios-indicator">
-                                            <div class="battery-icon">
-                                                <div class="battery-fill" style="width: 85%;"></div>
-                                            </div>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Firmware Version:</span>
+                                            <span class="info-value" id="details-firmware">v2.1.5</span>
                                         </div>
-                                        <div class="status-details ios-details">
-                                            <p>Estimated remaining: <strong>4.2 days</strong></p>
-                                            <p>Device is currently plugged in</p>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Last Updated:</span>
+                                            <span class="info-value" id="details-last-update">2023-04-01</span>
+                                        </div>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Date Added:</span>
+                                            <span class="info-value" id="details-date-added">2023-01-15</span>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="status-card ios-card">
-                                    <div class="status-card-header ios-card-header">
-                                        <h3>Network Status</h3>
-                                        <span class="status-value">Strong</span>
-                                    </div>
-                                    <div class="status-card-body ios-card-body">
-                                        <div class="network-indicator ios-indicator">
-                                            <div class="wifi-icon">
-                                                <i class="fas fa-wifi"></i>
-                                            </div>
+                                <div class="device-info-section">
+                                    <h3>Status</h3>
+                                    <div class="device-info-list">
+                                        <div class="device-info-item">
+                                            <span class="info-label">Status:</span>
+                                            <span class="info-value" id="details-status">Online</span>
                                         </div>
-                                        <div class="status-details ios-details">
-                                            <p>Connected to: <strong>Home Wi-Fi</strong></p>
-                                            <p>Signal strength: <strong>Excellent (95%)</strong></p>
-                                            <p>Last connection issue: <strong>None</strong></p>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Last Feeding:</span>
+                                            <span class="info-value" id="details-last-feeding">Today, 12:00 PM</span>
+                                        </div>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Next Scheduled:</span>
+                                            <span class="info-value" id="details-next-feeding">Today, 8:00 PM</span>
+                                        </div>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Food Level:</span>
+                                            <span class="info-value" id="details-food-level">72%</span>
+                                        </div>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Battery:</span>
+                                            <span class="info-value" id="details-battery">85%</span>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="status-card ios-card">
-                                    <div class="status-card-header ios-card-header">
-                                        <h3>Next Scheduled Feeding</h3>
-                                        <span class="status-value">4:00 PM</span>
-                                    </div>
-                                    <div class="status-card-body ios-card-body">
-                                        <div class="schedule-indicator ios-indicator">
-                                            <div class="time-icon">
-                                                <i class="fas fa-clock"></i>
-                                            </div>
+                                <div class="device-info-section">
+                                    <h3>Connection</h3>
+                                    <div class="device-info-list">
+                                        <div class="device-info-item">
+                                            <span class="info-label">Connection Type:</span>
+                                            <span class="info-value" id="details-connection-type">Wi-Fi</span>
                                         </div>
-                                        <div class="status-details ios-details">
-                                            <p>Today at <strong>4:00 PM</strong></p>
-                                            <p>Pet: <strong>Buddy</strong></p>
-                                            <p>Amount: <strong>80g</strong></p>
-                                            <button class="ios-button ios-button-outline btn-sm">View Schedule</button>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Network:</span>
+                                            <span class="info-value" id="details-network">Home-Network</span>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="system-status ios-card">
-                                <div class="ios-card-header">
-                                    <h3>System Status</h3>
-                                </div>
-                                <div class="ios-card-body">
-                                    <div class="system-status-grid ios-grid">
-                                        <div class="system-status-item ios-status-item">
-                                            <div class="status-icon success">
-                                                <i class="fas fa-check-circle"></i>
-                                            </div>
-                                            <div class="status-details">
-                                                <h4>Dispenser Motor</h4>
-                                                <p>Functioning normally</p>
-                                            </div>
+                                        <div class="device-info-item">
+                                            <span class="info-label">IP Address:</span>
+                                            <span class="info-value" id="details-ip">192.168.1.105</span>
                                         </div>
-                                        <div class="system-status-item ios-status-item">
-                                            <div class="status-icon success">
-                                                <i class="fas fa-check-circle"></i>
-                                            </div>
-                                            <div class="status-details">
-                                                <h4>Food Sensor</h4>
-                                                <p>Functioning normally</p>
-                                            </div>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Signal Strength:</span>
+                                            <span class="info-value" id="details-signal">Good (85%)</span>
                                         </div>
-                                        <div class="system-status-item ios-status-item">
-                                            <div class="status-icon success">
-                                                <i class="fas fa-check-circle"></i>
-                                            </div>
-                                            <div class="status-details">
-                                                <h4>Weight Sensor</h4>
-                                                <p>Functioning normally</p>
-                                            </div>
+                                        <div class="device-info-item">
+                                            <span class="info-label">Last Activity:</span>
+                                            <span class="info-value" id="details-last-activity">Just now</span>
                                         </div>
-                                        <div class="system-status-item ios-status-item">
-                                            <div class="status-icon success">
-                                                <i class="fas fa-check-circle"></i>
-                                            </div>
-                                            <div class="status-details">
-                                                <h4>Camera</h4>
-                                                <p>Functioning normally</p>
-                                            </div>
-                                        </div>
-                                        <div class="system-status-item ios-status-item">
-                                            <div class="status-icon success">
-                                                <i class="fas fa-check-circle"></i>
-                                            </div>
-                                            <div class="status-details">
-                                                <h4>Connectivity</h4>
-                                                <p>Connected to cloud</p>
-                                            </div>
-                                        </div>
-                                        <div class="system-status-item ios-status-item">
-                                            <div class="status-icon success">
-                                                <i class="fas fa-check-circle"></i>
-                                            </div>
-                                            <div class="status-details">
-                                                <h4>Firmware</h4>
-                                                <p>Up to date (v2.3.1)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="system-actions ios-actions">
-                                        <button class="ios-button ios-button-outline">Run Diagnostics</button>
-                                        <button class="ios-button ios-button-outline">System Report</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Feeding History Tab -->
-                        <div class="tab-content ios-tab-content" id="feeding-history-tab">
-                            <div class="feeding-history ios-history">
-                                <div class="history-filters ios-filters">
-                                    <div class="form-group ios-form-group">
-                                        <label for="history-period">Period</label>
-                                        <select id="history-period" class="ios-form-input">
-                                            <option value="today">Today</option>
-                                            <option value="yesterday">Yesterday</option>
-                                            <option value="week" selected>Past Week</option>
-                                            <option value="month">Past Month</option>
-                                            <option value="custom">Custom Range</option>
-                                        </select>
-                                    </div>
+                        <!-- Feeding History Tab Content -->
+                        <div id="feeding-tab" class="tab-content">
+                            <div class="feeding-history-container">
+                                <div class="feeding-history-header">
+                                    <h3>Recent Feeding History</h3>
+                                    <a href="/history.html?device=1" class="ios-button ios-button-text">View All History</a>
                                 </div>
                                 
-                                <div class="history-chart ios-chart">
+                                <div class="feeding-history-chart-container">
                                     <canvas id="feeding-history-chart"></canvas>
                                 </div>
                                 
-                                <div class="history-table-wrapper ios-table-wrapper">
-                                    <table class="history-table ios-table">
+                                <div class="feeding-history-table">
+                                    <table class="ios-table">
                                         <thead>
                                             <tr>
                                                 <th>Date & Time</th>
@@ -564,41 +428,41 @@
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="history-table-body">
+                                        <tbody>
                                             <tr>
-                                                <td>Apr 5, 2023 - 8:00 AM</td>
+                                                <td>Today, 12:00 PM</td>
                                                 <td>Buddy</td>
                                                 <td>80g</td>
                                                 <td>Scheduled</td>
-                                                <td><span class="status-badge success ios-badge">Success</span></td>
+                                                <td><span class="status-badge success">Success</span></td>
                                             </tr>
                                             <tr>
-                                                <td>Apr 4, 2023 - 8:00 PM</td>
+                                                <td>Today, 8:00 AM</td>
                                                 <td>Buddy</td>
                                                 <td>80g</td>
                                                 <td>Scheduled</td>
-                                                <td><span class="status-badge success ios-badge">Success</span></td>
+                                                <td><span class="status-badge success">Success</span></td>
                                             </tr>
                                             <tr>
-                                                <td>Apr 4, 2023 - 4:00 PM</td>
+                                                <td>Yesterday, 8:00 PM</td>
                                                 <td>Buddy</td>
                                                 <td>80g</td>
                                                 <td>Scheduled</td>
-                                                <td><span class="status-badge success ios-badge">Success</span></td>
+                                                <td><span class="status-badge success">Success</span></td>
                                             </tr>
                                             <tr>
-                                                <td>Apr 4, 2023 - 12:00 PM</td>
+                                                <td>Yesterday, 12:00 PM</td>
                                                 <td>Buddy</td>
                                                 <td>80g</td>
                                                 <td>Scheduled</td>
-                                                <td><span class="status-badge success ios-badge">Success</span></td>
+                                                <td><span class="status-badge success">Success</span></td>
                                             </tr>
                                             <tr>
-                                                <td>Apr 4, 2023 - 8:00 AM</td>
+                                                <td>Yesterday, 8:00 AM</td>
                                                 <td>Buddy</td>
                                                 <td>80g</td>
                                                 <td>Scheduled</td>
-                                                <td><span class="status-badge success ios-badge">Success</span></td>
+                                                <td><span class="status-badge success">Success</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -606,98 +470,178 @@
                             </div>
                         </div>
                         
-                        <!-- Settings Tab -->
-                        <div class="tab-content ios-tab-content" id="settings-tab">
-                            <div class="device-settings ios-settings">
-                                <div class="settings-card ios-card">
-                                    <div class="ios-card-header">
-                                        <h3>Device Settings</h3>
+                        <!-- Settings Tab Content -->
+                        <div id="settings-tab" class="tab-content">
+                            <div class="device-settings-container">
+                                <form id="device-settings-form" class="ios-form">
+                                    <div class="form-group ios-form-group">
+                                        <label for="settings-default-portion" class="ios-form-label">Default Portion Size (grams)</label>
+                                        <input type="number" id="settings-default-portion" name="settings-default-portion" class="ios-form-input" min="5" max="200" value="80">
                                     </div>
-                                    <div class="ios-card-body">
-                                        <div class="settings-item ios-settings-item">
-                                            <div class="settings-item-info">
-                                                <h4>Device Name</h4>
-                                                <p>Change the name of your device</p>
+                                    
+                                    <div class="form-group ios-form-group">
+                                        <label for="settings-default-pet" class="ios-form-label">Default Pet</label>
+                                        <select id="settings-default-pet" name="settings-default-pet" class="ios-form-input">
+                                            <option value="1">Buddy (Dog)</option>
+                                            <option value="2">Max (Cat)</option>
+                                            <option value="3">Luna (Cat)</option>
+                                            <option value="none">No Default</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group ios-form-group">
+                                        <label class="ios-form-label">Notifications</label>
+                                        <div class="ios-checkbox-group">
+                                            <label class="ios-checkbox">
+                                                <input type="checkbox" id="settings-notify-success" name="settings-notify-success" checked>
+                                                <span>Successful Feedings</span>
+                                            </label>
+                                            <label class="ios-checkbox">
+                                                <input type="checkbox" id="settings-notify-failure" name="settings-notify-failure" checked>
+                                                <span>Failed Feedings</span>
+                                            </label>
+                                            <label class="ios-checkbox">
+                                                <input type="checkbox" id="settings-notify-low-food" name="settings-notify-low-food" checked>
+                                                <span>Low Food Level (below 20%)</span>
+                                            </label>
+                                            <label class="ios-checkbox">
+                                                <input type="checkbox" id="settings-notify-offline" name="settings-notify-offline" checked>
+                                                <span>Device Offline</span>
+                                            </label>
+                                            <label class="ios-checkbox">
+                                                <input type="checkbox" id="settings-notify-battery" name="settings-notify-battery" checked>
+                                                <span>Low Battery (below 15%)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group ios-form-group">
+                                        <label class="ios-form-label">Device Options</label>
+                                        <div class="ios-checkbox-group">
+                                            <label class="ios-checkbox">
+                                                <input type="checkbox" id="settings-sound" name="settings-sound" checked>
+                                                <span>Play Sound When Dispensing Food</span>
+                                            </label>
+                                            <label class="ios-checkbox">
+                                                <input type="checkbox" id="settings-scheduled-only" name="settings-scheduled-only">
+                                                <span>Only Dispense During Scheduled Times</span>
+                                            </label>
+                                            <label class="ios-checkbox">
+                                                <input type="checkbox" id="settings-child-lock" name="settings-child-lock">
+                                                <span>Enable Child Lock (Prevents Manual Dispensing)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group ios-form-group">
+                                        <label for="settings-time-zone" class="ios-form-label">Device Time Zone</label>
+                                        <select id="settings-time-zone" name="settings-time-zone" class="ios-form-input">
+                                            <option value="America/New_York">Eastern Time (US & Canada)</option>
+                                            <option value="America/Chicago">Central Time (US & Canada)</option>
+                                            <option value="America/Denver">Mountain Time (US & Canada)</option>
+                                            <option value="America/Los_Angeles">Pacific Time (US & Canada)</option>
+                                            <option value="Europe/London">London</option>
+                                            <option value="Europe/Paris">Paris</option>
+                                            <option value="Asia/Tokyo">Tokyo</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-actions ios-form-actions">
+                                        <button type="button" class="ios-button ios-button-outline" id="settings-reset-default">Reset to Default</button>
+                                        <button type="submit" class="ios-button ios-button-primary">Save Settings</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Troubleshooting Tab Content -->
+                        <div id="troubleshoot-tab" class="tab-content">
+                            <div class="troubleshoot-container">
+                                <div class="troubleshoot-section">
+                                    <h3>Device Diagnostics</h3>
+                                    <div class="diagnostic-buttons">
+                                        <button class="ios-button ios-button-outline" id="run-diagnostics">Run Diagnostics</button>
+                                        <button class="ios-button ios-button-outline" id="reset-device">Reset Device</button>
+                                        <button class="ios-button ios-button-outline" id="update-firmware">Check for Updates</button>
+                                    </div>
+                                    <div class="diagnostic-results" id="diagnostic-results" style="display: none;">
+                                        <h4>Diagnostic Results:</h4>
+                                        <ul class="diagnostic-list">
+                                            <li class="success">✓ Motor: Working properly</li>
+                                            <li class="success">✓ Food Sensor: Working properly</li>
+                                            <li class="success">✓ Wi-Fi Connection: Strong</li>
+                                            <li class="warning">⚠ Battery: Discharging faster than expected</li>
+                                            <li class="success">✓ Firmware: Up to date</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="troubleshoot-section">
+                                    <h3>Common Issues</h3>
+                                    <div class="accordion ios-accordion">
+                                        <div class="accordion-item">
+                                            <div class="accordion-header">
+                                                <h4>Device Won't Connect to Wi-Fi</h4>
+                                                <i class="fas fa-chevron-down"></i>
                                             </div>
-                                            <div class="settings-item-control">
-                                                <div class="edit-field">
-                                                    <input type="text" class="ios-form-input" value="Living Room Feeder">
-                                                    <button class="ios-button ios-button-outline btn-sm">Save</button>
-                                                </div>
+                                            <div class="accordion-content">
+                                                <p>Try these steps to resolve Wi-Fi connection issues:</p>
+                                                <ol>
+                                                    <li>Ensure your Wi-Fi router is turned on and working.</li>
+                                                    <li>Check that the device is within range of your Wi-Fi signal.</li>
+                                                    <li>Restart the device by unplugging it for 10 seconds, then plugging it back in.</li>
+                                                    <li>Press and hold the reset button for 5 seconds to reset the Wi-Fi connection.</li>
+                                                    <li>Try connecting to a 2.4GHz network instead of 5GHz (the device only supports 2.4GHz).</li>
+                                                </ol>
                                             </div>
                                         </div>
                                         
-                                        <div class="settings-item ios-settings-item">
-                                            <div class="settings-item-info">
-                                                <h4>LED Indicator</h4>
-                                                <p>Control the brightness of device LED</p>
+                                        <div class="accordion-item">
+                                            <div class="accordion-header">
+                                                <h4>Food Not Dispensing</h4>
+                                                <i class="fas fa-chevron-down"></i>
                                             </div>
-                                            <div class="settings-item-control">
-                                                <select class="ios-form-input">
-                                                    <option value="off">Off</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="medium" selected>Medium</option>
-                                                    <option value="high">High</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="settings-item ios-settings-item">
-                                            <div class="settings-item-info">
-                                                <h4>Device Sounds</h4>
-                                                <p>Control feeding confirmation sounds</p>
-                                            </div>
-                                            <div class="settings-item-control">
-                                                <select class="ios-form-input">
-                                                    <option value="off">Off</option>
-                                                    <option value="low">Low</option>
-                                                    <option value="medium" selected>Medium</option>
-                                                    <option value="high">High</option>
-                                                </select>
+                                            <div class="accordion-content">
+                                                <p>If food is not dispensing properly, check the following:</p>
+                                                <ol>
+                                                    <li>Ensure the food container is properly attached and has food in it.</li>
+                                                    <li>Check that the food is not too large for the dispenser (should be dry kibble size).</li>
+                                                    <li>Look for any blockages in the dispensing mechanism.</li>
+                                                    <li>Try a manual dispensing test to see if the motor is working.</li>
+                                                    <li>Ensure the device has power (plugged in or has sufficient battery).</li>
+                                                </ol>
                                             </div>
                                         </div>
                                         
-                                        <div class="settings-item ios-settings-item">
-                                            <div class="settings-item-info">
-                                                <h4>Portion Size Calibration</h4>
-                                                <p>Calibrate for accurate dispensing</p>
+                                        <div class="accordion-item">
+                                            <div class="accordion-header">
+                                                <h4>Device Shows Offline But Is Powered On</h4>
+                                                <i class="fas fa-chevron-down"></i>
                                             </div>
-                                            <div class="settings-item-control">
-                                                <button class="ios-button ios-button-outline">Calibrate</button>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="settings-item ios-settings-item">
-                                            <div class="settings-item-info">
-                                                <h4>Auto-Update Firmware</h4>
-                                                <p>Automatically update when available</p>
-                                            </div>
-                                            <div class="settings-item-control">
-                                                <div class="ios-switch-wrapper">
-                                                    <input type="checkbox" class="ios-switch" checked>
-                                                </div>
+                                            <div class="accordion-content">
+                                                <p>If your device appears offline in the app but is powered on:</p>
+                                                <ol>
+                                                    <li>Check your internet connection on your phone and home network.</li>
+                                                    <li>Restart the device by unplugging it for 10 seconds, then plugging it back in.</li>
+                                                    <li>Force close and reopen the app.</li>
+                                                    <li>Try logging out and back into the app.</li>
+                                                    <li>Check if your router has blocked the device (some routers have security features that might block IoT devices).</li>
+                                                </ol>
                                             </div>
                                         </div>
-                                        
-                                        <div class="settings-item ios-settings-item">
-                                            <div class="settings-item-info">
-                                                <h4>Wi-Fi Settings</h4>
-                                                <p>Change the Wi-Fi network</p>
-                                            </div>
-                                            <div class="settings-item-control">
-                                                <button class="ios-button ios-button-outline">Change</button>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="settings-item ios-settings-item">
-                                            <div class="settings-item-info">
-                                                <h4>Reset Device</h4>
-                                                <p>Reset to factory settings</p>
-                                            </div>
-                                            <div class="settings-item-control">
-                                                <button class="ios-button ios-button-danger">Reset</button>
-                                            </div>
-                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="troubleshoot-section">
+                                    <h3>Contact Support</h3>
+                                    <p>If you've tried troubleshooting steps and still having issues, our support team is here to help.</p>
+                                    <div class="support-options">
+                                        <button class="ios-button ios-button-outline" id="contact-support">
+                                            <i class="fas fa-headset"></i> Contact Support
+                                        </button>
+                                        <a href="#" class="ios-button ios-button-outline">
+                                            <i class="fas fa-book"></i> View Manual
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -736,7 +680,7 @@
     <!-- 7. Finally load page-specific scripts -->
     <script src="/scripts/devices.js"></script>
 
-    <script></script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Hide loading overlay function
             function hideLoadingOverlay() {
@@ -778,12 +722,7 @@
             [addDeviceBtn, addDeviceCardBtn].forEach(btn => {
                 if (btn) {
                     btn.addEventListener('click', () => {
-                        if (deviceModal) {
-                            deviceModal.classList.add('open');
-                            document.getElementById('device-form').reset();
-                            document.getElementById('device-id').value = '';
-                            document.getElementById('device-modal-title').textContent = 'Add New Device';
-                        }
+                        deviceModal.classList.add('open');
                     });
                 }
             });
@@ -793,9 +732,7 @@
                 if (btn) {
                     btn.addEventListener('click', () => {
                         const modal = btn.closest('.ios-modal');
-                        if (modal) {
-                            modal.classList.remove('open');
-                        }
+                        if (modal) modal.classList.remove('open');
                     });
                 }
             });
@@ -817,10 +754,124 @@
                     const detailsModal = document.getElementById('device-details-modal');
                     if (detailsModal && deviceId) {
                         detailsModal.classList.add('open');
-                        // Here you would normally load device data based on ID
+                        // Set the device ID as a data attribute on the modal
+                        detailsModal.setAttribute('data-device-id', deviceId);
+                        // Load device details
+                        loadDeviceDetails(deviceId);
                     }
                 });
             });
+            
+            // Function to load device details
+            function loadDeviceDetails(deviceId) {
+                console.log(`Loading details for device ID: ${deviceId}`);
+                // This would normally fetch data from your API
+                // For now we'll just update based on our existing data
+                
+                const deviceData = {
+                    '1': {
+                        name: 'Living Room Feeder',
+                        model: 'PetFeeder Pro',
+                        serial: 'PFP1001203',
+                        firmware: 'v2.1.5',
+                        lastUpdate: '2023-04-01',
+                        dateAdded: '2023-01-15',
+                        status: 'Online',
+                        lastFeeding: 'Today, 12:00 PM',
+                        nextFeeding: 'Today, 8:00 PM',
+                        foodLevel: '72%',
+                        battery: '85%',
+                        connectionType: 'Wi-Fi',
+                        network: 'Home-Network',
+                        ip: '192.168.1.105',
+                        signal: 'Good (85%)',
+                        lastActivity: 'Just now'
+                    },
+                    '2': {
+                        name: 'Kitchen Feeder',
+                        model: 'PetFeeder Standard',
+                        serial: 'PFS2005109',
+                        firmware: 'v2.0.8',
+                        lastUpdate: '2023-03-15',
+                        dateAdded: '2023-02-10',
+                        status: 'Online',
+                        lastFeeding: 'Today, 11:30 AM',
+                        nextFeeding: 'Today, 7:30 PM',
+                        foodLevel: '15%',
+                        battery: '62%',
+                        connectionType: 'Wi-Fi',
+                        network: 'Home-Network',
+                        ip: '192.168.1.106',
+                        signal: 'Good (78%)',
+                        lastActivity: '2 minutes ago'
+                    },
+                    '3': {
+                        name: 'Bedroom Feeder',
+                        model: 'PetFeeder Mini',
+                        serial: 'PFM3002098',
+                        firmware: 'v1.9.3',
+                        lastUpdate: '2023-02-28',
+                        dateAdded: '2023-03-01',
+                        status: 'Offline',
+                        lastFeeding: '2 days ago, 6:15 PM',
+                        nextFeeding: 'N/A (Offline)',
+                        foodLevel: '45%',
+                        battery: 'Unknown (Offline)',
+                        connectionType: 'Wi-Fi',
+                        network: 'Home-Network',
+                        ip: 'N/A (Offline)',
+                        signal: 'N/A (Offline)',
+                        lastActivity: '2 days ago'
+                    }
+                };
+                
+                if (deviceData[deviceId]) {
+                    const data = deviceData[deviceId];
+                    
+                    // Update modal title
+                    document.getElementById('device-details-name').textContent = data.name;
+                    
+                    // Update status indicator
+                    const statusIndicator = document.querySelector('.device-details-status-indicator');
+                    const statusText = document.querySelector('.device-details-status-text');
+                    if (data.status === 'Online') {
+                        statusIndicator.className = 'device-details-status-indicator online';
+                        statusText.textContent = 'Online';
+                    } else {
+                        statusIndicator.className = 'device-details-status-indicator offline';
+                        statusText.textContent = 'Offline';
+                    }
+                    
+                    // Update feed now button
+                    const feedNowBtn = document.querySelector('.device-details-actions .feed-now-btn');
+                    if (data.status === 'Offline') {
+                        feedNowBtn.disabled = true;
+                    } else {
+                        feedNowBtn.disabled = false;
+                    }
+                    
+                    // Update device info
+                    document.getElementById('details-model').textContent = data.model;
+                    document.getElementById('details-serial').textContent = data.serial;
+                    document.getElementById('details-firmware').textContent = data.firmware;
+                    document.getElementById('details-last-update').textContent = data.lastUpdate;
+                    document.getElementById('details-date-added').textContent = data.dateAdded;
+                    
+                    // Update status info
+                    document.getElementById('details-status').textContent = data.status;
+                    document.getElementById('details-last-feeding').textContent = data.lastFeeding;
+                    document.getElementById('details-next-feeding').textContent = data.nextFeeding;
+                    document.getElementById('details-food-level').textContent = data.foodLevel;
+                    document.getElementById('details-battery').textContent = data.battery;
+                    
+                    // Update connection info
+                    document.getElementById('details-connection-type').textContent = data.connectionType;
+                    document.getElementById('details-network').textContent = data.network;
+                    document.getElementById('details-ip').textContent = data.ip;
+                    document.getElementById('details-signal').textContent = data.signal;
+                    document.getElementById('details-last-activity').textContent = data.lastActivity;
+                }
+            }
             
             // Device status filter
             const deviceStatusFilter = document.getElementById('device-status-filter');
@@ -831,7 +882,7 @@
                     
                     deviceCards.forEach(card => {
                         const deviceStatus = card.getAttribute('data-device-status');
-                        if (filterValue === 'all' || deviceStatus === filterValue) {
+                        if (filterValue === 'all' || filterValue === deviceStatus) {
                             card.style.display = '';
                         } else {
                             card.style.display = 'none';
@@ -864,22 +915,24 @@
                 new Chart(feedingHistoryChart, {
                     type: 'bar',
                     data: {
-                        labels: ['Apr 1', 'Apr 2', 'Apr 3', 'Apr 4', 'Apr 5'],
+                        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                         datasets: [{
-                            label: 'Daily Feedings',
-                            data: [4, 4, 4, 4, 1],
-                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            label: 'Food Dispensed (g)',
+                            data: [160, 160, 160, 160, 160, 160, 160],
+                            backgroundColor: 'rgba(75, 192, 192, 0.7)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
                         }]
                     },
                     options: {
                         responsive: true,
+                        maintainAspectRatio: false,
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                ticks: {
-                                    stepSize: 1
+                                title: {
+                                    display: true,
+                                    text: 'Amount (g)'
                                 }
                             }
                         }

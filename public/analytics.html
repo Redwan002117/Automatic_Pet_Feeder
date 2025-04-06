@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/styles/ios-animations.css">
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/component-loader.js"></script>
     </head>
 <body class="ios-ui" data-title="Analytics">
     <!-- Loading Overlay Component -->
@@ -353,24 +354,21 @@
     <!-- 2. Load Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- 3. Load component loader first -->
-    <script src="/scripts/component-loader.js"></script>
-    
-    <!-- 4. Next load configuration -->
+    <!-- 3. Next load configuration (component-loader.js is already in the head section) -->
     <script src="/scripts/config.js"></script>
     
-    <!-- 5. Then load main utilities -->
+    <!-- 4. Then load main utilities -->
     <script src="/scripts/utils.js"></script>
     <script src="/scripts/main.js"></script>
     
-    <!-- 6. Load iOS header and animation scripts -->
+    <!-- 5. Load iOS header and animation scripts -->
     <script src="/scripts/ios-header.js"></script>
     <script src="/scripts/ios-animations.js"></script>
     
-    <!-- 7. Load auth management -->
+    <!-- 6. Load auth management -->
     <script src="/scripts/auth.js"></script>
     
-    <!-- 8. Load page-specific scripts -->
+    <!-- 7. Load page-specific scripts -->
     <script src="/scripts/analytics.js"></script>
 
     <script>
