@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetFeeder - Smart Feeding Solutions for Your Pets</title>
     <meta name="description" content="PetFeeder provides smart, connected feeding solutions for your pets. Schedule meals, monitor food levels, and feed remotely with our iOS-inspired app.">
-    <meta http-equiv="refresh" content="0;url=public/index.html">
     <link rel="icon" href="public/assets/images/logo.svg" type="image/svg+xml">
     <style>
         body {
@@ -21,18 +20,8 @@
             color: #333;
         }
         
-        .redirect-message {
+        .loading-message {
             margin-bottom: 20px;
-        }
-        
-        .manual-link {
-            color: #007aff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .manual-link:hover {
-            text-decoration: underline;
         }
         
         .loader {
@@ -53,9 +42,16 @@
 </head>
 <body>
     <div class="loader"></div>
-    <div class="redirect-message">
-        <p>Redirecting to PetFeeder application...</p>
-        <p>If you are not redirected automatically, <a href="public/index.html" class="manual-link">click here</a>.</p>
+    <div class="loading-message">
+        <p>Loading PetFeeder application...</p>
     </div>
+    
+    <script>
+        // This script will redirect the user if .htaccess doesn't work
+        // It uses a slight delay to check if we're still on this page
+        setTimeout(function() {
+            window.location.href = window.location.origin + '/index.html'; 
+        }, 1000);
+    </script>
 </body>
 </html>
