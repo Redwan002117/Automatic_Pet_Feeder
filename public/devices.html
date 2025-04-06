@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Devices - Automatic Pet Feeder</title>
     <meta name="description" content="Manage your pet feeder devices and monitor their status.">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/dashboard.css">
-    <link rel="stylesheet" href="/styles/devices.css">
-    <link rel="stylesheet" href="/styles/toast.css">
-    <link rel="stylesheet" href="/styles/ios.css">
-    <link rel="stylesheet" href="/styles/ios-animations.css">
-    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/devices.css">
+    <link rel="stylesheet" href="./styles/toast.css">
+    <link rel="stylesheet" href="./styles/ios.css">
+    <link rel="stylesheet" href="./styles/ios-animations.css">
+    <link rel="icon" href="./assets/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="/scripts/component-loader.js"></script>
+    <script src="./scripts/component-loader.js"></script>
 </head>
 <body class="ios-ui" data-title="My Devices">
     <!-- Loading Overlay Component -->
@@ -99,7 +99,7 @@
                             </div>
                             <div class="device-actions">
                                 <button class="ios-button ios-button-primary feed-now-btn" data-device-id="1">Feed Now</button>
-                                <a href="/schedules.html?device=1" class="ios-button ios-button-outline">Schedule</a>
+                                <a href="./schedules.html?device=1" class="ios-button ios-button-outline">Schedule</a>
                                 <a href="#" class="ios-button ios-button-outline view-device-details" data-device-id="1">Details</a>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             </div>
                             <div class="device-actions">
                                 <button class="ios-button ios-button-primary feed-now-btn" data-device-id="2">Feed Now</button>
-                                <a href="/schedules.html?device=2" class="ios-button ios-button-outline">Schedule</a>
+                                <a href="./schedules.html?device=2" class="ios-button ios-button-outline">Schedule</a>
                                 <a href="#" class="ios-button ios-button-outline view-device-details" data-device-id="2">Details</a>
                             </div>
                         </div>
@@ -410,7 +410,7 @@
                             <div class="feeding-history-container">
                                 <div class="feeding-history-header">
                                     <h3>Recent Feeding History</h3>
-                                    <a href="/history.html?device=1" class="ios-button ios-button-text">View All History</a>
+                                    <a href="./history.html?device=1" class="ios-button ios-button-text">View All History</a>
                                 </div>
                                 
                                 <div class="feeding-history-chart-container">
@@ -664,21 +664,21 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- 3. Next load configuration -->
-    <script src="/scripts/config.js"></script>
+    <script src="./scripts/config.js"></script>
     
     <!-- 4. Then load main utilities -->
-    <script src="/scripts/utils.js"></script>
-    <script src="/scripts/main.js"></script>
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/main.js"></script>
     
     <!-- 5. Load iOS header and animation scripts -->
-    <script src="/scripts/ios-header.js"></script>
-    <script src="/scripts/ios-animations.js"></script>
+    <script src="./scripts/ios-header.js"></script>
+    <script src="./scripts/ios-animations.js"></script>
     
     <!-- 6. Load auth management -->
-    <script src="/scripts/auth.js"></script>
+    <script src="./scripts/auth.js"></script>
     
     <!-- 7. Finally load page-specific scripts -->
-    <script src="/scripts/devices.js"></script>
+    <script src="./scripts/devices.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Set New Password - Automatic Pet Feeder</title>
     <meta name="description" content="Set a new password for your Automatic Pet Feeder account.">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/auth.css">
-    <link rel="stylesheet" href="/styles/toast.css">
-    <link rel="stylesheet" href="/styles/ios.css">
-    <link rel="stylesheet" href="/styles/ios-animations.css">
-    <link rel="stylesheet" href="/styles/captcha.css">
-    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/auth.css">
+    <link rel="stylesheet" href="./styles/toast.css">
+    <link rel="stylesheet" href="./styles/ios.css">
+    <link rel="stylesheet" href="./styles/ios-animations.css">
+    <link rel="stylesheet" href="./styles/captcha.css">
+    <link rel="icon" href="./assets/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="/scripts/component-loader.js"></script>
+    <script src="./scripts/component-loader.js"></script>
 </head>
 <body class="ios-ui" data-title="Set New Password">
     <!-- Loading Overlay Component -->
@@ -22,7 +22,7 @@
         <div class="container header-container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="/assets/images/logo.svg" alt="Pet Feeder Logo">
+                    <img src="./assets/images/logo.svg" alt="Pet Feeder Logo">
                     <span>PetFeeder</span>
                 </a>
             </div>
@@ -32,7 +32,7 @@
     <main class="auth-container ios-container">
         <div class="auth-card ios-card">
             <div class="auth-header ios-card-header">
-                <img src="/assets/images/logo.svg" alt="Pet Feeder Logo" class="auth-logo">
+                <img src="./assets/images/logo.svg" alt="Pet Feeder Logo" class="auth-logo">
                 <h1 class="auth-title ios-title">Set New Password</h1>
                 <p class="auth-subtitle ios-subtitle">Create a new password for your account</p>
             </div>
@@ -92,15 +92,15 @@
     </script>
     
     <!-- 2. Load configuration -->
-    <script src="/scripts/config.js"></script>
+    <script src="./scripts/config.js"></script>
     
     <!-- 3. Load utilities -->
-    <script src="/scripts/utils.js"></script>
-    <script src="/scripts/main.js"></script>
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/main.js"></script>
     
     <!-- 4. Load authentication scripts -->
-    <script src="/scripts/auth.js"></script>
-    <script src="/scripts/captcha-protection.js"></script>
+    <script src="./scripts/auth.js"></script>
+    <script src="./scripts/captcha-protection.js"></script>
     
     <!-- 5. Token extraction script for cPanel compatibility -->
     <script>
@@ -205,7 +205,7 @@
                         
                         // Redirect to login page after a delay
                         setTimeout(() => {
-                            window.location.href = '/login.html?reset=success';
+                            window.location.href = './login.html?reset=success';
                         }, 3000);
                         
                     } catch (error) {

@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Automatic Pet Feeder</title>
     <meta name="description" content="Monitor your pet feeders and manage feeding schedules from your dashboard.">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/dashboard.css">
-    <link rel="stylesheet" href="/styles/toast.css">
-    <link rel="stylesheet" href="/styles/ios.css">
-    <link rel="stylesheet" href="/styles/ios-animations.css">
-    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="stylesheet" href="styles/ios.css">
+    <link rel="stylesheet" href="styles/ios-animations.css">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="/scripts/component-loader.js"></script>
+    <script src="scripts/component-loader.js"></script>
 </head>
 <body class="ios-ui" data-title="Dashboard">
     <!-- Loading Overlay Component -->
@@ -94,7 +94,7 @@
                 <section class="devices-section ios-card">
                     <div class="section-header ios-card-header">
                         <h2 class="ios-card-title">Device Status</h2>
-                        <a href="/devices.html" class="ios-button ios-button-text">View All</a>
+                        <a href="devices.html" class="ios-button ios-button-text">View All</a>
                     </div>
                     <div class="devices-grid ios-card-content">
                         <div class="device-status-card ios-status-card">
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="device-actions">
                                     <button class="ios-button ios-button-primary btn-sm feed-now-btn" data-device-id="1">Feed Now</button>
-                                    <a href="/schedules.html?device=1" class="ios-button ios-button-outline btn-sm">Schedule</a>
+                                    <a href="schedules.html?device=1" class="ios-button ios-button-outline btn-sm">Schedule</a>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="device-actions">
                                     <button class="ios-button ios-button-primary btn-sm feed-now-btn" data-device-id="2">Feed Now</button>
-                                    <a href="/schedules.html?device=2" class="ios-button ios-button-outline btn-sm">Schedule</a>
+                                    <a href="schedules.html?device=2" class="ios-button ios-button-outline btn-sm">Schedule</a>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
                 <section class="upcoming-feedings-section ios-card">
                     <div class="section-header ios-card-header">
                         <h2 class="ios-card-title">Upcoming Feedings</h2>
-                        <a href="/schedules.html" class="ios-button ios-button-text">View All</a>
+                        <a href="schedules.html" class="ios-button ios-button-text">View All</a>
                     </div>
                     <div class="upcoming-list ios-card-content">
                         <div class="upcoming-feeding-item ios-list-item next">
@@ -277,7 +277,7 @@
                 <section class="recent-activity-section ios-card">
                     <div class="section-header ios-card-header">
                         <h2 class="ios-card-title">Recent Activity</h2>
-                        <a href="/history.html" class="ios-button ios-button-text">View All</a>
+                        <a href="history.html" class="ios-button ios-button-text">View All</a>
                     </div>
                     <div class="activity-list ios-card-content">
                         <div class="activity-item ios-list-item">
@@ -346,7 +346,7 @@
                 <section class="analytics-section ios-card">
                     <div class="section-header ios-card-header">
                         <h2 class="ios-card-title">Predictive Analytics</h2>
-                        <a href="/analytics.html" class="ios-button ios-button-text">View All</a>
+                        <a href="analytics.html" class="ios-button ios-button-text">View All</a>
                     </div>
                     <div class="analytics-content ios-card-content">
                         <div class="analytics-insights">
@@ -394,21 +394,21 @@
                         <h2 class="ios-card-title">Quick Actions</h2>
                     </div>
                     <div class="quick-actions-grid ios-card-content">
-                        <a href="/devices.html?action=add" class="quick-action-card ios-action-card">
+                        <a href="devices.html?action=add" class="quick-action-card ios-action-card">
                             <div class="action-icon">
                                 <i class="fas fa-plus"></i>
                             </div>
                             <div class="action-title">Add Device</div>
                         </a>
                         
-                        <a href="/pets.html?action=add" class="quick-action-card ios-action-card">
+                        <a href="pets.html?action=add" class="quick-action-card ios-action-card">
                             <div class="action-icon">
                                 <i class="fas fa-paw"></i>
                             </div>
                             <div class="action-title">Add Pet</div>
                         </a>
                         
-                        <a href="/schedules.html?action=create" class="quick-action-card ios-action-card">
+                        <a href="schedules.html?action=create" class="quick-action-card ios-action-card">
                             <div class="action-icon">
                                 <i class="fas fa-calendar-plus"></i>
                             </div>
@@ -477,7 +477,7 @@
                     <div class="feed-all-list">
                         <div class="feed-all-item">
                             <div class="feed-all-pet">
-                                <img src="/assets/images/pet-1.jpg" alt="Buddy" class="pet-avatar">
+                                <img src="assets/images/pet-1.jpg" alt="Buddy" class="pet-avatar">
                                 <span class="pet-name">Buddy</span>
                             </div>
                             <div class="feed-all-device">Living Room Feeder</div>
@@ -486,7 +486,7 @@
                         
                         <div class="feed-all-item">
                             <div class="feed-all-pet">
-                                <img src="/assets/images/pet-2.jpg" alt="Max" class="pet-avatar">
+                                <img src="assets/images/pet-2.jpg" alt="Max" class="pet-avatar">
                                 <span class="pet-name">Max</span>
                             </div>
                             <div class="feed-all-device">Kitchen Feeder</div>
@@ -495,7 +495,7 @@
                         
                         <div class="feed-all-item disabled">
                             <div class="feed-all-pet">
-                                <img src="/assets/images/pet-3.jpg" alt="Luna" class="pet-avatar">
+                                <img src="assets/images/pet-3.jpg" alt="Luna" class="pet-avatar">
                                 <span class="pet-name">Luna</span>
                             </div>
                             <div class="feed-all-device">Bedroom Feeder (Offline)</div>
@@ -524,21 +524,21 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- 3. Next load configuration -->
-    <script src="/scripts/config.js"></script>
+    <script src="scripts/config.js"></script>
     
     <!-- 4. Then load main utilities -->
-    <script src="/scripts/utils.js"></script>
-    <script src="/scripts/main.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/main.js"></script>
     
     <!-- 5. Load iOS header and animation scripts -->
-    <script src="/scripts/ios-header.js"></script>
-    <script src="/scripts/ios-animations.js"></script>
+    <script src="scripts/ios-header.js"></script>
+    <script src="scripts/ios-animations.js"></script>
     
     <!-- 6. Load auth management -->
-    <script src="/scripts/auth.js"></script>
+    <script src="scripts/auth.js"></script>
     
     <!-- 7. Finally load page-specific scripts -->
-    <script src="/scripts/dashboard.js"></script>
+    <script src="scripts/dashboard.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

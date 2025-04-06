@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Pets - Automatic Pet Feeder</title>
     <meta name="description" content="Manage your pets and their feeding preferences in the Automatic Pet Feeder system.">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/dashboard.css">
-    <link rel="stylesheet" href="/styles/pets.css">
-    <link rel="stylesheet" href="/styles/toast.css">
-    <link rel="stylesheet" href="/styles/ios.css">
-    <link rel="stylesheet" href="/styles/ios-animations.css">
-    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/pets.css">
+    <link rel="stylesheet" href="./styles/toast.css">
+    <link rel="stylesheet" href="./styles/ios.css">
+    <link rel="stylesheet" href="./styles/ios-animations.css">
+    <link rel="icon" href="./assets/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="/scripts/component-loader.js"></script>
+    <script src="./scripts/component-loader.js"></script>
 </head>
 <body class="ios-ui" data-title="My Pets">
     <!-- Loading Overlay Component -->
@@ -54,7 +54,7 @@
                     <div class="pet-card ios-card" data-pet-id="1" data-pet-type="dog">
                         <div class="pet-card-header ios-card-header">
                             <div class="pet-avatar">
-                                <img src="/assets/images/pet-1.jpg" alt="Buddy" class="pet-image">
+                                <img src="./assets/images/pet-1.jpg" alt="Buddy" class="pet-image">
                             </div>
                             <div class="pet-info">
                                 <h3 class="pet-name">Buddy</h3>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="pet-actions">
                                 <button class="ios-button ios-button-primary feed-now-btn" data-pet-id="1">Feed Now</button>
-                                <a href="/schedules.html?pet=1" class="ios-button ios-button-outline">Schedule</a>
+                                <a href="./schedules.html?pet=1" class="ios-button ios-button-outline">Schedule</a>
                                 <a href="#" class="ios-button ios-button-outline view-pet-details" data-pet-id="1">Details</a>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                     <div class="pet-card ios-card" data-pet-id="2" data-pet-type="cat">
                         <div class="pet-card-header ios-card-header">
                             <div class="pet-avatar">
-                                <img src="/assets/images/pet-2.jpg" alt="Max" class="pet-image">
+                                <img src="./assets/images/pet-2.jpg" alt="Max" class="pet-image">
                             </div>
                             <div class="pet-info">
                                 <h3 class="pet-name">Max</h3>
@@ -162,7 +162,7 @@
                             </div>
                             <div class="pet-actions">
                                 <button class="ios-button ios-button-primary feed-now-btn" data-pet-id="2">Feed Now</button>
-                                <a href="/schedules.html?pet=2" class="ios-button ios-button-outline">Schedule</a>
+                                <a href="./schedules.html?pet=2" class="ios-button ios-button-outline">Schedule</a>
                                 <a href="#" class="ios-button ios-button-outline view-pet-details" data-pet-id="2">Details</a>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                     <div class="pet-card ios-card" data-pet-id="3" data-pet-type="cat">
                         <div class="pet-card-header ios-card-header">
                             <div class="pet-avatar">
-                                <img src="/assets/images/pet-3.jpg" alt="Luna" class="pet-image">
+                                <img src="./assets/images/pet-3.jpg" alt="Luna" class="pet-image">
                             </div>
                             <div class="pet-info">
                                 <h3 class="pet-name">Luna</h3>
@@ -221,7 +221,7 @@
                             </div>
                             <div class="pet-actions">
                                 <button class="ios-button ios-button-primary feed-now-btn" data-pet-id="3" disabled>Feed Now</button>
-                                <a href="/schedules.html?pet=3" class="ios-button ios-button-outline">Schedule</a>
+                                <a href="./schedules.html?pet=3" class="ios-button ios-button-outline">Schedule</a>
                                 <a href="#" class="ios-button ios-button-outline view-pet-details" data-pet-id="3">Details</a>
                             </div>
                         </div>
@@ -258,7 +258,7 @@
                     
                     <div class="pet-avatar-upload">
                         <div class="avatar-preview">
-                            <img src="/assets/images/default-pet.png" alt="Pet avatar preview" id="avatar-preview">
+                            <img src="./assets/images/default-pet.png" alt="Pet avatar preview" id="avatar-preview">
                         </div>
                         <div class="avatar-upload-btn">
                             <label for="pet-avatar" class="ios-button ios-button-outline">
@@ -369,7 +369,7 @@
                 <div class="pet-details-container ios-details-container">
                     <div class="pet-details-header ios-details-header">
                         <div class="pet-details-avatar">
-                            <img src="/assets/images/pet-1.jpg" alt="Pet" id="details-pet-image">
+                            <img src="./assets/images/pet-1.jpg" alt="Pet" id="details-pet-image">
                         </div>
                         <div class="pet-details-info">
                             <h3 id="details-pet-name">Buddy</h3>
@@ -451,7 +451,7 @@
                             <div class="pet-schedule-preview">
                                 <div class="schedule-preview-header">
                                     <h3>Feeding Schedule</h3>
-                                    <a href="/schedules.html?pet=1" class="ios-button ios-button-text">Manage Schedule</a>
+                                    <a href="./schedules.html?pet=1" class="ios-button ios-button-text">Manage Schedule</a>
                                 </div>
                                 <div class="schedule-timeline">
                                     <div class="schedule-day">
@@ -498,7 +498,7 @@
                             <div class="feeding-history-container">
                                 <div class="feeding-history-header">
                                     <h3>Recent Feeding History</h3>
-                                    <a href="/history.html?pet=1" class="ios-button ios-button-text">View All History</a>
+                                    <a href="./history.html?pet=1" class="ios-button ios-button-text">View All History</a>
                                 </div>
                                 
                                 <div class="feeding-history-chart-container">
@@ -654,7 +654,7 @@
                                 
                                 <div class="photos-grid">
                                     <div class="photo-item">
-                                        <img src="/assets/images/pet-1.jpg" alt="Buddy">
+                                        <img src="./assets/images/pet-1.jpg" alt="Buddy">
                                         <div class="photo-overlay">
                                             <div class="photo-date">Apr 5, 2023</div>
                                             <div class="photo-actions">
@@ -739,24 +739,24 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- 3. Next load configuration -->
-    <script src="/scripts/config.js"></script>
+    <script src="./scripts/config.js"></script>
     
     <!-- 4. Then load main utilities -->
-    <script src="/scripts/utils.js"></script>
-    <script src="/scripts/main.js"></script>
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/main.js"></script>
     
     <!-- 5. Load iOS header and animation scripts -->
-    <script src="/scripts/ios-header.js"></script>
-    <script src="/scripts/ios-animations.js"></script>
+    <script src="./scripts/ios-header.js"></script>
+    <script src="./scripts/ios-animations.js"></script>
     
     <!-- 6. Load auth management -->
-    <script src="/scripts/auth.js"></script>
+    <script src="./scripts/auth.js"></script>
     
     <!-- 7. Load component loader -->
-    <script src="/scripts/component-loader.js"></script>
+    <script src="./scripts/component-loader.js"></script>
     
     <!-- 8. Finally load page-specific scripts -->
-    <script src="/scripts/pets.js"></script>
+    <script src="./scripts/pets.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -860,7 +860,7 @@
                         lastFeeding: 'Today, 12:00 PM',
                         addedOn: 'January 15, 2023',
                         notes: 'Buddy is a very active dog who loves to play fetch. He has a good appetite and is generally healthy.',
-                        image: '/assets/images/pet-1.jpg'
+                        image: './assets/images/pet-1.jpg'
                     },
                     '2': {
                         name: 'Max',
@@ -875,7 +875,7 @@
                         lastFeeding: 'Today, 11:30 AM',
                         addedOn: 'February 10, 2023',
                         notes: 'Max is a calm cat who enjoys lounging by the window. He has a consistent eating schedule.',
-                        image: '/assets/images/pet-2.jpg'
+                        image: './assets/images/pet-2.jpg'
                     },
                     '3': {
                         name: 'Luna',
@@ -890,7 +890,7 @@
                         lastFeeding: '2 days ago, 6:15 PM',
                         addedOn: 'March 1, 2023',
                         notes: 'Luna is a playful and curious cat. She loves to explore and is very active during the evening.',
-                        image: '/assets/images/pet-3.jpg'
+                        image: './assets/images/pet-3.jpg'
                     }
                 };
                 
