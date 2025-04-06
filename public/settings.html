@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Automatic Pet Feeder</title>
+    <meta name="description" content="Manage your preferences and settings for your automatic pet feeder devices.">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/settings.css">
+    <link rel="stylesheet" href="/styles/ios.css">
+    <link rel="stylesheet" href="/styles/toast.css">
+    <link rel="stylesheet" href="/styles/ios-animations.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/component-loader.js"></script>
+</head>
+<body class="ios-ui" data-title="Settings">
+    <!-- Loading Overlay Component -->
+    <div data-component="loading-overlay"></div>
+
+    <div class="dashboard-container ios-dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar ios-sidebar">
+            <div data-component="sidebar"></div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content ios-main-content">
+            <!-- Header Component -->
+            <header class="content-header ios-header ios-animated-header">
+                <div data-component="header" data-title="Settings"></div>
+            </header>
+                            </ul>
+                            <div class="notification-footer ios-dropdown-footer">
+                                <a href="/notifications.html" class="ios-link">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile ios-profile">
+                        <button class="profile-button ios-button-icon ios-animated-button" aria-label="View profile">
+                            <img src="/assets/images/profile-placeholder.jpg" alt="User profile picture" id="profile-image">
+                            <span id="profile-name">John Doe</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="profile-dropdown ios-dropdown ios-animated-dropdown">
+                            <ul class="ios-list">
+                                <li>
+                                    <a href="/profile.html">
+                                        <i class="fas fa-user"></i>
+                                        My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/settings.html">
+                                        <i class="fas fa-cog"></i>
+                                        Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="dropdown-logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body ios-content-body">
+                <!-- Settings Sections -->
+                <section class="settings-section ios-card">
+                    <div class="ios-card-header">
+                        <h2 class="ios-card-title">App Settings</h2>
+                    </div>
+                    <div class="ios-card-content">
+                        <div class="settings-list ios-list">
+                            <div class="settings-item ios-list-item">
+                                <div class="settings-item-content">
+                                    <h3 class="ios-list-title">Dark Mode</h3>
+                                    <p class="ios-list-subtitle">Use dark theme throughout the app</p>
+                                </div>
+                                <div class="ios-switch-wrapper">
+                                    <input type="checkbox" id="dark-mode-toggle" class="ios-switch">
+                                </div>
+                            </div>
+                            <!-- More settings items... -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- More settings sections... -->
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="/scripts/main.js"></script>
+    <script src="/scripts/auth.js"></script>
+    <script src="/scripts/dashboard.js"></script>
+    <script src="/scripts/settings.js"></script>
+</body>
+</html>

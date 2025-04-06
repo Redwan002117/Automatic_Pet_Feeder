@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pet bowl -->
+  <ellipse cx="200" cy="220" rx="120" ry="30" fill="#F3F4F6"/>
+  <path d="M110 200C110 177.909 150.294 160 200 160C249.706 160 290 177.909 290 200V220C290 242.091 249.706 260 200 260C150.294 260 110 242.091 110 220V200Z" fill="#4A6FA5"/>
+  
+  <!-- Pet food -->
+  <circle cx="160" cy="210" r="15" fill="#F97316"/>
+  <circle cx="190" cy="220" r="15" fill="#F97316"/>
+  <circle cx="220" cy="210" r="15" fill="#F97316"/>
+  <circle cx="240" cy="225" r="10" fill="#F97316"/>
+  <circle cx="175" cy="200" r="10" fill="#F97316"/>
+  
+  <!-- Dog silhouette -->
+  <path d="M280 160C280 160 300 140 310 150C320 160 310 170 310 170L300 180L290 170L280 160Z" fill="#243E63"/>
+  <circle cx="290" cy="155" r="5" fill="white"/>
+  <path d="M250 180C250 130 270 110 290 110C310 110 330 130 330 180L320 200L290 210L260 200L250 180Z" fill="#243E63"/>
+  <path d="M260 180L240 140L230 180L260 180Z" fill="#243E63"/>
+  <path d="M320 180L340 140L350 180L320 180Z" fill="#243E63"/>
+  <path d="M310 200L330 240L320 250L300 240L310 200Z" fill="#243E63"/>
+  <path d="M270 200L250 240L260 250L280 240L270 200Z" fill="#243E63"/>
+</svg> 

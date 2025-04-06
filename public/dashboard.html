@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Automatic Pet Feeder</title>
+    <meta name="description" content="Monitor your pet feeders and manage feeding schedules from your dashboard.">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/toast.css">
+    <link rel="stylesheet" href="/styles/ios.css">
+    <link rel="stylesheet" href="/styles/ios-animations.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/component-loader.js"></script>
+</head>
+<body class="ios-ui" data-title="Dashboard">
+    <!-- Loading Overlay Component -->
+    <div data-component="loading-overlay"></div>
+
+    <div class="dashboard-container ios-dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar ios-sidebar">
+            <div data-component="sidebar"></div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content ios-main-content">
+            <!-- Header Component -->
+            <header class="content-header ios-header ios-animated-header">
+                <div data-component="header"></div>
+            </header>
+
+            <div class="content-body ios-content-body">
+                <!-- Welcome Section -->
+                <section class="welcome-section ios-card">
+                    <div class="welcome-content">
+                        <h2>Welcome back, <span id="user-name">John</span>!</h2>
+                        <p>Here's a summary of your pet feeding activities.</p>
+                    </div>
+                    <div class="welcome-date">
+                        <span id="current-date">Wednesday, April 5, 2023</span>
+                    </div>
+                </section>
+
+                <!-- Quick Stats -->
+                <section class="stats-grid ios-stats-grid">
+                    <div class="stat-card ios-stat-card">
+                        <div class="stat-icon ios-stat-icon">
+                            <i class="fas fa-tablet-alt"></i>
+                        </div>
+                        <div class="stat-details ios-stat-details">
+                            <h3 class="stat-title ios-stat-title">Active Devices</h3>
+                            <div class="stat-value ios-stat-value">2/3</div>
+                            <div class="stat-label ios-stat-label">Online</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card ios-stat-card">
+                        <div class="stat-icon ios-stat-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="stat-details ios-stat-details">
+                            <h3 class="stat-title ios-stat-title">Pets</h3>
+                            <div class="stat-value ios-stat-value">3</div>
+                            <div class="stat-label ios-stat-label">Total Pets</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card ios-stat-card">
+                        <div class="stat-icon ios-stat-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="stat-details ios-stat-details">
+                            <h3 class="stat-title ios-stat-title">Today's Feedings</h3>
+                            <div class="stat-value ios-stat-value">2/6</div>
+                            <div class="stat-label ios-stat-label">Completed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card ios-stat-card">
+                        <div class="stat-icon ios-stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-details ios-stat-details">
+                            <h3 class="stat-title ios-stat-title">Active Schedules</h3>
+                            <div class="stat-value ios-stat-value">5</div>
+                            <div class="stat-label ios-stat-label">Scheduled</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Device Status -->
+                <section class="devices-section ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Device Status</h2>
+                        <a href="/devices.html" class="ios-button ios-button-text">View All</a>
+                    </div>
+                    <div class="devices-grid ios-card-content">
+                        <div class="device-status-card ios-status-card">
+                            <div class="device-header">
+                                <div class="device-icon">
+                                    <i class="fas fa-tablet-alt"></i>
+                                </div>
+                                <div class="device-info">
+                                    <h3>Living Room Feeder</h3>
+                                    <span class="device-status online">Online</span>
+                                </div>
+                                <div class="device-menu">
+                                    <button class="ios-button-icon" aria-label="Device menu">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="device-details">
+                                <div class="device-stat">
+                                    <span class="stat-label">Food Level:</span>
+                                    <div class="progress-bar ios-progress-bar">
+                                        <div class="progress-fill" style="width: 72%;"></div>
+                                    </div>
+                                    <span class="stat-value">72%</span>
+                                </div>
+                                <div class="device-stat">
+                                    <span class="stat-label">Battery:</span>
+                                    <div class="progress-bar ios-progress-bar">
+                                        <div class="progress-fill" style="width: 85%;"></div>
+                                    </div>
+                                    <span class="stat-value">85%</span>
+                                </div>
+                                <div class="device-actions">
+                                    <button class="ios-button ios-button-primary btn-sm feed-now-btn" data-device-id="1">Feed Now</button>
+                                    <a href="/schedules.html?device=1" class="ios-button ios-button-outline btn-sm">Schedule</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="device-status-card ios-status-card">
+                            <div class="device-header">
+                                <div class="device-icon">
+                                    <i class="fas fa-tablet-alt"></i>
+                                </div>
+                                <div class="device-info">
+                                    <h3>Kitchen Feeder</h3>
+                                    <span class="device-status online">Online</span>
+                                </div>
+                                <div class="device-menu">
+                                    <button class="ios-button-icon" aria-label="Device menu">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="device-details">
+                                <div class="device-stat">
+                                    <span class="stat-label">Food Level:</span>
+                                    <div class="progress-bar ios-progress-bar">
+                                        <div class="progress-fill warning" style="width: 15%;"></div>
+                                    </div>
+                                    <span class="stat-value warning">15% (Low)</span>
+                                </div>
+                                <div class="device-stat">
+                                    <span class="stat-label">Battery:</span>
+                                    <div class="progress-bar ios-progress-bar">
+                                        <div class="progress-fill" style="width: 62%;"></div>
+                                    </div>
+                                    <span class="stat-value">62%</span>
+                                </div>
+                                <div class="device-actions">
+                                    <button class="ios-button ios-button-primary btn-sm feed-now-btn" data-device-id="2">Feed Now</button>
+                                    <a href="/schedules.html?device=2" class="ios-button ios-button-outline btn-sm">Schedule</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="device-status-card ios-status-card offline">
+                            <div class="device-header">
+                                <div class="device-icon">
+                                    <i class="fas fa-tablet-alt"></i>
+                                </div>
+                                <div class="device-info">
+                                    <h3>Bedroom Feeder</h3>
+                                    <span class="device-status offline">Offline</span>
+                                </div>
+                                <div class="device-menu">
+                                    <button class="ios-button-icon" aria-label="Device menu">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="device-details">
+                                <div class="device-status-message">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <p>This device appears to be offline. Last seen: 2 days ago</p>
+                                </div>
+                                <div class="device-actions">
+                                    <button class="ios-button ios-button-primary btn-sm" disabled>Feed Now</button>
+                                    <button class="ios-button ios-button-outline btn-sm troubleshoot-btn">Troubleshoot</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Upcoming Feedings -->
+                <section class="upcoming-feedings-section ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Upcoming Feedings</h2>
+                        <a href="/schedules.html" class="ios-button ios-button-text">View All</a>
+                    </div>
+                    <div class="upcoming-list ios-card-content">
+                        <div class="upcoming-feeding-item ios-list-item next">
+                            <div class="feeding-time-badge">
+                                <i class="fas fa-clock"></i>
+                                <span>4:00 PM</span>
+                            </div>
+                            <div class="feeding-details">
+                                <div class="feeding-header">
+                                    <h3 class="feeding-pet-name">Buddy</h3>
+                                    <span class="feeding-amount">80g</span>
+                                </div>
+                                <div class="feeding-info">
+                                    <span class="feeding-device">Living Room Feeder</span>
+                                    <span class="feeding-schedule">Afternoon Feeding</span>
+                                </div>
+                            </div>
+                            <div class="feeding-actions">
+                                <button class="ios-button ios-button-primary btn-sm feed-now-btn" data-feeding-id="103">Feed Now</button>
+                            </div>
+                        </div>
+                        
+                        <div class="upcoming-feeding-item ios-list-item">
+                            <div class="feeding-time-badge">
+                                <i class="fas fa-clock"></i>
+                                <span>8:00 PM</span>
+                            </div>
+                            <div class="feeding-details">
+                                <div class="feeding-header">
+                                    <h3 class="feeding-pet-name">Buddy</h3>
+                                    <span class="feeding-amount">80g</span>
+                                </div>
+                                <div class="feeding-info">
+                                    <span class="feeding-device">Living Room Feeder</span>
+                                    <span class="feeding-schedule">Evening Feeding</span>
+                                </div>
+                            </div>
+                            <div class="feeding-actions">
+                                <button class="ios-button-icon" data-tooltip="Options" aria-label="Feeding options">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="upcoming-feeding-item ios-list-item">
+                            <div class="feeding-time-badge">
+                                <i class="fas fa-clock"></i>
+                                <span>9:30 PM</span>
+                            </div>
+                            <div class="feeding-details">
+                                <div class="feeding-header">
+                                    <h3 class="feeding-pet-name">Max</h3>
+                                    <span class="feeding-amount">25g</span>
+                                </div>
+                                <div class="feeding-info">
+                                    <span class="feeding-device">Kitchen Feeder</span>
+                                    <span class="feeding-schedule">Evening Feeding</span>
+                                </div>
+                            </div>
+                            <div class="feeding-actions">
+                                <button class="ios-button-icon" data-tooltip="Options" aria-label="Feeding options">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Activity -->
+                <section class="recent-activity-section ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Recent Activity</h2>
+                        <a href="/history.html" class="ios-button ios-button-text">View All</a>
+                    </div>
+                    <div class="activity-list ios-card-content">
+                        <div class="activity-item ios-list-item">
+                            <div class="activity-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-header">
+                                    <h3 class="activity-title">Buddy was fed successfully</h3>
+                                    <span class="activity-time">12:00 PM</span>
+                                </div>
+                                <div class="activity-description">
+                                    80g of food was dispensed from Living Room Feeder.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item ios-list-item">
+                            <div class="activity-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-header">
+                                    <h3 class="activity-title">Buddy was fed successfully</h3>
+                                    <span class="activity-time">8:00 AM</span>
+                                </div>
+                                <div class="activity-description">
+                                    80g of food was dispensed from Living Room Feeder.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item ios-list-item">
+                            <div class="activity-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-header">
+                                    <h3 class="activity-title">Kitchen Feeder is low on food</h3>
+                                    <span class="activity-time">7:45 AM</span>
+                                </div>
+                                <div class="activity-description">
+                                    Food level has dropped below 20%. Please refill soon.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item ios-list-item">
+                            <div class="activity-icon error">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-header">
+                                    <h3 class="activity-title">Bedroom Feeder went offline</h3>
+                                    <span class="activity-time">Yesterday, 9:30 PM</span>
+                                </div>
+                                <div class="activity-description">
+                                    Device is not responding. Please check the connection.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Predictive Analytics -->
+                <section class="analytics-section ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Predictive Analytics</h2>
+                        <a href="/analytics.html" class="ios-button ios-button-text">View All</a>
+                    </div>
+                    <div class="analytics-content ios-card-content">
+                        <div class="analytics-insights">
+                            <div class="analytics-insight-card ios-insight-card">
+                                <div class="insight-icon">
+                                    <i class="fas fa-utensils"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h3>Food Supply Forecast</h3>
+                                    <p>Based on current usage, you'll need to refill <strong>Kitchen Feeder</strong> in <strong>2 days</strong>.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="analytics-insight-card ios-insight-card">
+                                <div class="insight-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h3>Optimal Feeding Times</h3>
+                                    <p>Buddy consistently eats more food during <strong>morning feedings</strong>. Consider increasing morning portions by 10%.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="analytics-insight-card ios-insight-card">
+                                <div class="insight-icon">
+                                    <i class="fas fa-battery-three-quarters"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <h3>Battery Optimization</h3>
+                                    <p>Bedroom Feeder's battery is draining faster than usual. Consider checking for obstructions or connection issues.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-chart-container">
+                            <h3>Weekly Feeding Trends</h3>
+                            <canvas id="feeding-trends-chart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Actions -->
+                <section class="quick-actions-section ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Quick Actions</h2>
+                    </div>
+                    <div class="quick-actions-grid ios-card-content">
+                        <a href="/devices.html?action=add" class="quick-action-card ios-action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="action-title">Add Device</div>
+                        </a>
+                        
+                        <a href="/pets.html?action=add" class="quick-action-card ios-action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-paw"></i>
+                            </div>
+                            <div class="action-title">Add Pet</div>
+                        </a>
+                        
+                        <a href="/schedules.html?action=create" class="quick-action-card ios-action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-calendar-plus"></i>
+                            </div>
+                            <div class="action-title">Create Schedule</div>
+                        </a>
+                        
+                        <a href="#" id="feed-all-btn" class="quick-action-card ios-action-card">
+                            <div class="action-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="action-title">Feed All Pets</div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Feed Now Confirmation Modal -->
+    <div class="modal ios-modal" id="feed-now-modal">
+        <div class="modal-content ios-modal-content">
+            <div class="modal-header ios-modal-header">
+                <h2 class="ios-modal-title">Feed Now</h2>
+                <button class="modal-close ios-button-icon" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body ios-modal-body">
+                <div class="feed-now-form ios-form">
+                    <div class="form-group ios-form-group">
+                        <label for="feed-amount" class="ios-form-label">Amount to feed (grams)</label>
+                        <input type="number" id="feed-amount" class="ios-form-input" min="5" max="200" value="30">
+                        <div class="amount-slider ios-slider">
+                            <input type="range" min="5" max="200" step="5" value="30" id="feed-amount-range" class="ios-range">
+                            <div class="amount-labels ios-slider-labels">
+                                <span>5g</span>
+                                <span>100g</span>
+                                <span>200g</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions ios-form-actions">
+                        <button type="button" class="ios-button ios-button-outline" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirm-feed-now" class="ios-button ios-button-primary">Feed Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feed All Confirmation Modal -->
+    <div class="modal ios-modal" id="feed-all-modal">
+        <div class="modal-content ios-modal-content">
+            <div class="modal-header ios-modal-header">
+                <h2 class="ios-modal-title">Feed All Pets</h2>
+                <button class="modal-close ios-button-icon" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body ios-modal-body">
+                <div class="feed-all-confirmation">
+                    <p>Are you sure you want to feed all pets now?</p>
+                    <p>This will dispense food according to each pet's regular portion size.</p>
+                    
+                    <div class="feed-all-list">
+                        <div class="feed-all-item">
+                            <div class="feed-all-pet">
+                                <img src="/assets/images/pet-1.jpg" alt="Buddy" class="pet-avatar">
+                                <span class="pet-name">Buddy</span>
+                            </div>
+                            <div class="feed-all-device">Living Room Feeder</div>
+                            <div class="feed-all-amount">80g</div>
+                        </div>
+                        
+                        <div class="feed-all-item">
+                            <div class="feed-all-pet">
+                                <img src="/assets/images/pet-2.jpg" alt="Max" class="pet-avatar">
+                                <span class="pet-name">Max</span>
+                            </div>
+                            <div class="feed-all-device">Kitchen Feeder</div>
+                            <div class="feed-all-amount">25g</div>
+                        </div>
+                        
+                        <div class="feed-all-item disabled">
+                            <div class="feed-all-pet">
+                                <img src="/assets/images/pet-3.jpg" alt="Luna" class="pet-avatar">
+                                <span class="pet-name">Luna</span>
+                            </div>
+                            <div class="feed-all-device">Bedroom Feeder (Offline)</div>
+                            <div class="feed-all-amount">30g</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions ios-form-actions">
+                        <button type="button" class="ios-button ios-button-outline" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirm-feed-all" class="ios-button ios-button-primary">Feed All Pets</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <!-- 1. First load Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.supabaseJs = supabase;
+        window.supabase = null; // Reset for our own initialization
+    </script>
+    
+    <!-- 2. Load Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 3. Next load configuration -->
+    <script src="/scripts/config.js"></script>
+    
+    <!-- 4. Then load main utilities -->
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/main.js"></script>
+    
+    <!-- 5. Load iOS header and animation scripts -->
+    <script src="/scripts/ios-header.js"></script>
+    <script src="/scripts/ios-animations.js"></script>
+    
+    <!-- 6. Load auth management -->
+    <script src="/scripts/auth.js"></script>
+    
+    <!-- 7. Finally load page-specific scripts -->
+    <script src="/scripts/dashboard.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date
+            const currentDateEl = document.getElementById('current-date');
+            if (currentDateEl) {
+                const date = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                currentDateEl.textContent = date.toLocaleDateString('en-US', options);
+            }
+
+            // Initialize the feed now buttons
+            const feedNowButtons = document.querySelectorAll('.feed-now-btn');
+            const feedNowModal = document.getElementById('feed-now-modal');
+            
+            feedNowButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (feedNowModal) {
+                        feedNowModal.classList.add('open');
+                        // Store the device ID or feeding ID for the confirmation handler
+                        const deviceId = this.getAttribute('data-device-id');
+                        const feedingId = this.getAttribute('data-feeding-id');
+                        
+                        if (deviceId) {
+                            feedNowModal.setAttribute('data-device-id', deviceId);
+                        } else if (feedingId) {
+                            feedNowModal.setAttribute('data-feeding-id', feedingId);
+                        }
+                    }
+                });
+            });
+            
+            // Initialize feed all button
+            const feedAllBtn = document.getElementById('feed-all-btn');
+            const feedAllModal = document.getElementById('feed-all-modal');
+            
+            if (feedAllBtn && feedAllModal) {
+                feedAllBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    feedAllModal.classList.add('open');
+                });
+            }
+            
+            // Handle feed now confirmation
+            const confirmFeedNowBtn = document.getElementById('confirm-feed-now');
+            if (confirmFeedNowBtn) {
+                confirmFeedNowBtn.addEventListener('click', function() {
+                    // Get the amount from the input
+                    const amount = document.getElementById('feed-amount').value;
+                    
+                    // Get the device ID or feeding ID from the modal
+                    const deviceId = feedNowModal.getAttribute('data-device-id');
+                    const feedingId = feedNowModal.getAttribute('data-feeding-id');
+                    
+                    console.log(`Initiating feeding: Amount: ${amount}g, Device: ${deviceId}, Feeding: ${feedingId}`);
+                    
+                    // Here you would normally call your API to start the feeding
+                    
+                    // Close the modal
+                    feedNowModal.classList.remove('open');
+                    
+                    // Show a success toast notification
+                    if (window.app && window.app.showToast) {
+                        window.app.showToast('Feeding initiated successfully!', 'success');
+                    }
+                });
+            }
+            
+            // Handle feed all confirmation
+            const confirmFeedAllBtn = document.getElementById('confirm-feed-all');
+            if (confirmFeedAllBtn) {
+                confirmFeedAllBtn.addEventListener('click', function() {
+                    console.log('Initiating feeding for all available pets');
+                    
+                    // Here you would normally call your API to start the feeding for all pets
+                    
+                    // Close the modal
+                    feedAllModal.classList.remove('open');
+                    
+                    // Show a success toast notification
+                    if (window.app && window.app.showToast) {
+                        window.app.showToast('Feeding initiated for all pets!', 'success');
+                    }
+                });
+            }
+            
+            // Initialize modal close buttons
+            const modalCloseButtons = document.querySelectorAll('.modal-close, [data-dismiss="modal"]');
+            modalCloseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.ios-modal');
+                    if (modal) {
+                        modal.classList.remove('open');
+                    }
+                });
+            });
+            
+            // Close modals when clicking outside
+            document.querySelectorAll('.ios-modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('open');
+                    }
+                });
+            });
+            
+            // Initialize feeding trends chart
+            const feedingTrendsChart = document.getElementById('feeding-trends-chart');
+            if (feedingTrendsChart) {
+                new Chart(feedingTrendsChart, {
+                    type: 'line',
+                    data: {
+                        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                        datasets: [{
+                            label: 'Buddy',
+                            data: [320, 320, 320, 320, 320, 320, 160],
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            tension: 0.4
+                        }, {
+                            label: 'Max',
+                            data: [75, 75, 75, 50, 75, 75, 25],
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Food Amount (g)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Connect amount input and range slider
+            const amountInput = document.getElementById('feed-amount');
+            const amountRange = document.getElementById('feed-amount-range');
+            
+            if (amountInput && amountRange) {
+                amountRange.addEventListener('input', function() {
+                    amountInput.value = this.value;
+                });
+                
+                amountInput.addEventListener('input', function() {
+                    amountRange.value = this.value;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

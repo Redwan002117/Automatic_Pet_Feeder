@@ -1,0 +1,531 @@
+/**
+ * iOS-inspired animations for Automatic Pet Feeder
+ */
+
+/* Base animation properties */
+:root {
+  --ios-animation-duration: 0.3s;
+  --ios-animation-timing: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ios-animation-delay-base: 0.05s;
+}
+
+/* Animation classes */
+.ios-animate {
+  opacity: 0;
+  transition: opacity var(--ios-animation-duration) var(--ios-animation-timing),
+              transform var(--ios-animation-duration) var(--ios-animation-timing);
+}
+
+.ios-animate.animated {
+  opacity: 1;
+}
+
+/* Animation delay utilities */
+.ios-delay-1 { transition-delay: calc(var(--ios-animation-delay-base) * 1); }
+.ios-delay-2 { transition-delay: calc(var(--ios-animation-delay-base) * 2); }
+.ios-delay-3 { transition-delay: calc(var(--ios-animation-delay-base) * 3); }
+.ios-delay-4 { transition-delay: calc(var(--ios-animation-delay-base) * 4); }
+.ios-delay-5 { transition-delay: calc(var(--ios-animation-delay-base) * 5); }
+.ios-delay-6 { transition-delay: calc(var(--ios-animation-delay-base) * 6); }
+.ios-delay-7 { transition-delay: calc(var(--ios-animation-delay-base) * 7); }
+.ios-delay-8 { transition-delay: calc(var(--ios-animation-delay-base) * 8); }
+.ios-delay-9 { transition-delay: calc(var(--ios-animation-delay-base) * 9); }
+.ios-delay-10 { transition-delay: calc(var(--ios-animation-delay-base) * 10); }
+
+/* Fade animations */
+.ios-fade-in {
+  transform: translateY(0);
+}
+
+.ios-fade-in.ios-animate {
+  opacity: 0;
+}
+
+.ios-fade-in.ios-animate.animated {
+  opacity: 1;
+}
+
+/* Slide animations */
+.ios-slide-up {
+  transform: translateY(20px);
+}
+
+.ios-slide-up.animated {
+  transform: translateY(0);
+}
+
+.ios-slide-down {
+  transform: translateY(-20px);
+}
+
+.ios-slide-down.animated {
+  transform: translateY(0);
+}
+
+.ios-slide-left {
+  transform: translateX(20px);
+}
+
+.ios-slide-left.animated {
+  transform: translateX(0);
+}
+
+.ios-slide-right {
+  transform: translateX(-20px);
+}
+
+.ios-slide-right.animated {
+  transform: translateX(0);
+}
+
+/* Scale animations */
+.ios-scale {
+  transform: scale(0.95);
+}
+
+.ios-scale.animated {
+  transform: scale(1);
+}
+
+/* Combined animations */
+.ios-fade-scale {
+  transform: scale(0.95);
+}
+
+.ios-fade-scale.animated {
+  transform: scale(1);
+}
+
+.ios-fade-slide-up {
+  transform: translateY(20px);
+}
+
+.ios-fade-slide-up.animated {
+  transform: translateY(0);
+}
+
+.ios-fade-slide-down {
+  transform: translateY(-20px);
+}
+
+.ios-fade-slide-down.animated {
+  transform: translateY(0);
+}
+
+.ios-fade-slide-left {
+  transform: translateX(20px);
+}
+
+.ios-fade-slide-left.animated {
+  transform: translateX(0);
+}
+
+.ios-fade-slide-right {
+  transform: translateX(-20px);
+}
+
+.ios-fade-slide-right.animated {
+  transform: translateX(0);
+}
+
+/* Staggered animation for list items */
+.ios-stagger-list > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--ios-animation-duration) var(--ios-animation-timing),
+              transform var(--ios-animation-duration) var(--ios-animation-timing);
+}
+
+.ios-stagger-list.animated > *:nth-child(1) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 1);
+}
+
+.ios-stagger-list.animated > *:nth-child(2) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 2);
+}
+
+.ios-stagger-list.animated > *:nth-child(3) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 3);
+}
+
+.ios-stagger-list.animated > *:nth-child(4) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 4);
+}
+
+.ios-stagger-list.animated > *:nth-child(5) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 5);
+}
+
+.ios-stagger-list.animated > *:nth-child(6) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 6);
+}
+
+.ios-stagger-list.animated > *:nth-child(7) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 7);
+}
+
+.ios-stagger-list.animated > *:nth-child(8) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 8);
+}
+
+.ios-stagger-list.animated > *:nth-child(9) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 9);
+}
+
+.ios-stagger-list.animated > *:nth-child(10) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--ios-animation-delay-base) * 10);
+}
+
+/* Keyframe animations */
+@keyframes ios-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes ios-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ios-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-5px);
+  }
+  40%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes ios-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ios-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animation utility classes */
+.ios-animate-bounce {
+  animation: ios-bounce 1s both;
+}
+
+.ios-animate-pulse {
+  animation: ios-pulse 1.5s infinite;
+}
+
+.ios-animate-shake {
+  animation: ios-shake 0.5s both;
+}
+
+.ios-animate-spin {
+  animation: ios-spin 1s linear infinite;
+}
+
+.ios-animate-float {
+  animation: ios-float 3s ease-in-out infinite;
+}
+
+/* State-based animations */
+.ios-card {
+  transition: transform 0.3s var(--ios-animation-timing),
+              box-shadow 0.3s var(--ios-animation-timing);
+}
+
+.ios-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.ios-button {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.ios-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ios-animation-timing);
+  pointer-events: none;
+}
+
+.ios-button:active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Transition utilities */
+.ios-transition-fade {
+  transition: opacity 0.3s var(--ios-animation-timing);
+}
+
+.ios-transition-transform {
+  transition: transform 0.3s var(--ios-animation-timing);
+}
+
+.ios-transition-all {
+  transition: all 0.3s var(--ios-animation-timing);
+}
+
+/* iOS Modal animations */
+.ios-modal {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ios-animation-timing);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.ios-modal.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ios-modal-content {
+  background-color: white;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.3s var(--ios-animation-timing),
+              opacity 0.3s var(--ios-animation-timing);
+  transition-delay: 0.05s;
+}
+
+.ios-modal.visible .ios-modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* iOS Alert animations */
+.ios-alert-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ios-animation-timing);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.ios-alert-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ios-alert {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
+  width: 270px;
+  transform: scale(1.2);
+  opacity: 0;
+  transition: transform 0.3s var(--ios-animation-timing),
+              opacity 0.3s var(--ios-animation-timing);
+  transition-delay: 0.05s;
+}
+
+.ios-alert-backdrop.visible .ios-alert {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Action sheet animations */
+.ios-action-sheet-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ios-animation-timing);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.ios-action-sheet-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ios-action-sheet {
+  background-color: white;
+  border-radius: 12px 12px 0 0;
+  width: 100%;
+  max-width: 500px;
+  transform: translateY(100%);
+  transition: transform 0.3s var(--ios-animation-timing);
+  transition-delay: 0.05s;
+  margin: 0 10px 10px;
+}
+
+.ios-action-sheet-backdrop.visible .ios-action-sheet {
+  transform: translateY(0);
+}
+
+/* Toast notification animations */
+.ios-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: transform 0.3s var(--ios-animation-timing),
+              opacity 0.3s var(--ios-animation-timing);
+  z-index: 1000;
+}
+
+.ios-toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Page transitions */
+.ios-page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 9999;
+  transform: translateX(100%);
+  transition: transform 0.3s var(--ios-animation-timing);
+}
+
+.ios-page-transition.enter {
+  transform: translateX(0);
+}
+
+.ios-page-transition.exit {
+  transform: translateX(-100%);
+}
+
+/* Loading spinner */
+.ios-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(0, 122, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--ios-blue);
+  animation: ios-spin 0.8s linear infinite;
+}
+
+.ios-spinner-lg {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
+/* Responsive adjustments */
+@media (prefers-reduced-motion: reduce) {
+  .ios-animate,
+  .ios-stagger-list > *,
+  .ios-modal,
+  .ios-modal-content,
+  .ios-alert-backdrop,
+  .ios-alert,
+  .ios-action-sheet-backdrop,
+  .ios-action-sheet,
+  .ios-toast,
+  .ios-page-transition {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .ios-spinner {
+    animation: ios-spin 1.5s linear infinite !important;
+  }
+  
+  .ios-animate.animated,
+  .ios-stagger-list.animated > * {
+    opacity: 1;
+    transform: none;
+  }
+}

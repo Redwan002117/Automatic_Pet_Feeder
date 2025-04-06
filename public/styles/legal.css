@@ -1,0 +1,182 @@
+/**
+ * Legal pages styling
+ * For Terms of Service, Privacy Policy, and other legal documents
+ */
+
+/* Main legal content container */
+.legal-content {
+    padding: 4rem 0;
+    min-height: 70vh;
+}
+
+/* Legal header styling */
+.legal-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.legal-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color);
+}
+
+.legal-header p {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Legal body styling */
+.legal-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* Section styling */
+.legal-section {
+    margin-bottom: 2.5rem;
+}
+
+.legal-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    color: var(--heading-color);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.legal-section h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 0.8rem;
+    color: var(--heading-color);
+}
+
+.legal-section p {
+    margin-bottom: 1rem;
+}
+
+/* List styling */
+.legal-section ul, .legal-section ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+}
+
+.legal-section li {
+    margin-bottom: 0.5rem;
+}
+
+/* Link styling */
+.legal-section a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.legal-section a:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+
+/* Definition and address styling */
+.legal-section address {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--light-bg);
+    border-radius: 0.5rem;
+    font-style: normal;
+    line-height: 1.6;
+}
+
+/* Table styling */
+.legal-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.legal-section th, .legal-section td {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.legal-section th {
+    background-color: var(--light-bg);
+    font-weight: 600;
+}
+
+/* Print styling */
+@media print {
+    .site-header, .site-footer, .mobile-menu {
+        display: none !important;
+    }
+    
+    .legal-content {
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .legal-body {
+        font-size: 11pt;
+        line-height: 1.5;
+    }
+    
+    .legal-section {
+        page-break-inside: avoid;
+    }
+    
+    a {
+        text-decoration: none !important;
+        color: #000 !important;
+    }
+    
+    a::after {
+        content: " (" attr(href) ")";
+        font-size: 0.9em;
+        font-style: italic;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .legal-content {
+        padding: 2.5rem 0;
+    }
+    
+    .legal-header h1 {
+        font-size: 2rem;
+    }
+    
+    .legal-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .legal-section h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-content {
+        padding: 2rem 0;
+    }
+    
+    .legal-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .legal-body {
+        font-size: 0.95rem;
+    }
+}
+
+/* Active state for footer legal links */
+.footer-nav ul li a.active {
+    font-weight: 600;
+    color: var(--primary-color);
+}

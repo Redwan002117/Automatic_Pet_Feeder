@@ -1,0 +1,120 @@
+Build a comprehensive web application for my "Automatic Pet Feeder" project with the following specifications:
+
+Tech Stack Requirements:
+- Frontend: HTML, CSS, and vanilla JavaScript (no frameworks like React)
+- Backend: Integrate with Supabase for database, authentication, and real-time API
+- Responsive design that works across all device sizes
+- Clean, intuitive UI with smooth animations and transitions
+
+Core Structure and Pages:
+
+1. Landing/Home Page:
+   - Engaging hero section with value proposition about the pet feeder
+   - Navigation to dashboard for registered users
+   - Features overview/documentation for new visitors
+   - Call-to-action for registration
+
+2. Authentication:
+   - Login page with username/email and password fields
+   - Social login option (specifically Google Sign-in)
+   - Registration flow with username creation requirement for Google sign-ins
+   - Remember me functionality and auto-fill support
+   - Session persistence until manual logout
+
+3. Header Component:
+   - Logo positioned on the left side
+   - Right-side elements: theme switcher toggle and profile dropdown
+   - Easy & responsive navigation system on the left 
+   - Profile dropdown with links to: Profile Page, Settings, and Logout
+
+4. Dashboard:
+   - Device status block showing connectivity, Wi-Fi signal strength, last seen time, and active status
+   - Feeding mechanism controls with tabs for scheduled and manual feeding options
+   - Next upcoming schedules display (show 2 nearest scheduled feedings)
+   - Feeding history log with pagination
+   - Interactive charts and graphs visualizing feeding data
+
+5. Devices Management:
+   - Interface for adding/removing feeding devices
+   - Per-device dashboard showing:
+     * Wi-Fi signal strength indicator
+     * Network switching functionality with search capability
+     * Battery level indicator
+     * Food level indicator
+     * Current status/last active timestamp
+     * Firmware update controls
+
+6. Pets Management:
+   - Add/edit pet profiles
+   - Health tracking input forms
+   - Feeding recommendations based on pet data
+
+7. Schedule Management:
+   - Create new feeding schedules interface
+   - All upcoming schedules view with filtering options
+   - Past feeding times log with search and filter functionality
+
+8. Profile Page:
+   - Left section: Profile picture with upload/change option and account creation date
+   - Right section: Editable name and username fields, fixed email display, and user role indicator
+   - Profile verification status 
+   - Role change request functionality
+
+9. Settings Page:
+   - Notifications section:
+     * Push notification toggles by category
+     * Email notification toggles by category
+   - Security section:
+     * Password change functionality
+     * Two-factor authentication setup
+     * Profile deletion option
+     * Active sessions management with logout capability
+
+10. Admin Features (role-restricted):
+    - Admin dashboard with summary metrics and charts of:
+      * Active users count
+      * Verified users count
+      * Connected devices count
+      * Registered pets count
+      * System health indicators
+    - User management interface with:
+      * New user creation functionality
+      * User listing with profile pictures, usernames, verification status
+      * Role assignment controls
+      * Detailed user information view
+      * User deletion capability
+    - Admin settings with controls for:
+      * SMTP server configuration
+      * Device Wi-Fi network management
+      * UI customization (colors, fonts)
+      * Maintenance mode toggle
+      * Global two-factor authentication enforcement
+
+Technical Requirements:
+1. Implement proper authentication flows with Supabase
+2. Ensure real-time updates for device status and feeding events
+3. Create responsive designs like ios that function well on mobile, tablet, and desktop
+4. Include form validation for all input fields
+5. Implement proper error handling and user feedback
+6. Design and implement an alert/notification system
+7. Ensure all pages load quickly and efficiently
+8. Use SVGs for icons and illustrations where possible
+9. Implement proper security measures including role-based access control
+10. Create smooth, subtle animations that enhance the user experience without being distracting
+11. Keep the navigation on the left side.
+12. Maintain the authentication process properly.
+13. Create a supabase schema to easily understand the database structure. 
+14. Use animated icons from https://icons.pqoqubbw.dev
+
+Data Visualization Requirements:
+- Implement charts showing feeding patterns over time
+- Create visualizations for pet health metrics
+- Display device status information in an intuitive manner
+- Use appropriate chart types for different data sets (line charts for trends, bar charts for comparisons, etc.)
+
+The application should have a pet-friendly aesthetic with a warm color palette, rounded corners, and intuitive iconography. The overall user experience should feel professional yet approachable, with special attention to making complex features (like scheduling) simple to use.
+
+
+Admin mail: petfeeder@redwancodes.com 
+Admin Username: @GamerNo002117
+Custom domain: petfeeder.redwancodes.com

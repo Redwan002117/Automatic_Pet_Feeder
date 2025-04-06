@@ -1,0 +1,329 @@
+/* iOS Header Styles */
+.ios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--ios-surface-color);
+    border-bottom: 1px solid var(--ios-border-color);
+    height: 72px; /* Consistent height for all headers */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.ios-header-left, 
+.ios-header-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.ios-header-right {
+    gap: 1rem;
+}
+
+.ios-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ios-text-color);
+}
+
+.ios-animated-header {
+    animation: slideInDown 0.3s ease;
+}
+
+.ios-animated-title {
+    animation: fadeIn 0.4s ease;
+}
+
+/* Profile Section */
+.ios-profile {
+    position: relative;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--ios-border-radius);
+    color: var(--ios-text-color);
+    transition: all 0.2s ease;
+}
+
+.profile-button:hover {
+    background-color: var(--ios-surface-hover);
+}
+
+.profile-button img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Notifications Section */
+.ios-notifications {
+    position: relative;
+}
+
+.notification-bell {
+    position: relative;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ios-text-color);
+    border-radius: var(--ios-border-radius);
+    transition: all 0.2s ease;
+}
+
+.notification-bell:hover {
+    background-color: var(--ios-surface-hover);
+}
+
+.ios-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--ios-primary-color);
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.ios-animated-badge {
+    animation: pulse 1.5s infinite;
+}
+
+/* Dropdown Elements */
+.ios-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    width: 320px;
+    background-color: var(--ios-surface-color);
+    border-radius: var(--ios-border-radius);
+    box-shadow: var(--ios-shadow);
+    border: 1px solid var(--ios-border-color);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.ios-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.ios-dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--ios-border-color);
+}
+
+.ios-dropdown-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.ios-dropdown-footer {
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid var(--ios-border-color);
+}
+
+.ios-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.ios-list-item {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--ios-border-color);
+    transition: background-color 0.2s ease;
+}
+
+.ios-list-item:last-child {
+    border-bottom: none;
+}
+
+.ios-list-item:hover {
+    background-color: var(--ios-surface-hover);
+}
+
+/* Notification List Items */
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.notification-item.unread {
+    background-color: var(--ios-notification-unread);
+}
+
+.notification-item .notification-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notification-item .notification-icon.warning {
+    background-color: var(--ios-warning-light);
+    color: var(--ios-warning);
+}
+
+.notification-item .notification-icon.success {
+    background-color: var(--ios-success-light);
+    color: var(--ios-success);
+}
+
+.notification-item .notification-icon.info {
+    background-color: var(--ios-info-light);
+    color: var(--ios-info);
+}
+
+.notification-item .notification-content {
+    flex-grow: 1;
+}
+
+.notification-item .notification-text {
+    margin: 0 0 0.25rem;
+    font-size: 0.875rem;
+}
+
+.notification-item .notification-time {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--ios-text-secondary);
+}
+
+.notification-item .notification-close {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--ios-text-secondary);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    padding: 0.25rem;
+}
+
+.notification-item:hover .notification-close {
+    opacity: 1;
+}
+
+.notification-item .notification-close:hover {
+    color: var(--ios-text-color);
+}
+
+/* Interactive animations */
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Theme Toggle */
+.ios-theme-toggle {
+    margin-right: 0.5rem;
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 768px) {
+    .ios-header {
+        padding: 0.75rem 1rem;
+        height: 64px;
+    }
+    
+    .ios-title {
+        font-size: 1.25rem;
+    }
+    
+    .profile-button span {
+        display: none;
+    }
+    
+    .ios-dropdown {
+        width: 280px;
+        right: -70px;
+    }
+    
+    .ios-dropdown::before {
+        right: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ios-header {
+        padding: 0.5rem 0.75rem;
+        height: 56px;
+    }
+    
+    .ios-dropdown {
+        width: 250px;
+        right: -100px;
+    }
+    
+    .ios-dropdown::before {
+        right: 110px;
+    }
+}

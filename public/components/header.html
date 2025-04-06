@@ -1,0 +1,193 @@
+<!-- Shared Header Component for Pet Feeder App -->
+<header class="content-header ios-header ios-animated-header" data-component="header" data-title="PetFeeder">
+    <div class="header">
+        <div class="header-left ios-header-left">
+            <h1 class="ios-title ios-animated-title" id="page-title">Dashboard</h1>
+        </div>
+        <div class="header-right ios-header-right">
+            <div class="theme-toggle ios-theme-toggle">
+                <button id="theme-toggle-btn" aria-label="Toggle dark mode" class="ios-button-icon ios-animated-button">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="notifications ios-notifications">
+                <button class="notification-bell ios-button-icon ios-animated-button" aria-label="View notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge ios-badge ios-animated-badge">3</span>
+                </button>
+                <div class="notification-dropdown ios-dropdown ios-animated-dropdown">
+                    <div class="notification-header ios-dropdown-header">
+                        <h3>Notifications</h3>
+                        <button class="mark-all-read ios-button ios-button-small">Mark all as read</button>
+                    </div>
+                    <ul class="notification-list ios-list">
+                        <li class="notification-item unread">
+                            <div class="notification-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p class="notification-text">Buddy's feeder is low on food</p>
+                                <p class="notification-time">5 minutes ago</p>
+                            </div>
+                            <button class="notification-close" aria-label="Close notification">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </li>
+                        <li class="notification-item unread">
+                            <div class="notification-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p class="notification-text">Max has been fed successfully</p>
+                                <p class="notification-time">20 minutes ago</p>
+                            </div>
+                            <button class="notification-close" aria-label="Close notification">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </li>
+                        <li class="notification-item">
+                            <div class="notification-icon info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p class="notification-text">Firmware update available for Kitchen Feeder</p>
+                                <p class="notification-time">1 day ago</p>
+                            </div>
+                            <button class="notification-close" aria-label="Close notification">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="notification-footer ios-dropdown-footer">
+                        <a href="/notifications.html" class="ios-link">View all notifications</a>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile ios-profile">
+                <button class="profile-button ios-button-icon ios-animated-button" aria-label="View profile">
+                    <img src="/assets/images/profile-placeholder.jpg" alt="User profile picture" id="profile-image">
+                    <span id="profile-name">John Doe</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="profile-dropdown ios-dropdown ios-animated-dropdown">
+                    <ul class="ios-list">
+                        <li>
+                            <a href="/profile.html">
+                                <i class="fas fa-user"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/settings.html">
+                                <i class="fas fa-cog"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="dropdown-logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set page title
+        const titleElement = document.getElementById('page-title');
+        if (titleElement) {
+            const pageTitle = document.querySelector('[data-title]')?.getAttribute('data-title') || 
+                              document.title.split('-')[0].trim();
+            titleElement.textContent = pageTitle;
+        }
+        
+        // Setup dark mode toggle
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+                themeToggleBtn.innerHTML = isDarkMode ? 
+                    '<i class="fas fa-sun"></i>' : 
+                    '<i class="fas fa-moon"></i>';
+            });
+            
+            // Apply saved theme
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-mode');
+                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+        
+        // Setup notification dropdown toggle
+        const notificationBell = document.querySelector('.notification-bell');
+        const notificationDropdown = document.querySelector('.notification-dropdown');
+        
+        if (notificationBell && notificationDropdown) {
+            notificationBell.addEventListener('click', function(e) {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('active');
+                
+                // Close profile dropdown if it's open
+                document.querySelector('.profile-dropdown')?.classList.remove('active');
+            });
+        }
+        
+        // Setup profile dropdown toggle
+        const profileButton = document.querySelector('.profile-button');
+        const profileDropdown = document.querySelector('.profile-dropdown');
+        
+        if (profileButton && profileDropdown) {
+            profileButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('active');
+                
+                // Close notification dropdown if it's open
+                document.querySelector('.notification-dropdown')?.classList.remove('active');
+            });
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function() {
+            document.querySelector('.notification-dropdown')?.classList.remove('active');
+            document.querySelector('.profile-dropdown')?.classList.remove('active');
+        });
+        
+        // Load user profile info
+        const profileName = document.getElementById('profile-name');
+        const profileImage = document.getElementById('profile-image');
+        
+        if (profileName && profileImage) {
+            // Get user info from local storage or API
+            const userName = localStorage.getItem('userName') || 'John Doe';
+            const userImage = localStorage.getItem('userImage') || '/assets/images/profile-placeholder.jpg';
+            
+            profileName.textContent = userName;
+            profileImage.src = userImage;
+        }
+        
+        // Dropdown logout functionality
+        const dropdownLogout = document.getElementById('dropdown-logout');
+        if (dropdownLogout) {
+            dropdownLogout.addEventListener('click', async function(e) {
+                e.preventDefault();
+                if (window.supabase) {
+                    try {
+                        await window.supabase.auth.signOut();
+                    } catch (error) {
+                        console.error('Logout error:', error);
+                    }
+                }
+                // Redirect to login page regardless of API success
+                window.location.href = '/login.html';
+            });
+        }
+    });
+</script>

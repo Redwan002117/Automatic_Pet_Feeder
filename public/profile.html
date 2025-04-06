@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Automatic Pet Feeder</title>
+    <meta name="description" content="Manage your pet feeder profile and preferences.">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="/styles/toast.css">
+    <link rel="stylesheet" href="/styles/ios.css">
+    <link rel="stylesheet" href="/styles/ios-animations.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/component-loader.js"></script>
+</head>
+<body class="ios-ui" data-title="My Profile">
+    <!-- Loading Overlay Component -->
+    <div id="loading-container" data-component="loading-overlay"></div>
+
+    <div class="dashboard-container ios-dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar ios-sidebar">
+            <div id="sidebar-container" data-component="sidebar"></div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content ios-main-content">
+            <!-- Header Component -->
+            <header class="content-header ios-header ios-animated-header">
+                <div id="header-container" data-component="header" data-title="My Profile"></div>
+            </header>
+
+            <div class="content-body ios-content-body">
+                <!-- Profile content starts here -->
+                <!-- Profile Header -->
+                <section class="profile-header ios-card">
+                    <div class="profile-avatar-container">
+                        <div class="profile-avatar ios-avatar-large">
+                            <img src="/assets/images/profile-placeholder.jpg" alt="Profile Image" id="profile-image">
+                        </div>
+                        <button class="change-avatar-btn ios-button-icon" id="change-avatar">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="ios-title" id="profile-name">John Doe</h2>
+                        <p class="profile-username ios-subtitle" id="profile-email">john.doe@example.com</p>
+                        <div class="profile-stats">
+                            <div class="profile-stat">
+                                <i class="fas fa-microchip"></i>
+                                <span><strong data-stat="devices">2</strong> Devices</span>
+                            </div>
+                            <div class="profile-stat">
+                                <i class="fas fa-paw"></i>
+                                <span><strong data-stat="pets">3</strong> Pets</span>
+                            </div>
+                            <div class="profile-stat">
+                                <i class="fas fa-utensils"></i>
+                                <span><strong data-stat="feedings">156</strong> Feedings</span>
+                            </div>
+                        </div>
+                        <p class="profile-since ios-text-secondary">Member since <span id="profile-since">January 2023</span></p>
+                    </div>
+                </section>
+
+                <!-- Profile Tabs -->
+                <div class="profile-tabs ios-segmented-control">
+                    <button class="tab-button ios-segment active" data-tab="personal-info">Personal Info</button>
+                    <button class="tab-button ios-segment" data-tab="security">Security</button>
+                    <button class="tab-button ios-segment" data-tab="notifications">Notifications</button>
+                    <button class="tab-button ios-segment" data-tab="connected-accounts">Connected Accounts</button>
+                </div>
+
+                <!-- Profile Tab Content -->
+                <div class="profile-tab-content ios-card">
+                    <!-- Personal Info Tab -->
+                    <div class="tab-pane ios-card-content active" id="personal-info">
+                        <div class="tab-header">
+                            <h3>Personal Information</h3>
+                            <p>Update your personal details and contact information</p>
+                        </div>
+                        
+                        <div class="profile-form-container">
+                            <form id="profile-form" class="profile-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="full_name">Full Name</label>
+                                        <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Enter your full name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter username">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" class="form-control" disabled>
+                                        <small>Email address cannot be changed</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter phone number">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" id="address" name="address" class="form-control" placeholder="Enter your address">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" name="city" class="form-control" placeholder="Enter city">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state">State/Province</label>
+                                        <input type="text" id="state" name="state" class="form-control" placeholder="Enter state/province">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="zip">ZIP/Postal Code</label>
+                                        <input type="text" id="zip" name="zip" class="form-control" placeholder="Enter ZIP/postal code">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="country">Country</label>
+                                        <input type="text" id="country" name="country" class="form-control" placeholder="Enter country">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bio">Bio</label>
+                                    <textarea id="bio" name="bio" class="form-control" rows="4" placeholder="Tell us a bit about yourself and your pets"></textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="tab-pane ios-card-content" id="security">
+                        <div class="tab-header">
+                            <h3>Account Security</h3>
+                            <p>Manage your password and security settings</p>
+                        </div>
+                        
+                        <div class="security-section">
+                            <div class="security-item">
+                                <div class="security-item-header">
+                                    <h4>Password</h4>
+                                    <button class="btn btn-secondary change-password-btn">Change Password</button>
+                                </div>
+                                <p class="security-item-desc">
+                                    Last changed: <span id="last-password-change">3 months ago</span>
+                                </p>
+                            </div>
+                            
+                            <div class="security-item">
+                                <div class="security-item-header">
+                                    <h4>Two-Factor Authentication</h4>
+                                    <button class="btn btn-primary">Enable</button>
+                                </div>
+                                <p class="security-item-desc">
+                                    Add an extra layer of security to your account by requiring a code in addition to your password.
+                                </p>
+                            </div>
+                            
+                            <div class="security-item">
+                                <div class="security-item-header">
+                                    <h4>Login History</h4>
+                                    <button class="btn btn-secondary">View History</button>
+                                </div>
+                                <p class="security-item-desc">
+                                    Review recent login activity on your account.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Danger Zone -->
+                        <div class="danger-zone">
+                            <div class="danger-zone-header">
+                                <h3>Danger Zone</h3>
+                            </div>
+                            <div class="danger-zone-content">
+                                <p>Once you delete your account, there is no going back. Please be certain.</p>
+                                <div class="danger-zone-actions">
+                                    <button class="btn btn-danger delete-account-btn">Delete Account</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Tab -->
+                    <div class="tab-pane ios-card-content" id="notifications">
+                        <div class="tab-header">
+                            <h3>Notification Settings</h3>
+                            <p>Customize how and when you receive notifications</p>
+                        </div>
+                        
+                        <form id="notification-form" class="notification-settings-form">
+                            <div class="notification-group">
+                                <h4>Email Notifications</h4>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Feeding Notifications</h5>
+                                        <p>Receive notifications when your pets are fed</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="email-feeding" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Low Food Alerts</h5>
+                                        <p>Receive notifications when a device is running low on food</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="email-low-food" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Device Status Updates</h5>
+                                        <p>Receive notifications about device status changes</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="email-device-status">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="notification-group">
+                                <h4>Push Notifications</h4>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Feeding Notifications</h5>
+                                        <p>Receive push notifications when your pets are fed</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="push-feeding" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Low Food Alerts</h5>
+                                        <p>Receive push notifications when a device is running low on food</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="push-low-food" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Device Status Updates</h5>
+                                        <p>Receive push notifications about device status changes</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="push-device-status" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="notification-group">
+                                <h4>SMS Notifications</h4>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Feeding Notifications</h5>
+                                        <p>Receive SMS notifications when your pets are fed</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="sms-feeding">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Low Food Alerts</h5>
+                                        <p>Receive SMS notifications when a device is running low on food</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="sms-low-food">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="notification-option">
+                                    <div class="option-label">
+                                        <h5>Device Status Updates</h5>
+                                        <p>Receive SMS notifications about device status changes</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="sms-device-status">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="notification-actions">
+                                <button type="button" class="btn btn-secondary">Reset to Default</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Connected Accounts Tab -->
+                    <div class="tab-pane ios-card-content" id="connected-accounts">
+                        <div class="tab-header">
+                            <h3>Connected Accounts</h3>
+                            <p>Connect your account to other services and smart home devices</p>
+                        </div>
+                        
+                        <div class="connected-accounts-list">
+                            <div class="connected-account">
+                                <div class="account-info">
+                                    <div class="account-icon google">
+                                        <i class="fab fa-google"></i>
+                                    </div>
+                                    <div class="account-details">
+                                        <h4>Google</h4>
+                                        <p>Link your Google account for easier login and Google Home integration</p>
+                                        <div class="connect-status">
+                                            <span class="connected-status">Connected</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn btn-secondary disconnect-account-btn" data-account="Google">Disconnect</button>
+                                    <button class="btn btn-primary connect-account-btn hidden" data-account="Google">Connect</button>
+                                </div>
+                            </div>
+                            
+                            <div class="connected-account">
+                                <div class="account-info">
+                                    <div class="account-icon facebook">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </div>
+                                    <div class="account-details">
+                                        <h4>Facebook</h4>
+                                        <p>Connect to Facebook for easy sharing and login</p>
+                                        <div class="connect-status">
+                                            <span>Not connected</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn btn-secondary disconnect-account-btn hidden" data-account="Facebook">Disconnect</button>
+                                    <button class="btn btn-primary connect-account-btn" data-account="Facebook">Connect</button>
+                                </div>
+                            </div>
+                            
+                            <div class="connected-account">
+                                <div class="account-info">
+                                    <div class="account-icon apple">
+                                        <i class="fab fa-apple"></i>
+                                    </div>
+                                    <div class="account-details">
+                                        <h4>Apple</h4>
+                                        <p>Connect to Apple for easy login and integration with Apple HomeKit</p>
+                                        <div class="connect-status">
+                                            <span>Not connected</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn btn-secondary disconnect-account-btn hidden" data-account="Apple">Disconnect</button>
+                                    <button class="btn btn-primary connect-account-btn" data-account="Apple">Connect</button>
+                                </div>
+                            </div>
+                            
+                            <div class="connected-account">
+                                <div class="account-info">
+                                    <div class="account-icon alexa">
+                                        <i class="fab fa-amazon"></i>
+                                    </div>
+                                    <div class="account-details">
+                                        <h4>Amazon Alexa</h4>
+                                        <p>Control your feeders with Alexa voice commands</p>
+                                        <div class="connect-status">
+                                            <span>Not connected</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn btn-secondary disconnect-account-btn hidden" data-account="Alexa">Disconnect</button>
+                                    <button class="btn btn-primary connect-account-btn" data-account="Alexa">Connect</button>
+                                </div>
+                            </div>
+                            
+                            <div class="connected-account">
+                                <div class="account-info">
+                                    <div class="account-icon googlehome">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div class="account-details">
+                                        <h4>Google Home</h4>
+                                        <p>Control your feeders with Google Home voice commands</p>
+                                        <div class="connect-status">
+                                            <span>Not connected</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn btn-secondary disconnect-account-btn hidden" data-account="Google Home">Disconnect</button>
+                                    <button class="btn btn-primary connect-account-btn" data-account="Google Home">Connect</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="connected-accounts-info">
+                            <h4>Why connect your accounts?</h4>
+                            <p>Connecting your accounts enables you to:</p>
+                            <ul>
+                                <li>Log in more easily without having to remember your password</li>
+                                <li>Control your pet feeders through various smart home platforms</li>
+                                <li>Access your feeding schedules and history across multiple devices</li>
+                                <li>Receive synchronized notifications across all your connected platforms</li>
+                            </ul>
+                            <p>We never post to your social accounts without your permission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="avatar-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Change Profile Picture</h2>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="avatar-upload">
+                    <div class="current-avatar">
+                        <img src="/assets/images/profile-placeholder.jpg" alt="Current profile picture">
+                    </div>
+                    <div class="upload-options">
+                        <div class="upload-btn-wrapper">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Upload Photo
+                            </button>
+                            <input type="file" id="avatar-upload" accept="image/*">
+                        </div>
+                        <p class="upload-help">Maximum file size: 2MB. Supported formats: JPEG, PNG, GIF</p>
+                    </div>
+                </div>
+                
+                <div class="avatar-preview" style="display: none;">
+                    <h3>Preview</h3>
+                    <div class="preview-container">
+                        <img src="/assets/images/profile-placeholder.jpg" alt="Preview of new profile picture">
+                    </div>
+                    <div class="preview-controls">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-undo"></i> Reset
+                        </button>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-crop"></i> Crop
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="avatar-actions">
+                    <button class="btn btn-secondary cancel-btn">Cancel</button>
+                    <button class="btn btn-primary save-avatar-btn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Change Password</h2>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="password-form">
+                    <div class="form-group">
+                        <label for="current-password">Current Password</label>
+                        <div class="password-input">
+                            <input type="password" id="current-password" name="current-password" class="form-control" required autocomplete="current-password">
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <div class="password-input">
+                            <input type="password" id="new-password" name="new-password" class="form-control" required autocomplete="new-password">
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="password-strength-meter">
+                            <div class="strength-bar">
+                                <div class="strength-level"></div>
+                            </div>
+                            <div class="strength-text">Password strength</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm New Password</label>
+                        <div class="password-input">
+                            <input type="password" id="confirm-password" name="confirm-password" class="form-control" required autocomplete="new-password">
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="password-requirements">
+                        <h4>Password Requirements</h4>
+                        <ul>
+                            <li id="req-length">At least 8 characters long</li>
+                            <li id="req-uppercase">At least one uppercase letter</li>
+                            <li id="req-lowercase">At least one lowercase letter</li>
+                            <li id="req-number">At least one number</li>
+                            <li id="req-special">At least one special character</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary cancel-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-account-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Delete Account</h2>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-warning">
+                    <div class="warning-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>This action cannot be undone</h3>
+                    <p>Deleting your account will permanently remove all your data, including:</p>
+                    <ul>
+                        <li>Your profile information</li>
+                        <li>Device configurations</li>
+                        <li>Pet information</li>
+                        <li>Feeding schedules</li>
+                        <li>Feeding history and statistics</li>
+                    </ul>
+                    <p>You will lose access to all services and your devices will stop working until they are reconfigured with a new account.</p>
+                </div>
+                
+                <form id="confirm-delete-form">
+                    <div class="form-group">
+                        <label for="confirm-delete-input">Please type <strong>DELETE</strong> to confirm</label>
+                        <input type="text" id="confirm-delete-input" name="confirm-delete" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary cancel-btn">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete My Account Forever</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <!-- Scripts - Load in correct order -->
+    <!-- 1. First load Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.supabaseJs = supabase;
+        window.supabase = null; // Reset for our own initialization
+    </script>
+    
+    <!-- 2. Next load configuration -->
+    <script src="/scripts/config.js"></script>
+    
+    <!-- 3. Then load main utilities -->
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/main.js"></script>
+    
+    <!-- 4. Load iOS header and animation scripts -->
+    <script src="/scripts/ios-header.js"></script>
+    <script src="/scripts/ios-animations.js"></script>
+    
+    <!-- 5. Finally load page-specific scripts -->
+    <script src="/scripts/profile.js"></script>
+</body>
+</html>

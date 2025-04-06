@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Automatic Pet Feeder</title>
+    <meta name="description" content="The page you're looking for doesn't exist or has been moved.">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/toast.css">
+    <link rel="stylesheet" href="/styles/ios.css">
+    <link rel="stylesheet" href="/styles/ios-animations.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/component-loader.js"></script>
+    <style>
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .error-icon {
+            font-size: 6rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        
+        .error-code {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .error-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .error-description {
+            font-size: 1rem;
+            color: var(--secondary-text-color);
+            margin-bottom: 2rem;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body class="ios-ui" data-title="Page Not Found">
+    <!-- Loading Overlay Component -->
+    <div data-component="loading-overlay"></div>
+
+    <div class="dashboard-container ios-dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar ios-sidebar">
+            <div data-component="sidebar"></div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content ios-main-content">
+            <!-- Header Component -->
+            <header class="content-header ios-header ios-animated-header">
+                <div data-component="header"></div>
+            </header>
+
+            <div class="content-body ios-content-body">
+                <div class="error-container ios-card">
+                    <div class="error-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h1 class="error-code">404</h1>
+                    <h2 class="error-title">Page Not Found</h2>
+                    <p class="error-description">The page you're looking for doesn't exist or has been moved. Perhaps your pet took it for a walk?</p>
+                    <div class="error-actions">
+                        <a href="javascript:history.back()" class="ios-button ios-button-outline">
+                            <i class="fas fa-arrow-left"></i> Go Back
+                        </a>
+                        <a href="/dashboard.html" class="ios-button ios-button-primary">
+                            <i class="fas fa-home"></i> Go to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.supabaseJs = supabase;
+        window.supabase = null; // Reset for our own initialization
+    </script>
+    
+    <script src="/scripts/config.js"></script>
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/main.js"></script>
+    <script src="/scripts/ios-animations.js"></script>
+    <script src="/scripts/auth.js"></script>
+    <script src="/scripts/auth-check.js"></script>
+</body>
+</html>

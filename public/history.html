@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feeding History - Automatic Pet Feeder</title>
+    <meta name="description" content="View your pet's feeding history and activity log.">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/history.css">
+    <link rel="stylesheet" href="/styles/toast.css">
+    <link rel="stylesheet" href="/styles/ios.css">
+    <link rel="stylesheet" href="/styles/ios-animations.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/component-loader.js"></script>
+<script src="/scripts/history.js"></script>
+</head>
+<body class="ios-ui" data-title="Feeding History">
+    <!-- Loading Overlay Component -->
+    <div data-component="loading-overlay"></div>
+
+    <div class="dashboard-container ios-dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar ios-sidebar">
+            <div data-component="sidebar"></div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content ios-main-content">
+            <!-- Header Component -->
+            <header class="content-header ios-header ios-animated-header">
+                <div data-component="header" data-title="Feeding History"></div>
+            </header>
+
+            <div class="content-body ios-content-body">
+                <!-- Feeding History content starts here -->
+                <section class="history-controls ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Filter Feeding History</h2>
+                        <div class="section-actions">
+                            <button class="ios-button ios-button-primary export-button" id="export-history">
+                                <i class="fas fa-file-export"></i> Export History
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ios-card-content">
+                        <div class="history-filters">
+                            <div class="filter-group ios-form-group">
+                                <label for="pet-filter" class="ios-form-label">Pet:</label>
+                                <select id="pet-filter" class="ios-form-input">
+                                    <option value="all">All Pets</option>
+                                    <option value="1">Buddy (Dog)</option>
+                                    <option value="2">Max (Cat)</option>
+                                    <option value="3">Luna (Cat)</option>
+                                </select>
+                            </div>
+                            <div class="filter-group ios-form-group">
+                                <label for="device-filter" class="ios-form-label">Device:</label>
+                                <select id="device-filter" class="ios-form-input">
+                                    <option value="all">All Devices</option>
+                                    <option value="1">Living Room Feeder</option>
+                                    <option value="2">Kitchen Feeder</option>
+                                    <option value="3">Bedroom Feeder</option>
+                                </select>
+                            </div>
+                            <div class="filter-group ios-form-group">
+                                <label for="status-filter" class="ios-form-label">Status:</label>
+                                <select id="status-filter" class="ios-form-input">
+                                    <option value="all">All Status</option>
+                                    <option value="success">Success</option>
+                                    <option value="warning">Warning</option>
+                                    <option value="error">Error</option>
+                                </select>
+                            </div>
+                            <div class="filter-group ios-form-group">
+                                <label for="date-range" class="ios-form-label">Date Range:</label>
+                                <select id="date-range" class="ios-form-input">
+                                    <option value="week">Last 7 days</option>
+                                    <option value="month">Last 30 days</option>
+                                    <option value="year">Last year</option>
+                                    <option value="custom">Custom range</option>
+                                </select>
+                            </div>
+                            <div class="filter-group ios-form-group">
+                                <label for="search-history" class="ios-form-label">Search:</label>
+                                <div class="search-input-wrapper ios-search-wrapper">
+                                    <input type="text" id="search-history" class="ios-form-input ios-search-input" placeholder="Search feeding records...">
+                                    <button class="ios-button-icon search-button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="custom-date-range" class="ios-form-row" style="display: none;">
+                            <div class="ios-form-group">
+                                <label for="start-date" class="ios-form-label">Start Date:</label>
+                                <input type="date" id="start-date" class="ios-form-input">
+                            </div>
+                            <div class="ios-form-group">
+                                <label for="end-date" class="ios-form-label">End Date:</label>
+                                <input type="date" id="end-date" class="ios-form-input">
+                            </div>
+                            <div class="ios-form-group">
+                                <button class="ios-button ios-button-primary" id="apply-date-range" style="margin-top: 1.5rem;">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="history-summary ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Summary</h2>
+                    </div>
+                    <div class="ios-card-content">
+                        <div class="summary-stats ios-stats-grid">
+                            <div class="stat-card ios-stat">
+                                <div class="stat-icon ios-stat-icon success">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-title">Successful Feedings</h3>
+                                    <p class="stat-value">42</p>
+                                </div>
+                            </div>
+                            <div class="stat-card ios-stat">
+                                <div class="stat-icon ios-stat-icon warning">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-title">Partial Feedings</h3>
+                                    <p class="stat-value">5</p>
+                                </div>
+                            </div>
+                            <div class="stat-card ios-stat">
+                                <div class="stat-icon ios-stat-icon error">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-title">Failed Feedings</h3>
+                                    <p class="stat-value">2</p>
+                                </div>
+                            </div>
+                            <div class="stat-card ios-stat">
+                                <div class="stat-icon ios-stat-icon info">
+                                    <i class="fas fa-weight"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-title">Total Food Dispensed</h3>
+                                    <p class="stat-value">3.8 kg</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="history-list ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Feeding Records</h2>
+                        <div class="section-actions">
+                            <span class="ios-badge">49 records found</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-card-content">
+                        <!-- Today's Feedings -->
+                        <div class="date-group">
+                            <div class="date-header">
+                                <h3>Today - April 5, 2025</h3>
+                            </div>
+                            
+                            <div class="feed-items">
+                                <div class="feed-item success ios-list-item">
+                                    <div class="ios-list-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="feed-details">
+                                        <div class="feed-header">
+                                            <h4>Buddy - Morning Feeding</h4>
+                                            <span class="feed-time">8:00 AM</span>
+                                        </div>
+                                        <div class="feed-info">
+                                            <span class="feed-device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="feed-amount"><i class="fas fa-weight"></i> 80g dispensed</span>
+                                            <span class="feed-status-text"><span class="feed-status success"></span> Completed successfully</span>
+                                        </div>
+                                    </div>
+                                    <div class="feed-actions">
+                                        <button class="ios-button-icon" data-tooltip="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="feed-item success ios-list-item">
+                                    <div class="ios-list-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="feed-details">
+                                        <div class="feed-header">
+                                            <h4>Buddy - Lunch Feeding</h4>
+                                            <span class="feed-time">12:00 PM</span>
+                                        </div>
+                                        <div class="feed-info">
+                                            <span class="feed-device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="feed-amount"><i class="fas fa-weight"></i> 80g dispensed</span>
+                                            <span class="feed-status-text"><span class="feed-status success"></span> Completed successfully</span>
+                                        </div>
+                                    </div>
+                                    <div class="feed-actions">
+                                        <button class="ios-button-icon" data-tooltip="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="feed-item warning ios-list-item">
+                                    <div class="ios-list-icon warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="feed-details">
+                                        <div class="feed-header">
+                                            <h4>Max - Morning Feeding</h4>
+                                            <span class="feed-time">9:30 AM</span>
+                                        </div>
+                                        <div class="feed-info">
+                                            <span class="feed-device"><i class="fas fa-tablet-alt"></i> Kitchen Feeder</span>
+                                            <span class="feed-amount"><i class="fas fa-weight"></i> 20g of 25g dispensed</span>
+                                            <span class="feed-status-text"><span class="feed-status warning"></span> Partial dispense</span>
+                                        </div>
+                                        <div class="feed-message">
+                                            <i class="fas fa-info-circle"></i> Food level low in container. Please refill soon.
+                                        </div>
+                                    </div>
+                                    <div class="feed-actions">
+                                        <button class="ios-button-icon" data-tooltip="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Yesterday's Feedings -->
+                        <div class="date-group">
+                            <div class="date-header">
+                                <h3>Yesterday - April 4, 2025</h3>
+                            </div>
+                            
+                            <div class="feed-items">
+                                <div class="feed-item success ios-list-item">
+                                    <div class="ios-list-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="feed-details">
+                                        <div class="feed-header">
+                                            <h4>Buddy - Morning Feeding</h4>
+                                            <span class="feed-time">8:00 AM</span>
+                                        </div>
+                                        <div class="feed-info">
+                                            <span class="feed-device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="feed-amount"><i class="fas fa-weight"></i> 80g dispensed</span>
+                                            <span class="feed-status-text"><span class="feed-status success"></span> Completed successfully</span>
+                                        </div>
+                                    </div>
+                                    <div class="feed-actions">
+                                        <button class="ios-button-icon" data-tooltip="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="feed-item success ios-list-item">
+                                    <div class="ios-list-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="feed-details">
+                                        <div class="feed-header">
+                                            <h4>Buddy - Lunch Feeding</h4>
+                                            <span class="feed-time">12:00 PM</span>
+                                        </div>
+                                        <div class="feed-info">
+                                            <span class="feed-device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="feed-amount"><i class="fas fa-weight"></i> 80g dispensed</span>
+                                            <span class="feed-status-text"><span class="feed-status success"></span> Completed successfully</span>
+                                        </div>
+                                    </div>
+                                    <div class="feed-actions">
+                                        <button class="ios-button-icon" data-tooltip="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="feed-item success ios-list-item">
+                                    <div class="ios-list-icon success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="feed-details">
+                                        <div class="feed-header">
+                                            <h4>Buddy - Afternoon Feeding</h4>
+                                            <span class="feed-time">4:00 PM</span>
+                                        </div>
+                                        <div class="feed-info">
+                                            <span class="feed-device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="feed-amount"><i class="fas fa-weight"></i> 80g dispensed</span>
+                                            <span class="feed-status-text"><span class="feed-status success"></span> Completed successfully</span>
+                                        </div>
+                                    </div>
+                                    <div class="feed-actions">
+                                        <button class="ios-button-icon" data-tooltip="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="feed-item error ios-list-item">
+                                    <div class="ios-list-icon error">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <div class="feed-details">
+                                        <div class="feed-header">
+                                            <h4>Luna - Evening Feeding</h4>
+                                            <span class="feed-time">7:00 PM</span>
+                                        </div>
+                                        <div class="feed-info">
+                                            <span class="feed-device"><i class="fas fa-tablet-alt"></i> Kitchen Feeder</span>
+                                            <span class="feed-amount"><i class="fas fa-weight"></i> 0g of 35g dispensed</span>
+                                            <span class="feed-status-text"><span class="feed-status error"></span> Failed to dispense</span>
+                                        </div>
+                                        <div class="feed-message">
+                                            <i class="fas fa-exclamation-circle"></i> Error: Food jam detected. Please check device.
+                                        </div>
+                                    </div>
+                                    <div class="feed-actions">
+                                        <button class="ios-button-icon" data-tooltip="View Details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Load More button -->
+                        <div class="load-more-container ios-load-more">
+                            <button class="ios-button ios-button-outline" id="load-more-history">
+                                <i class="fas fa-chevron-down"></i> Load More
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Feed Details Modal -->
+    <div class="modal ios-modal" id="feed-details-modal">
+        <div class="modal-content ios-modal-content">
+            <div class="modal-header ios-modal-header">
+                <h2 class="ios-modal-title">Feeding Details</h2>
+                <button class="modal-close ios-button-icon" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body ios-modal-body">
+                <div class="details-container ios-details">
+                    <div class="details-header">
+                        <div class="details-pet">
+                            <img src="/assets/images/pet-1.jpg" alt="Buddy" class="pet-avatar">
+                            <div>
+                                <h3>Buddy's Morning Feeding</h3>
+                                <p class="details-time">April 5, 2025 - 8:00 AM</p>
+                            </div>
+                        </div>
+                        <div class="details-badge ios-badge success">
+                            <i class="fas fa-check-circle"></i> Success
+                        </div>
+                    </div>
+                    
+                    <div class="details-grid ios-details-grid">
+                        <div class="details-item">
+                            <span class="details-label">Device</span>
+                            <span class="details-value">Living Room Feeder</span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Schedule</span>
+                            <span class="details-value">Morning Feeding (Daily)</span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Amount Dispensed</span>
+                            <span class="details-value">80g</span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Feeding Duration</span>
+                            <span class="details-value">14 seconds</span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Temperature</span>
+                            <span class="details-value">22°C</span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Battery Level</span>
+                            <span class="details-value">87%</span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Food Container Level</span>
+                            <span class="details-value">62%</span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Device Status</span>
+                            <span class="details-value">Normal Operation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="details-notes">
+                        <h4>Notes</h4>
+                        <p>Normal feeding operation. No issues detected.</p>
+                    </div>
+                    
+                    <div class="details-actions ios-form-actions">
+                        <button class="ios-button ios-button-outline" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal ios-modal" id="export-modal">
+        <div class="modal-content ios-modal-content">
+            <div class="modal-header ios-modal-header">
+                <h2 class="ios-modal-title">Export Feeding History</h2>
+                <button class="modal-close ios-button-icon" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body ios-modal-body">
+                <form id="export-form" class="ios-form">                    
+                    <div class="form-group ios-form-group">
+                        <label for="export-format" class="ios-form-label">Export Format</label>
+                        <select id="export-format" name="export-format" class="ios-form-input">
+                            <option value="csv">CSV (Excel, Numbers)</option>
+                            <option value="json">JSON</option>
+                            <option value="pdf">PDF</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group ios-form-group">
+                        <label for="export-date-range" class="ios-form-label">Date Range</label>
+                        <select id="export-date-range" name="export-date-range" class="ios-form-input">
+                            <option value="current">Use current filter settings</option>
+                            <option value="week">Last 7 days</option>
+                            <option value="month">Last 30 days</option>
+                            <option value="year">Last year</option>
+                            <option value="all">All records</option>
+                            <option value="custom">Custom range</option>
+                        </select>
+                    </div>
+                    
+                    <div id="export-custom-date-range" class="ios-form-row" style="display: none;">
+                        <div class="ios-form-group">
+                            <label for="export-start-date" class="ios-form-label">Start Date:</label>
+                            <input type="date" id="export-start-date" class="ios-form-input">
+                        </div>
+                        <div class="ios-form-group">
+                            <label for="export-end-date" class="ios-form-label">End Date:</label>
+                            <input type="date" id="export-end-date" class="ios-form-input">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group ios-form-group">
+                        <label for="export-details" class="ios-form-label">Include Details</label>
+                        <div class="ios-checkbox-group">
+                            <label class="ios-checkbox"></label>
+                                <input type="checkbox" name="include-device" id="include-device" checked>
+                                <span>Device Information</span>
+                            </label>
+                            <label class="ios-checkbox">
+                                <input type="checkbox" name="include-schedule" id="include-schedule" checked>
+                                <span>Schedule Details</span>
+                            </label>
+                            <label class="ios-checkbox">
+                                <input type="checkbox" name="include-stats" id="include-stats" checked>
+                                <span>Feeding Statistics</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions ios-form-actions">
+                        <button type="button" class="ios-button ios-button-outline" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="ios-button ios-button-primary">Export</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <!-- 1. First load Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.supabaseJs = supabase;
+        window.supabase = null; // Reset for our own initialization
+    </script>
+    
+    <!-- 2. Load Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 3. Load component loader first -->
+    <script src="/scripts/component-loader.js"></script>
+<script src="/scripts/history.js"></script>
+    
+    <!-- 4. Next load configuration -->
+    <script src="/scripts/config.js"></script>
+    
+    <!-- 5. Then load main utilities -->
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/main.js"></script>
+    
+    <!-- 6. Load iOS header and animation scripts -->
+    <script src="/scripts/ios-header.js"></script>
+    <script src="/scripts/ios-animations.js"></script>
+    
+    <!-- 7. Load auth management -->
+    <script src="/scripts/auth.js"></script>
+
+    <!-- Add this script for page-specific functionality -->
+    <script>
+        // Show loading overlay initially
+        document.addEventListener('components:loaded', function() {
+            // Redirect to login page if auth session is missing after a short delay
+            // This is a fallback mechanism if the JS authentication check fails
+            setTimeout(async function() {
+                try {
+                    if (window.supabase) {
+                        const { data } = await window.supabase.auth.getSession();
+                        if (!data || !data.session) {
+                            window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname);
+                        } else {
+                            window.app.hideLoading();
+                        }
+                    }
+                } catch (error) {
+                    console.error('Auth check failed:', error);
+                    window.location.href = '/login.html';
+                }
+            }, 3000); // 3 second delay to allow scripts to initialize
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add logout functionality
+            const logoutButtons = document.querySelectorAll('#logout-button, #dropdown-logout');
+            logoutButtons.forEach(button => {
+                if (button) {
+                    button.addEventListener('click', async function(e) {
+                        e.preventDefault();
+                        if (window.supabase) {
+                            window.app.showLoading();
+                            await window.supabase.auth.signOut();
+                            window.location.href = '/login.html';
+                        }
+                    });
+                }
+            });
+            
+            // Setup date range toggle
+            const dateRangeSelect = document.getElementById('date-range');
+            const customDateRange = document.getElementById('custom-date-range');
+            
+            if (dateRangeSelect && customDateRange) {
+                dateRangeSelect.addEventListener('change', function() {
+                    if (this.value === 'custom') {
+                        customDateRange.style.display = 'flex';
+                    } else {
+                        customDateRange.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Setup export modal
+            const exportBtn = document.getElementById('export-history');
+            const exportModal = document.getElementById('export-modal');
+            const exportDateRangeSelect = document.getElementById('export-date-range');
+            const exportCustomDateRange = document.getElementById('export-custom-date-range');
+            
+            if (exportBtn && exportModal) {
+                exportBtn.addEventListener('click', function() {
+                    exportModal.classList.add('open');
+                });
+            }
+            
+            if (exportDateRangeSelect && exportCustomDateRange) {
+                exportDateRangeSelect.addEventListener('change', function() {
+                    if (this.value === 'custom') {
+                        exportCustomDateRange.style.display = 'flex';
+                    } else {
+                        exportCustomDateRange.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Setup feed details modal
+            const feedDetailButtons = document.querySelectorAll('[data-tooltip="View Details"]');
+            const feedDetailsModal = document.getElementById('feed-details-modal');
+            
+            feedDetailButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    feedDetailsModal.classList.add('open');
+                    // Here you would normally load the specific feeding details
+                });
+            });
+            
+            // Close modal functionality
+            const modalCloseButtons = document.querySelectorAll('.modal-close, [data-dismiss="modal"]');
+            modalCloseButtons.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        const modal = btn.closest('.ios-modal');
+                        if (modal) {
+                            modal.classList.remove('open');
+                        }
+                    });
+                }
+            });
+            
+            // Close modal when clicking outside
+            document.querySelectorAll('.ios-modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('open');
+                    }
+                });
+            });
+            
+            // Setup load more button
+            const loadMoreBtn = document.getElementById('load-more-history');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    // Here you would normally fetch more history items from the API
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                    
+                    // Simulate loading delay
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-chevron-down"></i> Load More';
+                        // You would add the new items to the DOM here
+                        
+                        // For demonstration, show a message that no more items are available
+                        const loadMoreContainer = this.closest('.load-more-container');
+                        if (loadMoreContainer) {
+                            loadMoreContainer.innerHTML = '<p class="text-center">No more records available</p>';
+                        }
+                    }, 1500);
+                });
+            }
+            
+            // Export form submission
+            const exportForm = document.getElementById('export-form');
+            if (exportForm) {
+                exportForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Here you would normally handle the export process
+                    
+                    // For demonstration, show a success message and close the modal
+                    const exportModalInstance = document.getElementById('export-modal');
+                    if (exportModalInstance) {
+                        exportModalInstance.classList.remove('open');
+                        
+                        // Create a toast message
+                        const toastMessage = document.createElement('div');
+                        toastMessage.className = 'toast-message success';
+                        toastMessage.innerHTML = `
+                            <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="toast-content">
+                                <p class="toast-title">Export Successful</p>
+                                <p class="toast-text">Your feeding history has been exported. Check your downloads folder.</p>
+                            </div>
+                            <button class="toast-close"><i class="fas fa-times"></i></button>
+                        `;
+                        
+                        // Add to document
+                        document.body.appendChild(toastMessage);
+                        
+                        // Show with animation
+                        setTimeout(() => {
+                            toastMessage.classList.add('show');
+                        }, 100);
+                        
+                        // Remove after 5 seconds
+                        setTimeout(() => {
+                            toastMessage.classList.remove('show');
+                            setTimeout(() => {
+                                document.body.removeChild(toastMessage);
+                            }, 300);
+                        }, 5000);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

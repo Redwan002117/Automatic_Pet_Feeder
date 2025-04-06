@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feeding Schedules - Automatic Pet Feeder</title>
+    <meta name="description" content="Manage your pet feeding schedules and automated dispensing times.">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/schedules.css">
+    <link rel="stylesheet" href="/styles/toast.css">
+    <link rel="stylesheet" href="/styles/ios.css">
+    <link rel="stylesheet" href="/styles/ios-animations.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/component-loader.js"></script>
+</head>
+<body class="ios-ui">
+    <!-- Loading Container -->
+    <div id="loading-container"></div>
+    
+    <!-- Header Container -->
+    <div id="header-container" data-title="Feeding Schedules"></div>
+    
+    <div class="dashboard-container ios-dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar ios-sidebar">
+            <div class="sidebar-header ios-sidebar-header">
+                <div class="logo">
+                    <img src="/assets/images/logo.svg" alt="Pet Feeder Logo">
+                    <span>PetFeeder</span>
+                </div>
+                <button class="sidebar-toggle ios-button-icon" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav ios-nav">
+                <ul>
+                    <li>
+                        <a href="/dashboard.html" class="ios-nav-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/devices.html" class="ios-nav-item">
+                            <i class="fas fa-tablet-alt"></i>
+                            <span>My Devices</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pets.html" class="ios-nav-item">
+                            <i class="fas fa-paw"></i>
+                            <span>My Pets</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="/schedules.html" class="ios-nav-item active">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Feeding Schedules</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/history.html" class="ios-nav-item">
+                            <i class="fas fa-history"></i>
+                            <span>Feeding History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/analytics.html" class="ios-nav-item">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/settings.html" class="ios-nav-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer ios-sidebar-footer">
+                <a href="#" id="logout-button" class="ios-button ios-button-outline">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content ios-main-content">
+            <div class="content-body ios-content-body">
+                <section class="schedules-actions ios-action-bar">
+                    <button class="ios-button ios-button-primary" id="create-schedule-btn">
+                        <i class="fas fa-plus"></i> Create New Schedule
+                    </button>
+                    <div class="schedules-filters ios-filters">
+                        <div class="filter-group ios-form-group">
+                            <label for="pet-filter" class="ios-form-label">Pet:</label>
+                            <select id="pet-filter" class="ios-form-input">
+                                <option value="all">All Pets</option>
+                                <option value="1">Buddy (Dog)</option>
+                                <option value="2">Max (Cat)</option>
+                                <option value="3">Luna (Cat)</option>
+                            </select>
+                        </div>
+                        <div class="filter-group ios-form-group">
+                            <label for="device-filter" class="ios-form-label">Device:</label>
+                            <select id="device-filter" class="ios-form-input">
+                                <option value="all">All Devices</option>
+                                <option value="1">Living Room Feeder</option>
+                                <option value="2">Kitchen Feeder</option>
+                                <option value="3">Bedroom Feeder</option>
+                            </select>
+                        </div>
+                        <div class="filter-group ios-form-group">
+                            <label for="status-filter" class="ios-form-label">Status:</label>
+                            <select id="status-filter" class="ios-form-input">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="paused">Paused</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Upcoming Feedings -->
+                <section class="upcoming-feedings ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">Upcoming Feedings</h2>
+                        <div class="section-actions">
+                            <button class="ios-button ios-button-outline btn-sm" id="refresh-upcoming">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="upcoming-grid ios-grid" id="upcoming-container">
+                        <!-- Today -->
+                        <div class="upcoming-day ios-card">
+                            <div class="day-header ios-card-header">
+                                <h3>Today</h3>
+                                <span class="date">April 5, 2023</span>
+                            </div>
+                            <div class="upcoming-items ios-card-content">
+                                <div class="upcoming-item completed ios-list-item" data-feeding-id="101">
+                                    <div class="time-badge ios-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>8:00 AM</span>
+                                    </div>
+                                    <div class="feeding-details">
+                                        <div class="feeding-header">
+                                            <h4 class="pet-name">Buddy</h4>
+                                            <span class="amount">80g</span>
+                                        </div>
+                                        <div class="feeding-info">
+                                            <span class="device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="schedule-name">Morning Feeding</span>
+                                        </div>
+                                    </div>
+                                    <div class="upcoming-actions">
+                                        <button class="ios-button-icon" data-tooltip="Options" aria-label="Options">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="upcoming-item completed ios-list-item" data-feeding-id="102">
+                                    <div class="time-badge ios-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>12:00 PM</span>
+                                    </div>
+                                    <div class="feeding-details">
+                                        <div class="feeding-header">
+                                            <h4 class="pet-name">Buddy</h4>
+                                            <span class="amount">80g</span>
+                                        </div>
+                                        <div class="feeding-info">
+                                            <span class="device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="schedule-name">Lunch Feeding</span>
+                                        </div>
+                                    </div>
+                                    <div class="upcoming-actions">
+                                        <button class="ios-button-icon" data-tooltip="Options" aria-label="Options">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="upcoming-item next ios-list-item" data-feeding-id="103">
+                                    <div class="time-badge ios-badge">
+                                        <i class="fas fa-clock"></i>
+                                        <span>4:00 PM</span>
+                                    </div>
+                                    <div class="feeding-details">
+                                        <div class="feeding-header">
+                                            <h4 class="pet-name">Buddy</h4>
+                                            <span class="amount">80g</span>
+                                        </div>
+                                        <div class="feeding-info">
+                                            <span class="device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="schedule-name">Afternoon Feeding</span>
+                                        </div>
+                                    </div>
+                                    <div class="upcoming-actions">
+                                        <button class="ios-button ios-button-outline btn-sm feed-now-btn" data-feeding-id="103">Feed Now</button>
+                                        <button class="ios-button-icon" data-tooltip="Options" aria-label="Options">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="upcoming-item ios-list-item" data-feeding-id="104">
+                                    <div class="time-badge ios-badge">
+                                        <i class="fas fa-clock"></i>
+                                        <span>8:00 PM</span>
+                                    </div>
+                                    <div class="feeding-details">
+                                        <div class="feeding-header">
+                                            <h4 class="pet-name">Buddy</h4>
+                                            <span class="amount">80g</span>
+                                        </div>
+                                        <div class="feeding-info">
+                                            <span class="device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="schedule-name">Evening Feeding</span>
+                                        </div>
+                                    </div>
+                                    <div class="upcoming-actions">
+                                        <button class="ios-button-icon" data-tooltip="Options" aria-label="Options">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tomorrow -->
+                        <div class="upcoming-day ios-card">
+                            <div class="day-header ios-card-header">
+                                <h3>Tomorrow</h3>
+                                <span class="date">April 6, 2023</span>
+                            </div>
+                            <div class="upcoming-items ios-card-content">
+                                <div class="upcoming-item ios-list-item" data-feeding-id="105">
+                                    <div class="time-badge ios-badge">
+                                        <i class="fas fa-clock"></i>
+                                        <span>8:00 AM</span>
+                                    </div>
+                                    <div class="feeding-details">
+                                        <div class="feeding-header">
+                                            <h4 class="pet-name">Buddy</h4>
+                                            <span class="amount">80g</span>
+                                        </div>
+                                        <div class="feeding-info">
+                                            <span class="device"><i class="fas fa-tablet-alt"></i> Living Room Feeder</span>
+                                            <span class="schedule-name">Morning Feeding</span>
+                                        </div>
+                                    </div>
+                                    <div class="upcoming-actions">
+                                        <button class="ios-button-icon" data-tooltip="Options" aria-label="Options">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="upcoming-item ios-list-item" data-feeding-id="106">
+                                    <div class="time-badge ios-badge">
+                                        <i class="fas fa-clock"></i>
+                                        <span>9:30 AM</span>
+                                    </div>
+                                    <div class="feeding-details">
+                                        <div class="feeding-header">
+                                            <h4 class="pet-name">Max</h4>
+                                            <span class="amount">25g</span>
+                                        </div>
+                                        <div class="feeding-info">
+                                            <span class="device"><i class="fas fa-tablet-alt"></i> Kitchen Feeder</span>
+                                            <span class="schedule-name">Morning Feeding</span>
+                                        </div>
+                                    </div>
+                                    <div class="upcoming-actions">
+                                        <button class="ios-button-icon" data-tooltip="Options" aria-label="Options">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- All Schedules -->
+                <section class="all-schedules ios-card">
+                    <div class="section-header ios-card-header">
+                        <h2 class="ios-card-title">All Schedules</h2>
+                        <div class="schedule-view-toggle ios-segmented-control">
+                            <button class="view-toggle-btn ios-segment active" data-view="list" aria-label="List view">
+                                <i class="fas fa-list"></i>
+                            </button>
+                            <button class="view-toggle-btn ios-segment" data-view="grid" aria-label="Grid view">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ios-card-content">
+                        <div class="schedules-list-view ios-table-container active" id="schedules-list">
+                            <div class="schedule-list-header ios-table-header">
+                                <div class="schedule-header-item schedule-name">Schedule Name</div>
+                                <div class="schedule-header-item pet">Pet</div>
+                                <div class="schedule-header-item device">Device</div>
+                                <div class="schedule-header-item frequency">Frequency</div>
+                                <div class="schedule-header-item time">Time</div>
+                                <div class="schedule-header-item amount">Amount</div>
+                                <div class="schedule-header-item status">Status</div>
+                                <div class="schedule-header-item actions">Actions</div>
+                            </div>
+
+                            <div class="schedule-items ios-table-body">
+                                <div class="schedule-item ios-table-row" data-schedule-id="1">
+                                    <div class="schedule-item-cell schedule-name">Morning Feeding</div>
+                                    <div class="schedule-item-cell pet">
+                                        <img src="/assets/images/pet-1.jpg" alt="Buddy" class="pet-avatar">
+                                        <span>Buddy</span>
+                                    </div>
+                                    <div class="schedule-item-cell device">Living Room Feeder</div>
+                                    <div class="schedule-item-cell frequency">Daily</div>
+                                    <div class="schedule-item-cell time">8:00 AM</div>
+                                    <div class="schedule-item-cell amount">80g</div>
+                                    <div class="schedule-item-cell status">
+                                        <span class="status-badge active ios-badge">Active</span>
+                                    </div>
+                                    <div class="schedule-item-cell actions">
+                                        <button class="ios-button-icon" data-tooltip="Edit" aria-label="Edit schedule">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="ios-button-icon pause-schedule" data-tooltip="Pause" aria-label="Pause schedule">
+                                            <i class="fas fa-pause"></i>
+                                        </button>
+                                        <button class="ios-button-icon delete-schedule" data-tooltip="Delete" aria-label="Delete schedule">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-item ios-table-row" data-schedule-id="2">
+                                    <div class="schedule-item-cell schedule-name">Lunch Feeding</div>
+                                    <div class="schedule-item-cell pet">
+                                        <img src="/assets/images/pet-1.jpg" alt="Buddy" class="pet-avatar">
+                                        <span>Buddy</span>
+                                    </div>
+                                    <div class="schedule-item-cell device">Living Room Feeder</div>
+                                    <div class="schedule-item-cell frequency">Daily</div>
+                                    <div class="schedule-item-cell time">12:00 PM</div>
+                                    <div class="schedule-item-cell amount">80g</div>
+                                    <div class="schedule-item-cell status">
+                                        <span class="status-badge active ios-badge">Active</span>
+                                    </div>
+                                    <div class="schedule-item-cell actions">
+                                        <button class="ios-button-icon" data-tooltip="Edit" aria-label="Edit schedule">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="ios-button-icon pause-schedule" data-tooltip="Pause" aria-label="Pause schedule">
+                                            <i class="fas fa-pause"></i>
+                                        </button>
+                                        <button class="ios-button-icon delete-schedule" data-tooltip="Delete" aria-label="Delete schedule">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-item ios-table-row" data-schedule-id="3">
+                                    <div class="schedule-item-cell schedule-name">Afternoon Feeding</div>
+                                    <div class="schedule-item-cell pet">
+                                        <img src="/assets/images/pet-1.jpg" alt="Buddy" class="pet-avatar">
+                                        <span>Buddy</span>
+                                    </div>
+                                    <div class="schedule-item-cell device">Living Room Feeder</div>
+                                    <div class="schedule-item-cell frequency">Daily</div>
+                                    <div class="schedule-item-cell time">4:00 PM</div>
+                                    <div class="schedule-item-cell amount">80g</div>
+                                    <div class="schedule-item-cell status">
+                                        <span class="status-badge active ios-badge">Active</span>
+                                    </div>
+                                    <div class="schedule-item-cell actions">
+                                        <button class="ios-button-icon" data-tooltip="Edit" aria-label="Edit schedule">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="ios-button-icon pause-schedule" data-tooltip="Pause" aria-label="Pause schedule">
+                                            <i class="fas fa-pause"></i>
+                                        </button>
+                                        <button class="ios-button-icon delete-schedule" data-tooltip="Delete" aria-label="Delete schedule">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-item ios-table-row" data-schedule-id="4">
+                                    <div class="schedule-item-cell schedule-name">Evening Feeding</div>
+                                    <div class="schedule-item-cell pet">
+                                        <img src="/assets/images/pet-1.jpg" alt="Buddy" class="pet-avatar">
+                                        <span>Buddy</span>
+                                    </div>
+                                    <div class="schedule-item-cell device">Living Room Feeder</div>
+                                    <div class="schedule-item-cell frequency">Daily</div>
+                                    <div class="schedule-item-cell time">8:00 PM</div>
+                                    <div class="schedule-item-cell amount">80g</div>
+                                    <div class="schedule-item-cell status">
+                                        <span class="status-badge active ios-badge">Active</span>
+                                    </div>
+                                    <div class="schedule-item-cell actions">
+                                        <button class="ios-button-icon" data-tooltip="Edit" aria-label="Edit schedule">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="ios-button-icon pause-schedule" data-tooltip="Pause" aria-label="Pause schedule">
+                                            <i class="fas fa-pause"></i>
+                                        </button>
+                                        <button class="ios-button-icon delete-schedule" data-tooltip="Delete" aria-label="Delete schedule">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-item ios-table-row" data-schedule-id="5">
+                                    <div class="schedule-item-cell schedule-name">Morning Feeding</div>
+                                    <div class="schedule-item-cell pet">
+                                        <img src="/assets/images/pet-2.jpg" alt="Max" class="pet-avatar">
+                                        <span>Max</span>
+                                    </div>
+                                    <div class="schedule-item-cell device">Kitchen Feeder</div>
+                                    <div class="schedule-item-cell frequency">Daily</div>
+                                    <div class="schedule-item-cell time">9:30 AM</div>
+                                    <div class="schedule-item-cell amount">25g</div>
+                                    <div class="schedule-item-cell status">
+                                        <span class="status-badge active ios-badge">Active</span>
+                                    </div>
+                                    <div class="schedule-item-cell actions">
+                                        <button class="ios-button-icon" data-tooltip="Edit" aria-label="Edit schedule">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="ios-button-icon pause-schedule" data-tooltip="Pause" aria-label="Pause schedule">
+                                            <i class="fas fa-pause"></i>
+                                        </button>
+                                        <button class="ios-button-icon delete-schedule" data-tooltip="Delete" aria-label="Delete schedule">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-item ios-table-row" data-schedule-id="6">
+                                    <div class="schedule-item-cell schedule-name">Weekend Special</div>
+                                    <div class="schedule-item-cell pet">
+                                        <img src="/assets/images/pet-3.jpg" alt="Luna" class="pet-avatar">
+                                        <span>Luna</span>
+                                    </div>
+                                    <div class="schedule-item-cell device">Kitchen Feeder</div>
+                                    <div class="schedule-item-cell frequency">Weekends</div>
+                                    <div class="schedule-item-cell time">10:00 AM</div>
+                                    <div class="schedule-item-cell amount">35g</div>
+                                    <div class="schedule-item-cell status">
+                                        <span class="status-badge paused ios-badge">Paused</span>
+                                    </div>
+                                    <div class="schedule-item-cell actions">
+                                        <button class="ios-button-icon" data-tooltip="Edit" aria-label="Edit schedule">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="ios-button-icon resume-schedule" data-tooltip="Resume" aria-label="Resume schedule">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <button class="ios-button-icon delete-schedule" data-tooltip="Delete" aria-label="Delete schedule">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="schedules-grid-view ios-grid" id="schedules-grid">
+                            <!-- Grid view schedules will be added here by JS -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create/Edit Schedule Modal -->
+    <div class="modal ios-modal" id="schedule-modal">
+        <div class="modal-content ios-modal-content">
+            <div class="modal-header ios-modal-header">
+                <h2 id="schedule-modal-title" class="ios-modal-title">Create New Schedule</h2>
+                <button class="modal-close ios-button-icon" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body ios-modal-body">
+                <form id="schedule-form" class="ios-form">
+                    <input type="hidden" id="schedule-id" name="schedule-id" value="">
+                    
+                    <div class="form-group ios-form-group">
+                        <label for="schedule-name" class="ios-form-label">Schedule Name</label>
+                        <input type="text" id="schedule-name" name="schedule-name" class="ios-form-input" placeholder="e.g. Morning Feeding" required>
+                    </div>
+                    
+                    <div class="form-row ios-form-row">
+                        <div class="form-group ios-form-group">
+                            <label for="schedule-pet" class="ios-form-label">Pet</label>
+                            <select id="schedule-pet" name="schedule-pet" class="ios-form-input" required>
+                                <option value="">Select Pet</option>
+                                <option value="1">Buddy (Dog)</option>
+                                <option value="2">Max (Cat)</option>
+                                <option value="3">Luna (Cat)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group ios-form-group">
+                            <label for="schedule-device" class="ios-form-label">Device</label>
+                            <select id="schedule-device" name="schedule-device" class="ios-form-input" required>
+                                <option value="">Select Device</option>
+                                <option value="1">Living Room Feeder</option>
+                                <option value="2">Kitchen Feeder</option>
+                                <option value="3">Bedroom Feeder</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group ios-form-group">
+                        <label for="schedule-frequency" class="ios-form-label">Frequency</label>
+                        <select id="schedule-frequency" name="schedule-frequency" class="ios-form-input" required>
+                            <option value="daily">Daily</option>
+                            <option value="weekdays">Weekdays (Mon-Fri)</option>
+                            <option value="weekends">Weekends (Sat-Sun)</option>
+                            <option value="custom">Custom Days</option>
+                        </select>
+                    </div>
+                    
+                    <div class="custom-days ios-checkbox-group" style="display: none;">
+                        <label class="ios-form-label">Select Days</label>
+                        <div class="day-checkboxes ios-checkbox-container">
+                            <label class="day-checkbox ios-checkbox">
+                                <input type="checkbox" name="day-mon" id="day-mon">
+                                <span>Mon</span>
+                            </label>
+                            <label class="day-checkbox ios-checkbox">
+                                <input type="checkbox" name="day-tue" id="day-tue">
+                                <span>Tue</span>
+                            </label>
+                            <label class="day-checkbox ios-checkbox">
+                                <input type="checkbox" name="day-wed" id="day-wed">
+                                <span>Wed</span>
+                            </label>
+                            <label class="day-checkbox ios-checkbox">
+                                <input type="checkbox" name="day-thu" id="day-thu">
+                                <span>Thu</span>
+                            </label>
+                            <label class="day-checkbox ios-checkbox">
+                                <input type="checkbox" name="day-fri" id="day-fri">
+                                <span>Fri</span>
+                            </label>
+                            <label class="day-checkbox ios-checkbox">
+                                <input type="checkbox" name="day-sat" id="day-sat">
+                                <span>Sat</span>
+                            </label>
+                            <label class="day-checkbox ios-checkbox">
+                                <input type="checkbox" name="day-sun" id="day-sun">
+                                <span>Sun</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row ios-form-row">
+                        <div class="form-group ios-form-group">
+                            <label for="schedule-time" class="ios-form-label">Feeding Time</label>
+                            <input type="time" id="schedule-time" name="schedule-time" class="ios-form-input" required>
+                        </div>
+                        
+                        <div class="form-group ios-form-group">
+                            <label for="schedule-amount" class="ios-form-label">Amount (grams)</label>
+                            <input type="number" id="schedule-amount" name="schedule-amount" min="5" max="200" step="5" class="ios-form-input" required>
+                            <div class="amount-slider ios-slider">
+                                <input type="range" min="5" max="200" step="5" value="30" id="schedule-amount-range" class="ios-range">
+                                <div class="amount-labels ios-slider-labels">
+                                    <span>5g</span>
+                                    <span>100g</span>
+                                    <span>200g</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group ios-form-group">
+                        <label for="schedule-notes" class="ios-form-label">Notes (optional)</label>
+                        <textarea id="schedule-notes" name="schedule-notes" rows="2" class="ios-form-input" placeholder="Add notes about this feeding schedule"></textarea>
+                    </div>
+                    
+                    <div class="form-actions ios-form-actions">
+                        <button type="button" class="ios-button ios-button-outline" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="ios-button ios-button-primary">Save Schedule</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal ios-modal" id="delete-modal">
+        <div class="modal-content ios-modal-content">
+            <div class="modal-header ios-modal-header">
+                <h2 class="ios-modal-title">Delete Schedule</h2>
+                <button class="modal-close ios-button-icon" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body ios-modal-body">
+                <div class="delete-confirmation ios-alert">
+                    <i class="fas fa-exclamation-triangle warning-icon"></i>
+                    <p>Are you sure you want to delete this feeding schedule?</p>
+                    <p>This action cannot be undone. All future feedings based on this schedule will be canceled.</p>
+                </div>
+                <div class="form-actions ios-form-actions">
+                    <button type="button" class="ios-button ios-button-outline" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="confirm-delete" class="ios-button ios-button-danger">Delete Schedule</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <!-- 1. First load Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.supabaseJs = supabase;
+        window.supabase = null; // Reset for our own initialization
+    </script>
+    
+    <!-- 2. Load Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 3. Next load configuration -->
+    <script src="/scripts/config.js"></script>
+    
+    <!-- 4. Then load main utilities -->
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/main.js"></script>
+    
+    <!-- 5. Load iOS header and animation scripts -->
+    <script src="/scripts/ios-header.js"></script>
+    <script src="/scripts/ios-animations.js"></script>
+    
+    <!-- 6. Load auth management -->
+    <script src="/scripts/auth.js"></script>
+    
+    <!-- 7. Finally load page-specific scripts -->
+    <script src="/scripts/schedules.js"></script>
+
+    <!-- Add this script for authentication fallback -->
+    <script>
+        // Hide loading overlay function
+        function hideLoadingOverlay() {
+            const overlay = document.getElementById('loading-container');
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 500);
+            }
+        }
+        
+        // Show loading overlay function
+        function showLoadingOverlay() {
+            const overlay = document.getElementById('loading-container');
+            if (overlay) {
+                overlay.style.display = 'flex';
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                }, 10);
+            }
+        }
+        
+        // Initialize app object if it doesn't exist
+        window.app = window.app || {};
+        window.app.showLoading = window.app.showLoading || showLoadingOverlay;
+        window.app.hideLoading = window.app.hideLoading || hideLoadingOverlay;
+        
+        // Show loading overlay initially
+        showLoadingOverlay();
+        
+        // Redirect to login page if auth session is missing after a short delay
+        // This is a fallback mechanism if the JS authentication check fails
+        setTimeout(async function() {
+            try {
+                if (window.supabase) {
+                    const { data } = await window.supabase.auth.getSession();
+                    if (!data || !data.session) {
+                        window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname);
+                    } else {
+                        hideLoadingOverlay();
+                    }
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = '/login.html';
+            }
+        }, 3000); // 3 second delay to allow scripts to initialize
+        
+        // Add logout functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutButtons = document.querySelectorAll('#logout-button, #dropdown-logout');
+            logoutButtons.forEach(button => {
+                if (button) {
+                    button.addEventListener('click', async function(e) {
+                        e.preventDefault();
+                        if (window.supabase) {
+                            showLoadingOverlay();
+                            await window.supabase.auth.signOut();
+                            window.location.href = '/login.html';
+                        }
+                    });
+                }
+            });
+            
+            // Add dark mode toggle
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    const isDarkMode = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDarkMode);
+                    themeToggleBtn.innerHTML = isDarkMode ? 
+                        '<i class="fas fa-sun"></i>' : 
+                        '<i class="fas fa-moon"></i>';
+                });
+                
+                // Apply saved theme
+                const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+                if (savedDarkMode) {
+                    document.body.classList.add('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            }
+            
+            // Setup modal functionality
+            const createScheduleBtn = document.getElementById('create-schedule-btn');
+            const scheduleModal = document.getElementById('schedule-modal');
+            const modalCloseButtons = document.querySelectorAll('.modal-close, [data-dismiss="modal"]');
+            
+            if (createScheduleBtn && scheduleModal) {
+                createScheduleBtn.addEventListener('click', function() {
+                    scheduleModal.classList.add('open');
+                    document.getElementById('schedule-form').reset();
+                    document.getElementById('schedule-id').value = '';
+                    document.getElementById('schedule-modal-title').textContent = 'Create New Schedule';
+                });
+            }
+            
+            // Edit schedule buttons
+            document.querySelectorAll('.ios-button-icon[data-tooltip="Edit"]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const scheduleId = this.closest('.schedule-item').getAttribute('data-schedule-id');
+                    if (scheduleModal && scheduleId) {
+                        scheduleModal.classList.add('open');
+                        document.getElementById('schedule-id').value = scheduleId;
+                        document.getElementById('schedule-modal-title').textContent = 'Edit Schedule';
+                        // Here you would normally load schedule data based on ID
+                    }
+                });
+            });
+            
+            // Delete schedule buttons
+            const deleteModal = document.getElementById('delete-modal');
+            const confirmDeleteBtn = document.getElementById('confirm-delete');
+            let scheduleToDelete = null;
+            
+            document.querySelectorAll('.delete-schedule').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    scheduleToDelete = this.closest('.schedule-item').getAttribute('data-schedule-id');
+                    if (deleteModal) {
+                        deleteModal.classList.add('open');
+                    }
+                });
+            });
+            
+            if (confirmDeleteBtn) {
+                confirmDeleteBtn.addEventListener('click', function() {
+                    if (scheduleToDelete) {
+                        // Here you would normally delete the schedule
+                        // API call to delete schedule
+                        console.log('Deleting schedule:', scheduleToDelete);
+                        // Remove from UI
+                        const scheduleElement = document.querySelector(`.schedule-item[data-schedule-id="${scheduleToDelete}"]`);
+                        if (scheduleElement) {
+                            scheduleElement.remove();
+                        }
+                        // Close modal
+                        if (deleteModal) {
+                            deleteModal.classList.remove('open');
+                        }
+                    }
+                });
+            }
+            
+            // Close modal functionality
+            modalCloseButtons.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        const modal = btn.closest('.ios-modal');
+                        if (modal) {
+                            modal.classList.remove('open');
+                        }
+                    });
+                }
+            });
+            
+            // Close modal when clicking outside
+            document.querySelectorAll('.ios-modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('open');
+                    }
+                });
+            });
+            
+            // Setup view toggle
+            const viewToggleButtons = document.querySelectorAll('.view-toggle-btn');
+            const listView = document.getElementById('schedules-list');
+            const gridView = document.getElementById('schedules-grid');
+            
+            viewToggleButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const view = this.getAttribute('data-view');
+                    
+                    // Remove active class from all buttons
+                    viewToggleButtons.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    if (view === 'list' && listView) {
+                        listView.classList.add('active');
+                        if (gridView) gridView.classList.remove('active');
+                    } else if (view === 'grid' && gridView) {
+                        gridView.classList.add('active');
+                        if (listView) listView.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Setup frequency dropdown to show/hide custom days
+            const frequencySelect = document.getElementById('schedule-frequency');
+            const customDaysDiv = document.querySelector('.custom-days');
+            
+            if (frequencySelect && customDaysDiv) {
+                frequencySelect.addEventListener('change', function() {
+                    if (this.value === 'custom') {
+                        customDaysDiv.style.display = 'block';
+                    } else {
+                        customDaysDiv.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Connect amount input and range slider
+            const amountInput = document.getElementById('schedule-amount');
+            const amountRange = document.getElementById('schedule-amount-range');
+            
+            if (amountInput && amountRange) {
+                amountRange.addEventListener('input', function() {
+                    amountInput.value = this.value;
+                });
+                
+                amountInput.addEventListener('input', function() {
+                    amountRange.value = this.value;
+                });
+            }
+            
+            // Setup Feed Now button functionality
+            document.querySelectorAll('.feed-now-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const feedingId = this.getAttribute('data-feeding-id');
+                    // Here you would normally initiate a feeding
+                    console.log('Initiating manual feeding:', feedingId);
+                    
+                    // Show a temporary success message
+                    const feedingItem = this.closest('.upcoming-item');
+                    if (feedingItem) {
+                        const timeBadge = feedingItem.querySelector('.time-badge');
+                        if (timeBadge) {
+                            const originalContent = timeBadge.innerHTML;
+                            timeBadge.innerHTML = '<i class="fas fa-check-circle"></i><span>Initiated</span>';
+                            timeBadge.style.backgroundColor = 'var(--success-color)';
+                            
+                            // Add a message
+                            const message = document.createElement('div');
+                            message.className = 'feeding-message';
+                            message.innerHTML = '<span class="success-text">Feeding initiated!</span>';
+                            feedingItem.appendChild(message);
+                            
+                            // Disable the feed now button
+                            this.disabled = true;
+                            this.innerHTML = 'Feeding...';
+                            
+                            // Remove the message after 5 seconds
+                            setTimeout(() => {
+                                feedingItem.removeChild(message);
+                                this.disabled = false;
+                                this.innerHTML = 'Feed Now';
+                                timeBadge.innerHTML = originalContent;
+                                timeBadge.style.backgroundColor = '';
+                            }, 5000);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

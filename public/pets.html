@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pets - Automatic Pet Feeder</title>
+    <meta name="description" content="Manage your pets and their feeding preferences.">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/pets.css">
+    <link rel="stylesheet" href="/styles/toast.css">
+    <link rel="stylesheet" href="/styles/ios.css">
+    <link rel="stylesheet" href="/styles/ios-animations.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/scripts/component-loader.js"></script>
+</head>
+<body class="ios-ui" data-title="My Pets">
+    <!-- Loading Overlay Component -->
+    <div id="loading-container" data-component="loading-overlay"></div>
+
+    <div class="dashboard-container ios-dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar ios-sidebar">
+            <div id="sidebar-container" data-component="sidebar"></div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content ios-main-content">
+            <!-- Header Component -->
+            <header class="content-header ios-header ios-animated-header">
+                <div id="header-container" data-component="header" data-title="My Pets"></div>
+            </header>
+
+            <div class="content-body ios-content-body">
+                <!-- Pets page content starts here -->
+                <section class="pets-actions ios-action-bar">
+                    <button class="ios-button ios-button-primary" id="add-pet-btn">
+                        <i class="fas fa-plus"></i> Add New Pet
+                    </button>
+                    <div class="pets-filter ios-filter">
+                        <label for="pet-type-filter">Filter:</label>
+                        <select id="pet-type-filter" class="ios-form-input">
+                            <option value="all">All Pets</option>
+                            <option value="dog">Dogs</option>
+                            <option value="cat">Cats</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!-- Pets List -->
+                <section class="pets-grid ios-grid" id="pets-container">
+                    <!-- Pet Card -->
+                    <div class="pet-card ios-card" data-pet-id="1" data-pet-type="dog">
+                        <div class="pet-card-header ios-card-header">
+                            <div class="pet-avatar ios-avatar">
+                                <img src="/assets/images/pet-1.jpg" alt="Buddy">
+                            </div>
+                            <div class="pet-info ios-info">
+                                <h3>Buddy</h3>
+                                <span class="pet-type">Dog</span>
+                            </div>
+                            <div class="card-menu ios-menu">
+                                <button class="card-menu-button ios-button-icon" aria-label="Pet menu">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="card-menu-dropdown ios-dropdown">
+                                    <a href="#" class="edit-pet ios-link" data-pet-id="1">Edit</a>
+                                    <a href="#" class="view-pet-details ios-link" data-pet-id="1">Details</a>
+                                    <a href="#" class="delete-pet ios-link" data-pet-id="1">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pet-body ios-card-body">
+                            <div class="pet-info ios-info">
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Type:</span>
+                                    <span class="info-value">Dog (Golden Retriever)</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Age:</span>
+                                    <span class="info-value">3 years</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Weight:</span>
+                                    <span class="info-value">28 kg</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Daily Intake:</span>
+                                    <span class="info-value">320g (4 feedings)</span>
+                                </div>
+                            </div>
+                            <div class="pet-actions-row ios-actions-row">
+                                <button class="ios-button ios-button-primary btn-sm view-pet-details" data-pet-id="1">View Details</button>
+                                <button class="ios-button ios-button-outline btn-sm create-schedule" data-pet-id="1">Create Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pet Card -->
+                    <div class="pet-card ios-card" data-pet-id="2" data-pet-type="cat">
+                        <div class="pet-card-header ios-card-header">
+                            <div class="pet-avatar ios-avatar">
+                                <img src="/assets/images/pet-2.jpg" alt="Max">
+                            </div>
+                            <div class="pet-info ios-info">
+                                <h3>Max</h3>
+                                <span class="pet-type">Cat</span>
+                            </div>
+                            <div class="card-menu ios-menu">
+                                <button class="card-menu-button ios-button-icon" aria-label="Pet menu">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="card-menu-dropdown ios-dropdown">
+                                    <a href="#" class="edit-pet ios-link" data-pet-id="2">Edit</a>
+                                    <a href="#" class="view-pet-details ios-link" data-pet-id="2">Details</a>
+                                    <a href="#" class="delete-pet ios-link" data-pet-id="2">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pet-body ios-card-body">
+                            <div class="pet-info ios-info">
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Type:</span>
+                                    <span class="info-value">Cat (Domestic Shorthair)</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Age:</span>
+                                    <span class="info-value">2 years</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Weight:</span>
+                                    <span class="info-value">4.5 kg</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Daily Intake:</span>
+                                    <span class="info-value">75g (3 feedings)</span>
+                                </div>
+                            </div>
+                            <div class="pet-actions-row ios-actions-row">
+                                <button class="ios-button ios-button-primary btn-sm view-pet-details" data-pet-id="2">View Details</button>
+                                <button class="ios-button ios-button-outline btn-sm create-schedule" data-pet-id="2">Create Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pet Card -->
+                    <div class="pet-card ios-card" data-pet-id="3" data-pet-type="cat">
+                        <div class="pet-card-header ios-card-header">
+                            <div class="pet-avatar ios-avatar">
+                                <img src="/assets/images/pet-3.jpg" alt="Luna">
+                            </div>
+                            <div class="pet-info ios-info">
+                                <h3>Luna</h3>
+                                <span class="pet-type">Cat</span>
+                            </div>
+                            <div class="card-menu ios-menu">
+                                <button class="card-menu-button ios-button-icon" aria-label="Pet menu">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="card-menu-dropdown ios-dropdown">
+                                    <a href="#" class="edit-pet ios-link" data-pet-id="3">Edit</a>
+                                    <a href="#" class="view-pet-details ios-link" data-pet-id="3">Details</a>
+                                    <a href="#" class="delete-pet ios-link" data-pet-id="3">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pet-body ios-card-body">
+                            <div class="pet-info ios-info">
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Type:</span>
+                                    <span class="info-value">Cat (Maine Coon)</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Age:</span>
+                                    <span class="info-value">5 years</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Weight:</span>
+                                    <span class="info-value">6.2 kg</span>
+                                </div>
+                                <div class="pet-info-item ios-info-item">
+                                    <span class="info-label">Daily Intake:</span>
+                                    <span class="info-value">90g (3 feedings)</span>
+                                </div>
+                            </div>
+                            <div class="pet-actions-row ios-actions-row">
+                                <button class="ios-button ios-button-primary btn-sm view-pet-details" data-pet-id="3">View Details</button>
+                                <button class="ios-button ios-button-outline btn-sm create-schedule" data-pet-id="3">Create Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Pet Card -->
+                    <div class="pet-card add-pet-card ios-card" id="add-pet-card">
+                        <div class="add-pet-content ios-card-content">
+                            <div class="add-pet-icon ios-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <h3>Add New Pet</h3>
+                            <p>Create a profile for your pet to set up feeding schedules</p>
+                            <button class="ios-button ios-button-primary btn-sm" id="add-pet-card-btn">Add Pet</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <!-- 1. First load Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.supabaseJs = supabase;
+        window.supabase = null; // Reset for our own initialization
+    </script>
+    
+    <!-- 2. Load Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 3. Next load configuration -->
+    <script src="/scripts/config.js"></script>
+    
+    <!-- 4. Then load main utilities -->
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/main.js"></script>
+    
+    <!-- 5. Load iOS header and animation scripts -->
+    <script src="/scripts/ios-header.js"></script>
+    <script src="/scripts/ios-animations.js"></script>
+    
+    <!-- 6. Load auth management -->
+    <script src="/scripts/auth.js"></script>
+    
+    <!-- 7. Finally load page-specific scripts -->
+    <script src="/scripts/pets.js"></script>
+
+    <!-- Add this script for authentication fallback -->
+    <script>
+        // Hide loading overlay function
+        function hideLoadingOverlay() {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 500);
+            }
+        }
+        
+        // Show loading overlay function
+        function showLoadingOverlay() {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                }, 10);
+            }
+        }
+        
+        // Initialize app object if it doesn't exist
+        window.app = window.app || {};
+        window.app.showLoading = window.app.showLoading || showLoadingOverlay;
+        window.app.hideLoading = window.app.hideLoading || hideLoadingOverlay;
+        
+        // Show loading overlay initially
+        showLoadingOverlay();
+        
+        // Redirect to login page if auth session is missing after a short delay
+        // This is a fallback mechanism if the JS authentication check fails
+        setTimeout(async function() {
+            try {
+                if (window.supabase) {
+                    const { data } = await window.supabase.auth.getSession();
+                    if (!data || !data.session) {
+                        window.location.href = '/login.html?redirect=' + encodeURIComponent(window.location.pathname);
+                    } else {
+                        hideLoadingOverlay();
+                    }
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = '/login.html';
+            }
+        }, 3000); // 3 second delay to allow scripts to initialize
+        
+        // Add logout functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutButtons = document.querySelectorAll('#logout-button, #dropdown-logout');
+            logoutButtons.forEach(button => {
+                if (button) {
+                    button.addEventListener('click', async function(e) {
+                        e.preventDefault();
+                        if (window.supabase) {
+                            showLoadingOverlay();
+                            await window.supabase.auth.signOut();
+                            window.location.href = '/login.html';
+                        }
+                    });
+                }
+            });
+            
+            // Add dark mode toggle
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    const isDarkMode = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDarkMode);
+                    themeToggleBtn.innerHTML = isDarkMode ? 
+                        '<i class="fas fa-sun"></i>' : 
+                        '<i class="fas fa-moon"></i>';
+                });
+                
+                // Apply saved theme
+                const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+                if (savedDarkMode) {
+                    document.body.classList.add('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            }
+            
+            // Setup modal functionality
+            const addPetBtn = document.getElementById('add-pet-btn');
+            const addPetCardBtn = document.getElementById('add-pet-card-btn');
+            const petModal = document.getElementById('pet-modal');
+            const modalCloseButtons = document.querySelectorAll('.modal-close, [data-dismiss="modal"]');
+            
+            // Open modal functionality
+            [addPetBtn, addPetCardBtn].forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        if (petModal) {
+                            petModal.classList.add('open');
+                            document.getElementById('pet-form').reset();
+                            document.getElementById('pet-id').value = '';
+                            document.getElementById('pet-modal-title').textContent = 'Add New Pet';
+                        }
+                    });
+                }
+            });
+            
+            // Close modal functionality
+            modalCloseButtons.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        const modal = btn.closest('.ios-modal');
+                        if (modal) {
+                            modal.classList.remove('open');
+                        }
+                    });
+                }
+            });
+            
+            // Close modal when clicking outside
+            document.querySelectorAll('.ios-modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('open');
+                    }
+                });
+            });
+            
+            // Setup pet detail buttons
+            document.querySelectorAll('.view-pet-details').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const petId = btn.getAttribute('data-pet-id');
+                    const detailsModal = document.getElementById('pet-details-modal');
+                    if (detailsModal && petId) {
+                        detailsModal.classList.add('open');
+                        // Here you would normally load pet data based on ID
+                    }
+                });
+            });
+            
+            // Setup pet filter
+            const petTypeFilter = document.getElementById('pet-type-filter');
+            if (petTypeFilter) {
+                petTypeFilter.addEventListener('change', () => {
+                    const filterValue = petTypeFilter.value;
+                    const petCards = document.querySelectorAll('.pet-card:not(#add-pet-card)');
+                    
+                    petCards.forEach(card => {
+                        const petType = card.getAttribute('data-pet-type');
+                        if (filterValue === 'all' || petType === filterValue) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

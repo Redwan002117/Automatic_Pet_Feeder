@@ -1,0 +1,195 @@
+/**
+ * Dark mode styles for Automatic Pet Feeder
+ */
+
+/* Dark mode variables */
+.dark-mode {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #7a7a7a;
+  --border-color: #333;
+  --card-bg: #1e1e1e;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --input-bg: #2c2c2c;
+}
+
+/* iOS UI dark mode */
+.dark-mode.ios-ui {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Layout elements */
+.dark-mode .site-header,
+.dark-mode .main-content,
+.dark-mode .sidebar {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+}
+
+.dark-mode .ios-sidebar {
+  background-color: rgba(30, 30, 30, 0.9);
+  border-right-color: var(--border-color);
+}
+
+.dark-mode .ios-header {
+  background-color: rgba(18, 18, 18, 0.9);
+  border-bottom-color: var(--border-color);
+}
+
+/* Cards and containers */
+.dark-mode .ios-card,
+.dark-mode .dashboard-card,
+.dark-mode .auth-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dark-mode .ios-card-header,
+.dark-mode .ios-card-footer,
+.dark-mode .device-header,
+.dark-mode .device-actions {
+  border-color: var(--border-color);
+}
+
+/* Tables and lists */
+.dark-mode .ios-table th,
+.dark-mode .ios-table td,
+.dark-mode .ios-list-item {
+  border-color: var(--border-color);
+}
+
+.dark-mode .ios-table tbody tr:hover,
+.dark-mode .ios-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .ios-list-subtitle {
+  color: var(--text-secondary);
+}
+
+/* Form elements */
+.dark-mode .ios-form-input,
+.dark-mode .ios-form-select,
+.dark-mode .auth-form-input {
+  background-color: var(--input-bg);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-mode .ios-form-label,
+.dark-mode .auth-form-label {
+  color: var(--text-secondary);
+}
+
+/* Buttons */
+.dark-mode .ios-button-outline {
+  border-color: var(--border-color);
+}
+
+.dark-mode .ios-button-icon {
+  color: var(--text-secondary);
+}
+
+.dark-mode .ios-button-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Progress bars */
+.dark-mode .progress-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .strength-bar-container {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Navigation */
+.dark-mode .ios-nav-item {
+  color: var(--text-primary);
+}
+
+.dark-mode .ios-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--primary-color);
+}
+
+/* Charts */
+.dark-mode .chart-tooltip {
+  background-color: rgba(30, 30, 30, 0.9);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* Modal elements */
+.dark-mode .ios-modal-content {
+  background-color: var(--card-bg);
+}
+
+.dark-mode .ios-modal-header {
+  border-color: var(--border-color);
+}
+
+/* Authentication elements */
+.dark-mode .auth-divider:before,
+.dark-mode .auth-divider:after {
+  border-color: var(--border-color);
+}
+
+.dark-mode .social-button {
+  background-color: var(--input-bg);
+  border-color: var(--border-color);
+}
+
+.dark-mode .social-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .auth-tab {
+  color: var(--text-secondary);
+}
+
+.dark-mode .auth-tab.active {
+  color: var(--primary-color);
+}
+
+.dark-mode .auth-footer {
+  border-color: var(--border-color);
+}
+
+/* Device status styles */
+.dark-mode .device-status.online {
+  background-color: rgba(52, 199, 89, 0.2);
+}
+
+.dark-mode .device-status.offline {
+  background-color: rgba(255, 59, 48, 0.2);
+}
+
+.dark-mode .device-status.warning {
+  background-color: rgba(255, 149, 0, 0.2);
+}
+
+.dark-mode .device-metric span {
+  color: var(--text-secondary);
+}
+
+/* Load overlay */
+.dark-mode .loading-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Customize scrollbar for dark mode */
+.dark-mode::-webkit-scrollbar-track {
+  background-color: var(--bg-primary);
+}
+
+.dark-mode::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}

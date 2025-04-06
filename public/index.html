@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetFeeder - Smart Feeding Solutions for Your Pets</title>
+    <meta name="description" content="PetFeeder provides smart, connected feeding solutions for your pets. Schedule meals, monitor food levels, and feed remotely with our iOS-inspired app.">
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/ios.css">
+    <link rel="stylesheet" href="styles/ios-animations.css">
+    <link rel="stylesheet" href="styles/landing-ios.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="ios-ui">
+    <!-- Header -->
+    <header class="ios-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="ios-logo">
+                    <img src="assets/images/logo.svg" alt="PetFeeder Logo">
+                    <span>PetFeeder</span>
+                </a>
+                
+                <nav class="ios-nav">
+                    <ul>
+                        <li><a href="#features" class="ios-nav-link">Features</a></li>
+                        <li><a href="#how-it-works" class="ios-nav-link">How It Works</a></li>
+                        <li><a href="#app" class="ios-nav-link">App</a></li>
+                        <li><a href="#pricing" class="ios-nav-link">Pricing</a></li>
+                        <li><a href="#faq" class="ios-nav-link">FAQ</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <a href="login.html" class="ios-button ios-button-outline">Log In</a>
+                    <a href="signup.html" class="ios-button ios-button-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle ios-button-icon" aria-label="Toggle mobile menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="ios-hero">
+            <div class="container">
+                <div class="ios-hero-content">
+                    <h1 class="ios-hero-title ios-animate ios-fade-slide-up">Smart Feeding for Your Pets</h1>
+                    <p class="ios-hero-subtitle ios-animate ios-fade-slide-up ios-delay-1">Never worry about feeding your pets again. Schedule meals, monitor food levels, and ensure your pets are fed on time, every time - even when you're away.</p>
+                    <div class="ios-hero-actions">
+                        <a href="signup.html" class="ios-button ios-button-primary ios-button-large ios-animate ios-fade-slide-up ios-delay-2">Get Started</a>
+                        <a href="#how-it-works" class="ios-button ios-button-outline ios-button-large ios-animate ios-fade-slide-up ios-delay-2">Learn More</a>
+                    </div>
+                </div>
+                <div class="ios-hero-image ios-animate ios-fade-in ios-delay-3">
+                    <img src="assets/images/hero-device.png" alt="PetFeeder Smart Device">
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="ios-stats">
+            <div class="container">
+                <div class="ios-stats-grid ios-stagger-list">
+                    <div class="ios-stat-card">
+                        <div class="ios-stat-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="ios-stat-number">15,000+</div>
+                        <div class="ios-stat-label">Happy Pets</div>
+                    </div>
+                    
+                    <div class="ios-stat-card">
+                        <div class="ios-stat-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="ios-stat-number">9,500+</div>
+                        <div class="ios-stat-label">Households</div>
+                    </div>
+                    
+                    <div class="ios-stat-card">
+                        <div class="ios-stat-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="ios-stat-number">5M+</div>
+                        <div class="ios-stat-label">Meals Served</div>
+                    </div>
+                    
+                    <div class="ios-stat-card">
+                        <div class="ios-stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="ios-stat-number">4.9</div>
+                        <div class="ios-stat-label">App Store Rating</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="ios-features">
+            <div class="container">
+                <div class="ios-section-header">
+                    <h2 class="ios-animate ios-fade-slide-up">Smart Features for Modern Pet Owners</h2>
+                    <p class="ios-animate ios-fade-slide-up ios-delay-1">Our automatic pet feeder combines innovative technology with practical design to give your pets the care they deserve.</p>
+                </div>
+                
+                <div class="ios-features-grid ios-stagger-list">
+                    <div class="ios-feature-card">
+                        <div class="ios-feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Remote Control</h3>
+                        <p>Control your pet feeder from anywhere using our iOS app. Perfect for late nights at work or unexpected trips.</p>
+                    </div>
+                    
+                    <div class="ios-feature-card">
+                        <div class="ios-feature-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Smart Scheduling</h3>
+                        <p>Create customized feeding schedules with precise portion control to maintain your pet's optimal diet.</p>
+                    </div>
+                    
+                    <div class="ios-feature-card">
+                        <div class="ios-feature-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>Live Camera</h3>
+                        <p>Watch your pet eat in real-time with our built-in HD camera. Record videos and share adorable moments.</p>
+                    </div>
+                    
+                    <div class="ios-feature-card">
+                        <div class="ios-feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3>Smart Notifications</h3>
+                        <p>Get alerts when your pet has been fed, when food is running low, or if there's an issue with the device.</p>
+                    </div>
+                    
+                    <div class="ios-feature-card">
+                        <div class="ios-feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Feeding Analytics</h3>
+                        <p>Track eating habits and patterns over time with detailed analytics to ensure your pet maintains a healthy diet.</p>
+                    </div>
+                    
+                    <div class="ios-feature-card">
+                        <div class="ios-feature-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Smart Home Integration</h3>
+                        <p>Works seamlessly with Apple HomeKit, Amazon Alexa, and Google Home for a connected smart home experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="ios-how-it-works">
+            <div class="container">
+                <div class="ios-section-header">
+                    <h2 class="ios-animate ios-fade-slide-up">How PetFeeder Works</h2>
+                    <p class="ios-animate ios-fade-slide-up ios-delay-1">Getting started is easy with our simple setup process</p>
+                </div>
+                
+                <div class="ios-steps">
+                    <div class="ios-step ios-animate ios-fade-slide-right">
+                        <div class="ios-step-number">1</div>
+                        <div class="ios-step-connector"></div>
+                        <div class="ios-step-content">
+                            <h3>Unbox & Connect</h3>
+                            <p>Unbox your PetFeeder device, plug it in, and connect it to your home Wi-Fi using our simple iOS app.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-step ios-animate ios-fade-slide-right ios-delay-1">
+                        <div class="ios-step-number">2</div>
+                        <div class="ios-step-connector"></div>
+                        <div class="ios-step-content">
+                            <h3>Fill & Configure</h3>
+                            <p>Fill the food container with your pet's favorite dry food and set up your preferred feeding schedule.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-step ios-animate ios-fade-slide-right ios-delay-2">
+                        <div class="ios-step-number">3</div>
+                        <div class="ios-step-connector"></div>
+                        <div class="ios-step-content">
+                            <h3>Manage & Monitor</h3>
+                            <p>Use the app to manage schedules, monitor food levels, and watch your pet enjoy their meals via live video.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-step ios-animate ios-fade-slide-right ios-delay-3">
+                        <div class="ios-step-number">4</div>
+                        <div class="ios-step-content">
+                            <h3>Relax & Enjoy</h3>
+                            <p>Enjoy peace of mind knowing your pet is fed on time, every time, even when you're not at home.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Preview Section -->
+        <section id="app" class="ios-app-preview">
+            <div class="container">
+                <div class="ios-app-preview-container">
+                    <div class="ios-app-content">
+                        <h2 class="ios-animate ios-fade-slide-up">Control Everything From Your iOS Device</h2>
+                        <p class="ios-animate ios-fade-slide-up ios-delay-1">Our beautiful, intuitive app puts complete control at your fingertips</p>
+                        
+                        <div class="ios-app-features">
+                            <div class="ios-app-feature ios-animate ios-fade-slide-up ios-delay-2">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Intuitive scheduling with drag-and-drop interface</span>
+                            </div>
+                            <div class="ios-app-feature ios-animate ios-fade-slide-up ios-delay-2">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Real-time notifications and status updates</span>
+                            </div>
+                            <div class="ios-app-feature ios-animate ios-fade-slide-up ios-delay-3">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Multiple pet profiles with customized settings</span>
+                            </div>
+                            <div class="ios-app-feature ios-animate ios-fade-slide-up ios-delay-3">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Detailed feeding history and analytics</span>
+                            </div>
+                            <div class="ios-app-feature ios-animate ios-fade-slide-up ios-delay-4">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Family sharing with permission controls</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-app-store-buttons">
+                            <a href="#" class="ios-animate ios-fade-in ios-delay-5">
+                                <img src="assets/images/app-store-badge.png" alt="Download on the App Store">
+                            </a>
+                            <a href="#" class="ios-animate ios-fade-in ios-delay-5">
+                                <img src="assets/images/google-play-badge.png" alt="Get it on Google Play">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-app-image ios-animate ios-fade-slide-left ios-delay-2">
+                        <img src="assets/images/app-screenshot.png" alt="PetFeeder App Interface">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="ios-testimonials">
+            <div class="container">
+                <div class="ios-section-header">
+                    <h2 class="ios-animate ios-fade-slide-up">What Our Customers Say</h2>
+                    <p class="ios-animate ios-fade-slide-up ios-delay-1">Join thousands of satisfied pet owners using PetFeeder</p>
+                </div>
+                
+                <div class="ios-testimonial-slider ios-animate ios-fade-in ios-delay-2">
+                    <div class="ios-testimonial-slide active">
+                        <div class="ios-testimonial-content">
+                            <p class="ios-testimonial-quote">PetFeeder has completely changed our lives! No more rushing home to feed Max, and the app is incredibly intuitive. We can finally enjoy weekend getaways without worrying about our cat missing meals.</p>
+                            <div class="ios-testimonial-author">
+                                <img src="assets/images/testimonial-1.jpg" alt="Sarah Johnson">
+                                <div class="ios-testimonial-author-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>Cat Owner, San Francisco</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-testimonial-slide">
+                        <div class="ios-testimonial-content">
+                            <p class="ios-testimonial-quote">As a veterinarian, I recommend PetFeeder to all my clients with busy schedules. The portion control is accurate, and the ability to establish consistent feeding routines has helped many pets with weight management issues.</p>
+                            <div class="ios-testimonial-author">
+                                <img src="assets/images/testimonial-2.jpg" alt="Dr. James Wilson">
+                                <div class="ios-testimonial-author-info">
+                                    <h4>Dr. James Wilson</h4>
+                                    <p>Veterinarian, Chicago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-testimonial-slide">
+                        <div class="ios-testimonial-content">
+                            <p class="ios-testimonial-quote">I have two dogs with different dietary needs, and PetFeeder handles this perfectly. The smart recognition feature ensures each pet gets their own food, and the app analytics help me track their eating patterns.</p>
+                            <div class="ios-testimonial-author">
+                                <img src="assets/images/testimonial-3.jpg" alt="Emily Rodriguez">
+                                <div class="ios-testimonial-author-info">
+                                    <h4>Emily Rodriguez</h4>
+                                    <p>Dog Owner, Austin</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-testimonial-controls">
+                        <div class="ios-testimonial-dots">
+                            <span class="ios-testimonial-dot active" data-slide="0"></span>
+                            <span class="ios-testimonial-dot" data-slide="1"></span>
+                            <span class="ios-testimonial-dot" data-slide="2"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="ios-pricing">
+            <div class="container">
+                <div class="ios-section-header">
+                    <h2 class="ios-animate ios-fade-slide-up">Simple, Transparent Pricing</h2>
+                    <p class="ios-animate ios-fade-slide-up ios-delay-1">Choose the plan that works for you and your pets</p>
+                </div>
+                
+                <div class="ios-pricing-cards ios-stagger-list">
+                    <div class="ios-pricing-card">
+                        <div class="ios-pricing-header">
+                            <h3>Basic</h3>
+                            <div class="ios-pricing-price">$99 <span>one-time</span></div>
+                            <p>Perfect for single pet households</p>
+                        </div>
+                        <div class="ios-pricing-details">
+                            <div class="ios-pricing-features">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Standard PetFeeder device</li>
+                                    <li><i class="fas fa-check"></i> Basic scheduling</li>
+                                    <li><i class="fas fa-check"></i> Mobile app control</li>
+                                    <li><i class="fas fa-check"></i> 1-year warranty</li>
+                                    <li class="disabled"><i class="fas fa-times"></i> Camera functionality</li>
+                                    <li class="disabled"><i class="fas fa-times"></i> Smart home integration</li>
+                                </ul>
+                            </div>
+                            <div class="ios-pricing-action">
+                                <a href="#" class="ios-button ios-button-primary">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-pricing-card featured">
+                        <div class="ios-pricing-badge">Most Popular</div>
+                        <div class="ios-pricing-header">
+                            <h3>Premium</h3>
+                            <div class="ios-pricing-price">$149 <span>one-time</span></div>
+                            <p>Ideal for tech-savvy pet owners</p>
+                        </div>
+                        <div class="ios-pricing-details">
+                            <div class="ios-pricing-features">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Premium PetFeeder device</li>
+                                    <li><i class="fas fa-check"></i> Advanced scheduling</li>
+                                    <li><i class="fas fa-check"></i> Mobile app control</li>
+                                    <li><i class="fas fa-check"></i> 2-year warranty</li>
+                                    <li><i class="fas fa-check"></i> HD camera functionality</li>
+                                    <li><i class="fas fa-check"></i> Smart home integration</li>
+                                </ul>
+                            </div>
+                            <div class="ios-pricing-action">
+                                <a href="#" class="ios-button ios-button-primary">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-pricing-card">
+                        <div class="ios-pricing-header">
+                            <h3>Family</h3>
+                            <div class="ios-pricing-price">$239 <span>one-time</span></div>
+                            <p>Perfect for multi-pet households</p>
+                        </div>
+                        <div class="ios-pricing-details">
+                            <div class="ios-pricing-features">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 2 Premium PetFeeder devices</li>
+                                    <li><i class="fas fa-check"></i> Advanced scheduling</li>
+                                    <li><i class="fas fa-check"></i> Mobile app control</li>
+                                    <li><i class="fas fa-check"></i> 3-year warranty</li>
+                                    <li><i class="fas fa-check"></i> HD camera functionality</li>
+                                    <li><i class="fas fa-check"></i> Smart home integration</li>
+                                </ul>
+                            </div>
+                            <div class="ios-pricing-action">
+                                <a href="#" class="ios-button ios-button-primary">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="ios-faq">
+            <div class="container">
+                <div class="ios-section-header">
+                    <h2 class="ios-animate ios-fade-slide-up">Frequently Asked Questions</h2>
+                    <p class="ios-animate ios-fade-slide-up ios-delay-1">Find answers to common questions about PetFeeder</p>
+                </div>
+                
+                <div class="ios-faq-container ios-stagger-list">
+                    <div class="ios-faq-item">
+                        <div class="ios-faq-question">
+                            <h3>How does the automatic feeding work?</h3>
+                            <div class="ios-faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="ios-faq-answer">
+                            <p>PetFeeder uses a programmable timer and a mechanical dispensing system to release a pre-set amount of food at scheduled times. You can program these times and portion sizes through our mobile app.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-faq-item">
+                        <div class="ios-faq-question">
+                            <h3>What type of food can I use with PetFeeder?</h3>
+                            <div class="ios-faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="ios-faq-answer">
+                            <p>PetFeeder works best with dry kibble between 1/8" and 3/4" in size. It's not designed for wet food, fresh food, or treats that might clog the dispensing mechanism.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-faq-item">
+                        <div class="ios-faq-question">
+                            <h3>What happens if my Wi-Fi goes down?</h3>
+                            <div class="ios-faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="ios-faq-answer">
+                            <p>PetFeeder has an offline mode that will continue to dispense food according to the last saved schedule, even if your Wi-Fi is unavailable. Once your connection is restored, the device will automatically reconnect and sync with the app.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-faq-item">
+                        <div class="ios-faq-question">
+                            <h3>How big is the food container?</h3>
+                            <div class="ios-faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="ios-faq-answer">
+                            <p>The standard PetFeeder holds 6 pounds (about 25 cups) of dry kibble. The PetFeeder XL, designed for multi-pet households, can hold up to 12 pounds (about 50 cups).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-faq-item">
+                        <div class="ios-faq-question">
+                            <h3>Can I control multiple PetFeeders from one app?</h3>
+                            <div class="ios-faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="ios-faq-answer">
+                            <p>Yes! You can control as many PetFeeder devices as you need from a single app. Each device can have its own custom schedule, portion sizes, and settings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="ios-cta">
+            <div class="container">
+                <div class="ios-cta-container">
+                    <h2 class="ios-cta-title ios-animate ios-fade-in">Ready to transform how you feed your pets?</h2>
+                    <p class="ios-cta-subtitle ios-animate ios-fade-in ios-delay-1">Join thousands of happy pet owners who trust PetFeeder for reliable, scheduled feeding.</p>
+                    <a href="signup.html" class="ios-button-white ios-animate ios-fade-in ios-delay-2">Get Started Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="ios-footer">
+        <div class="container">
+            <div class="ios-footer-content">
+                <div class="ios-footer-about">
+                    <div class="ios-footer-logo">
+                        <img src="assets/images/logo.svg" alt="PetFeeder Logo">
+                        <span>PetFeeder</span>
+                    </div>
+                    <p>Innovative pet feeding solutions that give you peace of mind and keep your pets happy and healthy, even when you're away.</p>
+                    <div class="ios-footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="ios-footer-nav">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="ios-footer-nav">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="ios-footer-nav">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="ios-footer-copyright">
+                <p>&copy; 2023 PetFeeder Inc. All rights reserved. Designed with <i class="fas fa-heart"></i> for pets and their owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="assets/images/logo.svg" alt="PetFeeder Logo">
+                <span>PetFeeder</span>
+            </div>
+            <button class="mobile-menu-close ios-button-icon" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#app">App</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        
+        <div class="auth-buttons">
+            <a href="login.html" class="ios-button ios-button-outline">Log In</a>
+            <a href="signup.html" class="ios-button ios-button-primary">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="ios-toast-container"></div>
+
+    <!-- JavaScript -->
+    <!-- Load Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.supabaseJs = window.supabase;
+        window.supabase = null; // Reset for our own initialization
+    </script>
+    
+    <!-- App scripts -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/ios-animations.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+</html>

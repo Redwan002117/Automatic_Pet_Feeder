@@ -1,0 +1,108 @@
+<!-- Sidebar Navigation Component -->
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header ios-sidebar-header">
+        <div class="logo">
+            <img src="/assets/images/logo.svg" alt="Pet Feeder Logo">
+            <span>PetFeeder</span>
+        </div>
+        <button class="sidebar-toggle ios-button-icon" aria-label="Toggle sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <nav class="sidebar-nav ios-nav">
+        <ul>
+            <li data-page="dashboard">
+                <a href="/dashboard.html" class="ios-nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li data-page="devices">
+                <a href="/devices.html" class="ios-nav-item">
+                    <i class="fas fa-tablet-alt"></i>
+                    <span>My Devices</span>
+                </a>
+            </li>
+            <li data-page="pets">
+                <a href="/pets.html" class="ios-nav-item">
+                    <i class="fas fa-paw"></i>
+                    <span>My Pets</span>
+                </a>
+            </li>
+            <li data-page="schedules">
+                <a href="/schedules.html" class="ios-nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Feeding Schedules</span>
+                </a>
+            </li>
+            <li data-page="history">
+                <a href="/history.html" class="ios-nav-item">
+                    <i class="fas fa-history"></i>
+                    <span>Feeding History</span>
+                </a>
+            </li>
+            <li data-page="analytics">
+                <a href="/analytics.html" class="ios-nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+            <li data-page="settings" data-role="user">
+                <a href="/settings.html" class="ios-nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+            <li data-page="admin" data-role="admin">
+                <a href="/admin.html" class="ios-nav-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Admin Panel</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="sidebar-footer ios-sidebar-footer">
+        <a href="#" id="logout-button" class="ios-button ios-button-outline">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>
+
+<!-- Mobile sidebar backdrop -->
+<div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+<!-- Mobile menu toggle button -->
+<button id="sidebar-toggle" class="sidebar-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+</button>
+
+<script>
+    // Set active menu item based on current page
+    document.addEventListener('DOMContentLoaded', function() {
+        const path = window.location.pathname;
+        const pageName = path.split('/').pop().split('.')[0];
+        
+        const menuItem = document.querySelector(`[data-page="${pageName}"]`);
+        if (menuItem) {
+            menuItem.classList.add('active');
+            const navLink = menuItem.querySelector('.ios-nav-item');
+            if (navLink) navLink.classList.add('active');
+        }
+        
+        // Handle role-based visibility
+        const userRole = localStorage.getItem('userRole') || 'user';
+        document.querySelectorAll('[data-role]').forEach(element => {
+            const requiredRole = element.getAttribute('data-role');
+            if (requiredRole && requiredRole !== userRole) {
+                element.style.display = 'none';
+            }
+        });
+    });
+</script>

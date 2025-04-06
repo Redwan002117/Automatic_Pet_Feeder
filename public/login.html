@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+    <title>Log In - Automatic Pet Feeder</title>
+    <meta name="description" content="Log in to manage your pet feeder devices, schedules, and monitor your pets' feeding history.">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="stylesheet" href="styles/ios.css">
+    <link rel="stylesheet" href="styles/ios-utils.css">
+    <link rel="stylesheet" href="styles/ios-animations.css">
+    <link rel="stylesheet" href="styles/captcha.css">
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="scripts/component-loader.js"></script>
+</head>
+<body class="ios-ui" data-title="Log In">
+    <!-- Loading Overlay Component -->
+    <div data-component="loading-overlay"></div>
+    <div class="auth-page">
+        <header class="site-header">
+            <div class="container header-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/images/logo.svg" alt="Pet Feeder Logo">
+                        <span>PetFeeder</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <img src="assets/images/logo.svg" alt="Pet Feeder Logo" class="auth-logo">
+                    <h1 class="auth-title">Welcome Back</h1>
+                    <p class="auth-subtitle">Log in to your PetFeeder account</p>
+                </div>
+
+                <div class="auth-content">
+                    <div class="auth-error"></div>
+                    <div class="auth-success"></div>
+                    
+                    <div class="auth-tabs">
+                        <div class="auth-option active" data-target="password-login">Password</div>
+                        <div class="auth-option" data-target="magic-link-login">Magic Link</div>
+                    </div>
+                    
+                    <form id="password-login-form" class="auth-form active">
+                        <div class="auth-form-group">
+                            <label for="login-email" class="auth-form-label">Email Address</label>
+                            <div class="auth-form-control">
+                                <input type="email" id="login-email" class="auth-form-input" placeholder="Enter your email" required autocomplete="email">
+                            </div>
+                        </div>
+                        
+                        <div class="auth-form-group">
+                            <label for="login-password" class="auth-form-label">Password</label>
+                            <div class="auth-form-control password-field">
+                                <input type="password" id="login-password" class="auth-form-input has-icon" placeholder="Enter your password" required autocomplete="current-password">
+                                <button type="button" class="auth-form-icon password-toggle">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="text-right">
+                                <a href="reset-password.html" class="auth-link">Forgot password?</a>
+                            </div>
+                        </div>
+                        
+                        <div class="auth-checkbox-wrapper">
+                            <input type="checkbox" id="remember-me" class="auth-checkbox-input ios-checkbox">
+                            <label for="remember-me" class="auth-checkbox-label">Keep me logged in</label>
+                        </div>
+                        
+                        <div id="login-captcha-container" class="captcha-container ios-captcha-container"></div>
+                        <button type="submit" class="auth-submit" data-original-text="Log In">Log In</button>
+                    </form>
+                    
+                    <form id="magic-link-login-form" class="auth-form">
+                        <div class="auth-info">
+                            <div class="auth-info-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <p>We'll send a magic link to your email. Click the link to sign in without a password.</p>
+                        </div>
+                        
+                        <div class="auth-form-group">
+                            <label for="magic-link-email" class="auth-form-label">Email Address</label>
+                            <div class="auth-form-control">
+                                <input type="email" id="magic-link-email" class="auth-form-input" placeholder="Enter your email" required autocomplete="email">
+                            </div>
+                        </div>
+                        
+                        <div id="magic-link-captcha-container" class="captcha-container ios-captcha-container"></div>
+                        <button type="submit" class="auth-submit" data-original-text="Send Magic Link">Send Magic Link</button>
+                    </form>
+                    
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button type="button" class="social-login-button" data-provider="google">
+                            <img src="assets/images/google-icon.svg" alt="Google">
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="social-login-button" data-provider="facebook">
+                            <img src="assets/images/facebook-icon.svg" alt="Facebook">
+                            <span>Facebook</span>
+                        </button>
+                        <button type="button" class="social-login-button" data-provider="github">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </button>
+                        <button type="button" class="social-login-button" data-provider="apple">
+                            <img src="assets/images/apple-icon.svg" alt="Apple">
+                            <span>Apple</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="auth-footer">
+                    <p class="auth-footer-text">Don't have an account? <a href="signup.html" class="auth-footer-link">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer auth-footer">
+            <div class="container">
+                <div class="footer-bottom">
+                    <p>&copy; 2023 PetFeeder Inc. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="#">Support</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Load Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.supabaseJs = window.supabase;
+        window.supabase = null; // Reset for our own initialization
+    </script>
+    
+    <!-- App scripts -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/ios-auth.js"></script>
+    <script src="scripts/auth-enhanced.js"></script>
+    <script src="scripts/captcha-protection.js"></script>
+</body>
+</html>
