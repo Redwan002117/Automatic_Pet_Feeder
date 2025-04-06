@@ -51,7 +51,7 @@ if ($token === 'fallback_token') {
 // Validate token with Cloudflare Turnstile API
 $secret = getenv('TURNSTILE_SECRET_KEY');
 if (!$secret) {
-    $secret = '2x0000000000000000000000000000AA'; // Fallback to hardcoded key if environment variable is missing
+    $secret = '0x4AAAAAABE4vVpdRG4xovT1RwG9k8ZWPhM'; // Fallback to hardcoded key if environment variable is missing
 }
 
 $ch = curl_init();

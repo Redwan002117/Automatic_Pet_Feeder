@@ -12,10 +12,10 @@ $_ENV['JWT_SECRET'] = 'xZ40wHV8uniZi1/osG4+qiJN9lBgpXBROE8zHB9Weeaw2nZCEeyxMP4Fa
 $_ENV['APP_VERSION'] = '1.0.0';
 $_ENV['APP_NAME'] = 'Automatic Pet Feeder';
 
-// Cloudflare Turnstile settings - updated with new keys
+// Cloudflare Turnstile settings - updated with valid keys
 $_ENV['TURNSTILE_SITE_KEY'] = '0x4AAAAAABE4vb5aDnASXiYA';
 $_ENV['TURNSTILE_SECRET_KEY'] = '0x4AAAAAABE4vVpdRG4xovT1RwG9k8ZWPhM';
-$_ENV['TURNSTILE_ALLOWED_DOMAINS'] = 'automaticpetfeeder.redwancodes.com';
+$_ENV['TURNSTILE_ALLOWED_DOMAINS'] = 'petfeeder.redwancodes.com,automaticpetfeeder.redwancodes.com,localhost';
 
 // Make environment variables available in the global scope
 foreach ($_ENV as $key => $value) {
@@ -23,15 +23,24 @@ foreach ($_ENV as $key => $value) {
 }
 
 // Set appropriate CORS headers for Cloudflare Turnstile
-if (isset($_SERVER['HTTP_ORIGIN']) && strpos($_SERVER['HTTP_ORIGIN'], 'challenges.cloudflare.com') !== false) {
-    header('Access-Control-Allow-Origin: https://challenges.cloudflare.com');
-    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    $allowedOrigins = [
+        'https://challenges.cloudflare.com',
+        'https://petfeeder.redwancodes.com',
+        'https://automaticpetfeeder.redwancodes.com',
+        'http://localhost'
+    ];
     
-    // Handle preflight OPTIONS request
-    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-        http_response_code(204);
-        exit;
+    if (in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
+        header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type');
+        
+        // Handle preflight OPTIONS request
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(204);
+            exit;
+        }
     }
 }
 
