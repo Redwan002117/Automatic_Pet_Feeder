@@ -90,5 +90,12 @@
     <script src="/scripts/main.js"></script>
     <script src="/scripts/auth.js"></script>
     <script src="/scripts/captcha-protection.js"></script>
-</body>
-</html>
+    
+    <!-- Token extraction script for cPanel compatibility -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Extract hash parameters from URL
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            
+            // Get the access token and type from hash parameters
