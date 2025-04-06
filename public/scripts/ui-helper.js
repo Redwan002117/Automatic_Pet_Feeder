@@ -432,3 +432,146 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make iOSUI globally available
     window.iOSUI = iOSUI;
 });
+
+/**
+ * Toast Notification System
+ * 
+ * This script provides an iOS-styled toast notification system
+ * for displaying temporary messages to the user.
+ */
+
+// Create toast container if it doesn't exist
+document.addEventListener('DOMContentLoaded', () => {
+    if (!document.querySelector('.toast-container')) {
+        const toastContainer = document.createElement('div');
+        toastContainer.className = 'toast-container';
+        document.body.appendChild(toastContainer);
+    }
+});
+
+/**
+ * Show a toast notification
+ * @param {string} message - The message to display
+ * @param {string} type - The type of toast (success, error, warning, info)
+ * @param {number} duration - How long to show the toast in ms
+ */
+function showToast(message, type = 'info', duration = 3000) {
+    // Make this function available globally
+    window.showToast = showToast;
+    
+    // Get or create toast container
+    let toastContainer = document.querySelector('.toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.className = 'toast-container';
+        document.body.appendChild(toastContainer);
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    
+    // Create toast content
+    const toastContent = document.createElement('div');
+    toastContent.className = 'toast-content';
+    
+    // Create icon based on type
+    let icon = '';
+    switch (type) {
+        case 'success':
+            icon = '<i class="fas fa-check-circle"></i>';
+            break;
+        case 'error':
+            icon = '<i class="fas fa-exclamation-circle"></i>';
+            break;
+        case 'warning':
+            icon = '<i class="fas fa-exclamation-triangle"></i>';
+            break;
+        case 'info':
+        default:
+            icon = '<i class="fas fa-info-circle"></i>';
+            break;
+    }
+    
+    // Set content with icon and message
+    toastContent.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <span class="toast-message">${message}</span>
+    `;
+    
+    // Create close button
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'toast-close';
+    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+    closeBtn.addEventListener('click', () => {
+        hideToast(toast);
+    });
+    
+    // Assemble toast
+    toast.appendChild(toastContent);
+    toast.appendChild(closeBtn);
+    
+    // Add to container
+    toastContainer.appendChild(toast);
+    
+    // Trigger animation
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+    
+    // Set timeout to remove toast
+    const timeoutId = setTimeout(() => {
+        hideToast(toast);
+    }, duration);
+    
+    // Store timeout ID on toast element for potential early removal
+    toast.dataset.timeoutId = timeoutId;
+    
+    // Return toast element in case it needs to be manipulated
+    return toast;
+}
+
+/**
+ * Hide a toast notification
+ * @param {HTMLElement} toast - The toast element to hide
+ */
+function hideToast(toast) {
+    // Clear the timeout
+    clearTimeout(toast.dataset.timeoutId);
+    
+    // Start hiding animation
+    toast.classList.remove('show');
+    
+    // Remove from DOM after animation completes
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+        }
+    }, 300); // Match transition time from CSS
+}
+
+/**
+ * Convenience methods for different toast types
+ */
+function showSuccessToast(message, duration) {
+    return showToast(message, 'success', duration);
+}
+
+function showErrorToast(message, duration) {
+    return showToast(message, 'error', duration);
+}
+
+function showWarningToast(message, duration) {
+    return showToast(message, 'warning', duration);
+}
+
+function showInfoToast(message, duration) {
+    return showToast(message, 'info', duration);
+}
+
+// Make toast functions available globally
+window.showToast = showToast;
+window.showSuccessToast = showSuccessToast;
+window.showErrorToast = showErrorToast;
+window.showWarningToast = showWarningToast;
+window.showInfoToast = showInfoToast;

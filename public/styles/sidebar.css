@@ -9,6 +9,9 @@
     --sidebar-icon: #4b5563;
     --sidebar-header: #111827;
     --sidebar-section: #6b7280;
+    --sidebar-collapsed-width: 70px;
+    --sidebar-z-index: 1000;
+    --sidebar-transition: all 0.3s ease;
 }
 
 .dark-mode {
@@ -33,9 +36,15 @@
     border-right: 1px solid var(--sidebar-border);
     display: flex;
     flex-direction: column;
-    z-index: 1000;
-    transition: transform 0.3s ease;
+    z-index: var(--sidebar-z-index);
+    transition: var(--sidebar-transition);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Sidebar Collapsed State */
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
 }
 
 /* Sidebar Header */
@@ -64,6 +73,10 @@
     color: var(--sidebar-header);
 }
 
+.sidebar.collapsed .sidebar-logo span {
+    display: none;
+}
+
 .sidebar-close {
     display: none;
     background: none;
@@ -81,45 +94,57 @@
 }
 
 .sidebar-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
-.sidebar-section-title {
+.sidebar-section-header {
     padding: 0 1.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--sidebar-section);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     margin-bottom: 0.75rem;
 }
 
-.sidebar-menu {
+.sidebar-section-title {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--sidebar-section);
+    letter-spacing: 0.05em;
+}
+
+.sidebar.collapsed .sidebar-section-title {
+    display: none;
+}
+
+.sidebar-nav {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.sidebar-menu li {
-    margin-bottom: 0.25rem;
+.sidebar-nav-item {
+    margin: 2px 0;
 }
 
 .sidebar-link {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    color: var(--sidebar-text);
-    font-weight: 500;
-    transition: background-color 0.2s, color 0.2s;
     gap: 0.75rem;
-    border-radius: 0;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    border-radius: 0.375rem;
+    margin: 0 0.5rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.sidebar.collapsed .sidebar-link {
+    padding: 0.75rem 0;
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-link span {
+    display: none;
 }
 
 .sidebar-link:hover {
@@ -138,12 +163,44 @@
     text-align: center;
 }
 
+.sidebar-link.active i {
+    color: var(--primary-color);
+}
+
+/* Badge for notification counts */
+.sidebar-badge {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--danger-color);
+    color: white;
+    font-size: 0.75rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.sidebar.collapsed .sidebar-badge {
+    right: auto;
+    top: 0.5rem;
+    left: 1.5rem;
+}
+
 /* Sidebar Footer */
 .sidebar-footer {
     padding: 1.5rem;
     border-top: 1px solid var(--sidebar-border);
     font-size: 0.75rem;
     color: var(--sidebar-section);
+}
+
+.sidebar.collapsed .sidebar-footer {
+    display: none;
 }
 
 .sidebar-copyright {
@@ -199,6 +256,10 @@
     transition: margin-left 0.3s ease;
 }
 
+.sidebar.collapsed ~ .main-content {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
 /* Responsive Styles */
 @media (max-width: 991px) {
     .sidebar {
@@ -209,24 +270,50 @@
         transform: translateX(0);
     }
     
-    .sidebar-close {
-        display: block;
+    .main-content {
+        margin-left: 0 !important;
     }
     
     .sidebar-toggle {
         display: flex;
     }
     
-    .sidebar-backdrop.visible {
+    .sidebar-close {
         display: block;
     }
     
-    .main-content {
-        margin-left: 0;
-        padding: 1rem;
+    .sidebar-backdrop.show {
+        display: block;
+    }
+}
+
+/* Fix for iOS Safari momentum scrolling */
+@supports (-webkit-touch-callout: none) {
+    .sidebar {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Compact view for smaller heights */
+@media (max-height: 720px) {
+    .sidebar-header {
+        padding: 1rem 1.5rem;
     }
     
-    .main-content.sidebar-open {
-        overflow: hidden;
+    .sidebar-content {
+        padding: 1rem 0;
+    }
+    
+    .sidebar-section {
+        margin-bottom: 1rem;
+    }
+    
+    .sidebar-section-header {
+        margin-bottom: 0.5rem;
+    }
+    
+    .sidebar-link {
+        padding: 0.625rem 1.5rem;
     }
 }

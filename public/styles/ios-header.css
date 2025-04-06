@@ -1,125 +1,181 @@
-/* iOS Header Styles */
+/* iOS Header Component Styles */
+:root {
+    --ios-header-height: 64px;
+    --ios-header-bg: rgba(255, 255, 255, 0.8);
+    --ios-header-border: rgba(0, 0, 0, 0.1);
+    --ios-header-text: #000;
+    --ios-header-icon: #8E8E93;
+}
+
+.dark-mode {
+    --ios-header-bg: rgba(30, 30, 30, 0.8);
+    --ios-header-border: rgba(255, 255, 255, 0.1);
+    --ios-header-text: #fff;
+    --ios-header-icon: #A0A0A7;
+}
+
 .ios-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
-    background-color: var(--ios-surface-color);
-    border-bottom: 1px solid var(--ios-border-color);
-    height: 72px; /* Consistent height for all headers */
+    justify-content: space-between;
+    height: var(--ios-header-height);
+    padding: 0 1.25rem;
+    background-color: var(--ios-header-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--ios-header-border);
     position: sticky;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    width: 100%;
-    box-sizing: border-box;
     transition: all 0.3s ease;
 }
 
-.ios-header-left, 
-.ios-header-right {
-    display: flex;
-    align-items: center;
-    height: 100%;
+.ios-header.scrolled {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
 }
 
-.ios-header-right {
+.dark-mode .ios-header.scrolled {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ios-header-left {
+    display: flex;
+    align-items: center;
     gap: 1rem;
 }
 
+.ios-header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ios-back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: opacity 0.2s ease;
+}
+
+.ios-back-button:hover {
+    opacity: 0.8;
+}
+
+.ios-back-button i {
+    font-size: 1.25rem;
+}
+
 .ios-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
+    color: var(--ios-header-text);
     margin: 0;
-    color: var(--ios-text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 25ch;
 }
 
-.ios-animated-header {
-    animation: slideInDown 0.3s ease;
+.ios-header-button {
+    background: none;
+    border: none;
+    color: var(--ios-header-icon);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.ios-animated-title {
-    animation: fadeIn 0.4s ease;
+.ios-header-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* Profile Section */
-.ios-profile {
-    position: relative;
+.dark-mode .ios-header-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
+.ios-header-button.ios-button-primary {
+    color: var(--primary-color);
+}
+
+/* Profile button with avatar */
 .profile-button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: none;
-    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1.25rem;
     cursor: pointer;
-    padding: 0.5rem;
-    border-radius: var(--ios-border-radius);
-    color: var(--ios-text-color);
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 .profile-button:hover {
-    background-color: var(--ios-surface-hover);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
-.profile-button img {
-    width: 32px;
-    height: 32px;
+.dark-mode .profile-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-avatar {
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Notifications Section */
-.ios-notifications {
+.dark-mode .profile-avatar {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-button span {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--ios-header-text);
+}
+
+/* Notifications dropdown */
+.notification-button {
     position: relative;
 }
 
-.notification-bell {
-    position: relative;
-    padding: 0.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--ios-text-color);
-    border-radius: var(--ios-border-radius);
-    transition: all 0.2s ease;
-}
-
-.notification-bell:hover {
-    background-color: var(--ios-surface-hover);
-}
-
-.ios-badge {
+.notification-counter {
     position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: var(--ios-primary-color);
+    top: 0.25rem;
+    right: 0.25rem;
+    background-color: var(--danger-color);
     color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
     font-size: 0.75rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    font-weight: 600;
 }
 
-.ios-animated-badge {
-    animation: pulse 1.5s infinite;
-}
-
-/* Dropdown Elements */
+/* Dropdown styling */
 .ios-dropdown {
     position: absolute;
+    top: calc(100% + 0.75rem);
     right: 0;
-    top: calc(100% + 0.5rem);
     width: 320px;
     background-color: var(--ios-surface-color);
-    border-radius: var(--ios-border-radius);
-    box-shadow: var(--ios-shadow);
-    border: 1px solid var(--ios-border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
@@ -166,6 +222,10 @@
 .ios-list-item {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--ios-border-color);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
@@ -174,93 +234,150 @@
 }
 
 .ios-list-item:hover {
-    background-color: var(--ios-surface-hover);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
-/* Notification List Items */
-.notification-item {
+.dark-mode .ios-list-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.ios-list-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgba(0, 122, 255, 0.1);
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    transition: background-color 0.2s ease;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.ios-list-content {
+    flex: 1;
+}
+
+.ios-list-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0 0 0.25rem;
+    color: var(--ios-text-color);
+}
+
+.ios-list-description {
+    font-size: 0.8125rem;
+    color: var(--ios-text-secondary);
+    margin: 0;
+}
+
+.ios-list-time {
+    font-size: 0.75rem;
+    color: var(--ios-text-secondary);
+    margin-top: 0.25rem;
+}
+
+.ios-list-item.unread .ios-list-icon {
+    background-color: rgba(0, 122, 255, 0.15);
+}
+
+.ios-list-item.unread .ios-list-title {
+    font-weight: 600;
+}
+
+.ios-list-item.unread::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    margin-top: 0.5rem;
+}
+
+/* Mobile sidebar toggle */
+.sidebar-toggle-button {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--ios-header-icon);
     cursor: pointer;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
 }
 
-.notification-item.unread {
-    background-color: var(--ios-notification-unread);
+/* Search input */
+.ios-search-container {
+    position: relative;
+    width: 240px;
 }
 
-.notification-item .notification-icon {
-    width: 36px;
-    height: 36px;
+.ios-search-input {
+    width: 100%;
+    height: 2.25rem;
+    padding: 0 2.25rem;
+    border-radius: 1.125rem;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--ios-header-text);
+    font-size: 0.875rem;
+    transition: background-color 0.2s ease;
+}
+
+.dark-mode .ios-search-input {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ios-search-input:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    outline: none;
+}
+
+.dark-mode .ios-search-input:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.ios-search-input::placeholder {
+    color: var(--ios-header-icon);
+}
+
+.ios-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ios-header-icon);
+    font-size: 0.875rem;
+}
+
+.ios-search-clear {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ios-header-icon);
+    font-size: 0.875rem;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-}
-
-.notification-item .notification-icon.warning {
-    background-color: var(--ios-warning-light);
-    color: var(--ios-warning);
-}
-
-.notification-item .notification-icon.success {
-    background-color: var(--ios-success-light);
-    color: var(--ios-success);
-}
-
-.notification-item .notification-icon.info {
-    background-color: var(--ios-info-light);
-    color: var(--ios-info);
-}
-
-.notification-item .notification-content {
-    flex-grow: 1;
-}
-
-.notification-item .notification-text {
-    margin: 0 0 0.25rem;
-    font-size: 0.875rem;
-}
-
-.notification-item .notification-time {
-    margin: 0;
-    font-size: 0.75rem;
-    color: var(--ios-text-secondary);
-}
-
-.notification-item .notification-close {
-    border: none;
-    background: none;
     cursor: pointer;
-    color: var(--ios-text-secondary);
     opacity: 0;
     transition: opacity 0.2s ease;
-    padding: 0.25rem;
 }
 
-.notification-item:hover .notification-close {
+.ios-search-input:focus ~ .ios-search-clear,
+.ios-search-input:not(:placeholder-shown) ~ .ios-search-clear {
     opacity: 1;
 }
 
-.notification-item .notification-close:hover {
-    color: var(--ios-text-color);
-}
-
-/* Interactive animations */
-@keyframes slideInDown {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
+/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -310,6 +427,14 @@
     .ios-dropdown::before {
         right: 80px;
     }
+    
+    .ios-search-container {
+        width: 180px;
+    }
+    
+    .sidebar-toggle-button {
+        display: flex;
+    }
 }
 
 @media (max-width: 480px) {
@@ -325,5 +450,25 @@
     
     .ios-dropdown::before {
         right: 110px;
+    }
+    
+    .ios-search-container {
+        display: none;
+    }
+    
+    .ios-title {
+        font-size: 1.125rem;
+        max-width: 180px;
+    }
+    
+    .ios-header-button {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.125rem;
+    }
+    
+    .profile-avatar {
+        width: 1.75rem;
+        height: 1.75rem;
     }
 }
