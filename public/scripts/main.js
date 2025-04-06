@@ -11,10 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('error', function(e) {
     console.error('Global error:', e.error || e.message);
     showErrorNotification('An unexpected error occurred. Please try again.');
+    // Ensure loading overlay is hidden when an error occurs
+    hideAllLoadingIndicators();
   });
 
   // Initialize application
   initializeApp();
+  
+  // Ensure loading overlay is hidden after a timeout as a fallback
+  setTimeout(hideAllLoadingIndicators, 5000);
 });
 
 /**
@@ -25,6 +30,8 @@ async function initializeApp() {
     // Show loading indicator while app initializes
     if (window.utils && typeof window.utils.showLoading === 'function') {
       window.utils.showLoading(true, 'Initializing application...');
+    } else if (window.showLoadingOverlay) {
+      window.showLoadingOverlay();
     } else {
       showSimpleLoading(true, 'Initializing application...');
     }
@@ -92,27 +99,71 @@ async function initializeApp() {
       alert('Failed to initialize application. Please refresh the page.');
     }
   } finally {
-    // Hide loading indicator
-    try {
-      if (window.utils && typeof window.utils.showLoading === 'function') {
-        window.utils.showLoading(false);
-      } else if (typeof showLoading === 'function') {
-        showLoading(false);
-      } else {
-        const loaderDiv = document.getElementById('app-loading') || document.getElementById('inline-loader');
-        if (loaderDiv) {
-          loaderDiv.remove();
-        }
-      }
-    } catch (hideLoadingError) {
-      console.error('Error hiding loading indicator:', hideLoadingError);
-      const loaderDiv = document.getElementById('app-loading') || document.getElementById('inline-loader');
-      if (loaderDiv) {
-        loaderDiv.remove();
-      }
-    }
+    // Hide loading indicator with a small delay to ensure content is visible
+    setTimeout(() => {
+      hideAllLoadingIndicators();
+    }, 300);
   }
 }
+
+// Helper function to hide all possible loading indicators
+function hideAllLoadingIndicators() {
+  // Try all possible hide loading functions
+  if (window.utils && typeof window.utils.showLoading === 'function') {
+    window.utils.showLoading(false);
+  }
+  
+  if (window.hideLoadingOverlay) {
+    window.hideLoadingOverlay();
+  }
+  
+  if (typeof showLoading === 'function') {
+    showLoading(false);
+  }
+  
+  if (window.app && window.app.hideLoading) {
+    window.app.hideLoading();
+  }
+  
+  // Direct DOM manipulation as a last resort
+  const loaderDiv = document.getElementById('loading-overlay') || 
+                    document.getElementById('app-loading') || 
+                    document.getElementById('inline-loader');
+  if (loaderDiv) {
+    loaderDiv.style.opacity = '0';
+    loaderDiv.style.pointerEvents = 'none';
+    setTimeout(() => {
+      loaderDiv.style.display = 'none';
+    }, 500);
+  }
+  
+  // Also try with class selectors
+  const loaders = document.querySelectorAll('.loading-overlay, .app-loading, .loader');
+  loaders.forEach(loader => {
+    loader.style.opacity = '0';
+    loader.style.pointerEvents = 'none';
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 500);
+  });
+}
+
+// Handle Cloudflare Turnstile errors
+window.addEventListener('error', function(e) {
+  // Check if the error is related to Cloudflare Turnstile
+  if (e.message && (
+      e.message.includes('turnstile') || 
+      e.message.includes('cloudflare') || 
+      e.message.includes('challenges.cloudflare.com'))) {
+    console.error('Cloudflare Turnstile error:', e);
+    
+    // Show a friendly error message
+    showErrorNotification('There was an issue with the security verification. Please refresh the page and try again.');
+    
+    // Ensure loading indicators are hidden
+    hideAllLoadingIndicators();
+  }
+});
 
 /**
  * Check if the current page is a protected page that requires authentication

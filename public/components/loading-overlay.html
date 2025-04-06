@@ -31,26 +31,33 @@
         height: 100%;
         background-color: rgba(255, 255, 255, 0.8);
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         z-index: 9999;
         backdrop-filter: blur(5px);
         transition: opacity 0.5s ease;
+        opacity: 1;
     }
     
     .loading-spinner {
         font-size: 3rem;
         color: var(--primary-color);
-        animation: spin 1s linear infinite;
     }
     
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    .loading-text {
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: var(--text-primary);
     }
     
     .dark-mode .loading-overlay {
         background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    .loading-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
     }
 </style>
 
@@ -59,10 +66,17 @@
     function hideLoadingOverlay() {
         const overlay = document.querySelector('#loading-overlay');
         if (overlay) {
-            overlay.style.opacity = '0';
+            overlay.classList.add('hidden');
             setTimeout(() => {
                 overlay.style.display = 'none';
             }, 500);
+            
+            // Force removal after 2 seconds as a fallback if transition fails
+            setTimeout(() => {
+                if (overlay && overlay.parentElement) {
+                    overlay.style.display = 'none';
+                }
+            }, 2000);
         }
     }
     
@@ -70,15 +84,22 @@
     function showLoadingOverlay() {
         const overlay = document.querySelector('#loading-overlay');
         if (overlay) {
+            overlay.classList.remove('hidden');
             overlay.style.display = 'flex';
-            setTimeout(() => {
-                overlay.style.opacity = '1';
-            }, 10);
         }
     }
     
+    // Ensure loading overlay is hidden when page is fully loaded
+    window.addEventListener('load', function() {
+        setTimeout(hideLoadingOverlay, 300);
+    });
+    
     // Initialize app object if it doesn't exist
     window.app = window.app || {};
-    window.app.showLoading = window.app.showLoading || showLoadingOverlay;
-    window.app.hideLoading = window.app.hideLoading || hideLoadingOverlay;
+    window.app.showLoading = showLoadingOverlay;
+    window.app.hideLoading = hideLoadingOverlay;
+    
+    // Also expose on window for broader compatibility
+    window.showLoadingOverlay = showLoadingOverlay;
+    window.hideLoadingOverlay = hideLoadingOverlay;
 </script>
