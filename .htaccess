@@ -14,6 +14,11 @@ RewriteRule ^ - [L]
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /public/([^\ ]*)\ HTTP/
 RewriteRule ^public/(.*)$ /$1 [R=301,L]
 
+# Special handling for Cloudflare Turnstile requests - pass through directly to avoid rewriting
+RewriteCond %{HTTP_REFERER} ^https?://(www\.)?automaticpetfeeder\.redwancodes\.com
+RewriteCond %{REQUEST_URI} ^/cdn-cgi/challenge-platform/
+RewriteRule ^ - [L]
+
 # Internally rewrite requests to the public directory
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -21,3 +26,13 @@ RewriteRule ^(.*)$ public/$1 [L]
 
 # Handle the case where someone requests the root
 RewriteRule ^$ public/index.html [L]
+
+# Add special CORS headers for Cloudflare Turnstile
+<IfModule mod_headers.c>
+    # Enable CORS for Cloudflare Turnstile
+    <FilesMatch "\.(html|js)$">
+        Header set Access-Control-Allow-Origin "https://challenges.cloudflare.com"
+        Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        Header set Access-Control-Allow-Headers "Content-Type"
+    </FilesMatch>
+</IfModule>
