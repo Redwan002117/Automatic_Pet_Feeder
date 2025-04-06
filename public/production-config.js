@@ -5,11 +5,11 @@
  * Copy this file to config.js when deploying to production.
  */
 
-// Supabase configuration - REPLACE WITH YOUR PRODUCTION VALUES
-const SUPABASE_URL = 'https://your-project-id.supabase.co';
-const SUPABASE_ANON_KEY = 'your-supabase-anon-key';
+// Supabase configuration - PRODUCTION VALUES
+const SUPABASE_URL = 'https://mgqtlgpcdswfmvgheeff.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ncXRsZ3BjZHN3Zm12Z2hlZWZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODAzNjIsImV4cCI6MTk5MjM1NjM2Mn0.8Rq8VbucEWbJUZg2XfxNBxQyAYZl5eEYWCifoZ2lQ_o';
 
-// API endpoints - Update if your API is hosted at a different location
+// API endpoints
 const API_BASE_URL = '/api';
 
 // Device specific settings

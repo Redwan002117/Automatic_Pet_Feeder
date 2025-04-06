@@ -8,7 +8,7 @@
 
 // Supabase configuration
 $_ENV['SUPABASE_URL'] = 'https://mgqtlgpcdswfmvgheeff.supabase.co';
-$_ENV['SUPABASE_ANON_KEY'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ncXRsZ3BjZHN3Zm12Z2hlZWZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM3OTUwMjIsImV4cCI6MjA1OTM3MTAyMn0.wQyh60hvGZTq2yjrWNr8Us2Bz5fuCMmvB2NtEgbrHXY';
+$_ENV['SUPABASE_ANON_KEY'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ncXRsZ3BjZHN3Zm12Z2hlZWZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODAzNjIsImV4cCI6MTk5MjM1NjM2Mn0.8Rq8VbucEWbJUZg2XfxNBxQyAYZl5eEYWCifoZ2lQ_o';
 
 // Application settings
 $_ENV['APP_VERSION'] = '1.0.0';

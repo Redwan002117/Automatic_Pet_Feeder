@@ -1,64 +1,78 @@
-# Deployment Checklist for Automatic Pet Feeder
+# cPanel Git Version Control Deployment Checklist
 
-Use this checklist to ensure you've completed all necessary steps for deploying the Automatic Pet Feeder application to cPanel.
+Use this checklist to ensure your Automatic Pet Feeder application deploys correctly on cPanel with Git Version Control.
 
-## Pre-Deployment
+## Before Deployment
 
-- [ ] Verify all files in the `public` directory are ready for production
-- [ ] Ensure `.htaccess` file is properly configured
-- [ ] Update Supabase configuration for production environment
-- [ ] Test application locally before deployment
+- [ ] Ensure your Supabase project settings are configured correctly:
+  - [ ] Site URL in Supabase Authentication settings includes your production domain
+  - [ ] Redirect URLs include your production domain
+  - [ ] CORS settings allow your production domain
 
-## cPanel Setup
+- [ ] Check that all environment configurations are present:
+  - [ ] `.env.php` file contains correct Supabase credentials
+  - [ ] `production-config.js` has been updated with the correct values
+  - [ ] `config.js` does not contain development-only settings
 
-- [ ] Set up domain or subdomain in cPanel
-- [ ] Configure PHP version (7.4 or higher)
-- [ ] Enable required PHP extensions (curl, json, mbstring, openssl)
+- [ ] Verify file permissions:
+  - [ ] All PHP files have 644 permissions
+  - [ ] All directories have 755 permissions
 
-## File Upload
+## During Deployment
 
-- [ ] Upload all files from the `public` directory to the appropriate location in cPanel
-- [ ] Verify `.htaccess` file was uploaded correctly (not skipped)
-- [ ] Verify `api.php` file was uploaded correctly
-- [ ] Set correct file permissions (directories: 755, files: 644)
+- [ ] When setting up Git Version Control in cPanel:
+  - [ ] Choose "Clone a Repository" option
+  - [ ] Enter your repository URL
+  - [ ] Use the main/master branch
+  - [ ] Set the deployment path to public_html (or your desired subdomain)
+  - [ ] Enable automatic deployment if desired
 
-## Environment Configuration
+- [ ] After initial deployment:
+  - [ ] Check that `.htaccess` file was properly deployed
+  - [ ] Verify that `api.php` and other PHP files were deployed
+  - [ ] Check that all directories and files are in the correct structure
 
-- [ ] Create `.env.php` file with production environment variables
-- [ ] OR configure environment variables in cPanel's PHP INI
-- [ ] OR update `config.js` with production values
+## After Deployment
 
-## Supabase Configuration
+- [ ] Test your application functionality:
+  - [ ] Test the API connection using `/api-connection-test.php`
+  - [ ] Test authentication (login, signup, password reset)
+  - [ ] Verify that Supabase integration is working
+  - [ ] Test CORS functionality (frontend can connect to Supabase)
 
-- [ ] Update Site URL in Supabase Authentication settings
-- [ ] Add production domain to Redirect URLs in Supabase
-- [ ] Configure CORS settings in Supabase to allow your domain
+- [ ] If issues occur:
+  - [ ] Check cPanel error logs for PHP errors
+  - [ ] Verify environment variables are loaded correctly
+  - [ ] Test API endpoints to ensure they are working
+  - [ ] Ensure `.htaccess` rules are working properly
 
-## Security
+## Making Changes
 
-- [ ] Enable HTTPS for your domain
-- [ ] Verify security headers are working
-- [ ] Configure Cloudflare Turnstile for your domain
+- [ ] When making changes to your local repository:
+  - [ ] Use the `scripts/cpanel-git-deploy.sh` script to push changes
+  - [ ] Or push changes to your repository and let cPanel auto-deploy
+  - [ ] Verify changes appear on your website after deployment
 
-## Testing
+## Troubleshooting Common Issues
 
-- [ ] Test application loading
-- [ ] Test authentication (login, signup, password reset)
-- [ ] Test API endpoints
-- [ ] Test device management features
-- [ ] Test scheduling features
-- [ ] Verify all assets (images, styles) load correctly
+1. **Supabase Connection Fails**
+   - Check your Supabase URL and key in `.env.php` and `production-config.js`
+   - Verify CORS settings in Supabase to allow your domain
+   - Check `.htaccess` CORS headers are correctly set
 
-## Post-Deployment
+2. **Password Reset Not Working**
+   - Verify Supabase Site URL and Redirect URL configuration
+   - Check that `reset-confirm.html` is properly handling URL hash parameters
+   - Test the password reset flow manually
 
-- [ ] Set up regular backups
-- [ ] Monitor error logs for any issues
-- [ ] Test on multiple devices and browsers
+3. **API Endpoints Not Accessible**
+   - Ensure `.htaccess` rewrite rules are configured correctly
+   - Check that `api.php` has proper permissions
+   - Use `/api-connection-test.php` to test connectivity
 
-## Notes
+4. **Assets Not Loading**
+   - Verify all paths are using the correct format (starting with /)
+   - Check file permissions for your asset directories
+   - Check for console errors in the browser
 
-Use this space to document any specific configurations or issues encountered during deployment:
-
-```
-
-```
+Remember to update your deployment settings in cPanel if you change your repository URL or branch.

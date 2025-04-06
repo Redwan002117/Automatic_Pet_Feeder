@@ -2,7 +2,7 @@
 RewriteEngine On
 
 # Set the base directory for rewrites
-# For cPanel, you may need to adjust this if using a subdomain or subdirectory
+# For cPanel, you may need to adjust this based on your setup
 RewriteBase /
 
 # If the request is for an actual file or directory, don't rewrite
@@ -10,16 +10,8 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Handle cPanel specific paths if needed
-# Uncomment and modify the following line if your app is in a subdirectory
-# RewriteBase /subdirectory
-
 # Redirect all API requests to the API endpoint
 RewriteRule ^api/(.*)$ api.php?request=$1 [QSA,L]
-
-# Alternative API routing for cPanel environments
-# Uncomment the line below and comment out the line above if needed
-# RewriteRule ^api/(.*)$ api-wrapper.php?endpoint=$1 [QSA,L]
 
 # Rewrite all other requests to index.html for the SPA
 RewriteRule ^ index.html [L]
@@ -32,15 +24,24 @@ RewriteRule ^ index.html [L]
     Header set X-XSS-Protection "1; mode=block"
     # Prevent MIME type sniffing
     Header set X-Content-Type-Options "nosniff"
-    # Enforce HTTPS
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
 
-# Enable CORS
+# Enable CORS with better Supabase compatibility
 <IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
-    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    # More specific CORS configuration for Supabase
+    # This allows both wildcard for development and specific domains in production
+    SetEnvIf Origin "^https?://(www\.)?(mgqtlgpcdswfmvgheeff\.supabase\.co|localhost:3000|localhost:5000|localhost:5173|petfeeder\.redwancodes\.com)$" CORS_ALLOW_ORIGIN=$0
+    Header always set Access-Control-Allow-Origin %{CORS_ALLOW_ORIGIN}e env=CORS_ALLOW_ORIGIN
+    Header merge Access-Control-Allow-Origin "*" env=!CORS_ALLOW_ORIGIN
+    
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
+    Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization, apikey, x-client-info"
+    Header always set Access-Control-Allow-Credentials "true"
+    
+    # Handle preflight OPTIONS requests
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
 </IfModule>
 
 # Set default character set
@@ -54,15 +55,24 @@ AddDefaultCharset UTF-8
 # Set caching headers
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType text/javascript "access plus 1 week"
     ExpiresByType application/pdf "access plus 1 month"
-    ExpiresByType text/x-javascript "access plus 1 month"
+    ExpiresByType text/x-javascript "access plus 1 week"
     ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# PHP settings for cPanel
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value memory_limit 128M
+    php_value max_execution_time 30
+    php_flag display_errors Off
 </IfModule>
