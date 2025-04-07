@@ -11,9 +11,24 @@ require_once '../.env.php';
 
 // Set headers
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+
+// Set CORS headers specifically for Cloudflare
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '*';
+
+// Allow specific origins including Cloudflare
+if (strpos($origin, 'cloudflare.com') !== false || 
+    strpos($origin, 'automaticpetfeeder.redwancodes.com') !== false || 
+    strpos($origin, 'petfeeder.redwancodes.com') !== false || 
+    strpos($origin, 'localhost') !== false) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+} else {
+    header('Access-Control-Allow-Origin: *');
+}
+
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Max-Age: 86400'); // 24 hours cache
 
 // Handle preflight requests
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {

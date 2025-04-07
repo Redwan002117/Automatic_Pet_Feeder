@@ -19,12 +19,12 @@ RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /public/([^\ ]*)\  HTTP/
 RewriteRule ^public/(.*)$ /$1 [R=301,L]
 
 # Special handling for Cloudflare Turnstile requests - pass through directly to avoid rewriting
-RewriteCond %{HTTP_REFERER} ^https?://(www\.)?automaticpetfeeder\.redwancodes\.com
+# Remove the referer condition to allow Turnstile to work from any source
 RewriteCond %{REQUEST_URI} ^/cdn-cgi/challenge-platform/
 RewriteRule ^ - [L]
 
-# Allow direct access to Cloudflare Turnstile resources
-RewriteCond %{REQUEST_URI} ^/cdn-cgi/challenge-platform/
+# Allow direct access to all Cloudflare resources
+RewriteCond %{REQUEST_URI} ^/cdn-cgi/
 RewriteRule ^ - [L]
 
 # Special handling for Turnstile API verification endpoint
@@ -56,6 +56,13 @@ RewriteRule ^$ public/index.html [L]
     RewriteEngine On
     RewriteCond %{REQUEST_METHOD} OPTIONS
     RewriteRule ^(.*)$ $1 [R=200,L]
+    
+    # Special handling for all Cloudflare resources
+    <FilesMatch "^cdn-cgi/.*$">
+        Header always set Access-Control-Allow-Origin "*"
+        Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        Header always set Access-Control-Allow-Headers "*"
+    </FilesMatch>
     
     # Special handling for Turnstile verification
     <FilesMatch "turnstile-verify\.php$">

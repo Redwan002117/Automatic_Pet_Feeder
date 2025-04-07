@@ -47,6 +47,27 @@ RewriteRule ^ index.html [L]
     <FilesMatch "^cdn-cgi/.*$">
         Header always set Access-Control-Allow-Origin "*"
     </FilesMatch>
+    
+    # Add specific handling for all Cloudflare resources
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteRule ^cdn-cgi/(.*)$ cdn-cgi/$1 [L]
+    </IfModule>
+    
+    # Ensure OPTIONS requests for Cloudflare resources are handled correctly
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteCond %{REQUEST_METHOD} OPTIONS
+        RewriteRule ^cdn-cgi/(.*)$ - [R=200,L]
+    </IfModule>
+    
+    # Add specific headers for Cloudflare challenge platform
+    <LocationMatch "^/cdn-cgi/challenge-platform/">
+        Header always set Access-Control-Allow-Origin "*"
+        Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        Header always set Access-Control-Allow-Headers "Content-Type"
+        Header always set Access-Control-Max-Age "86400"
+    </LocationMatch>
 </IfModule>
 
 # Set default character set
