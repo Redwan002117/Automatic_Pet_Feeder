@@ -26,11 +26,11 @@ RewriteRule ^ index.html [L]
     Header set X-Content-Type-Options "nosniff"
 </IfModule>
 
-# Enable CORS with better Supabase compatibility
+# Enable CORS with better Supabase and Cloudflare compatibility
 <IfModule mod_headers.c>
-    # More specific CORS configuration for Supabase
+    # More specific CORS configuration for Supabase and Cloudflare Turnstile
     # This allows both wildcard for development and specific domains in production
-    SetEnvIf Origin "^https?://(www\.)?(mgqtlgpcdswfmvgheeff\.supabase\.co|localhost:3000|localhost:5000|localhost:5173|petfeeder\.redwancodes\.com)$" CORS_ALLOW_ORIGIN=$0
+    SetEnvIf Origin "^https?://(www\.)?(mgqtlgpcdswfmvgheeff\.supabase\.co|challenges\.cloudflare\.com|localhost:3000|localhost:5000|localhost:5173|petfeeder\.redwancodes\.com|automaticpetfeeder\.redwancodes\.com)$" CORS_ALLOW_ORIGIN=$0
     Header always set Access-Control-Allow-Origin %{CORS_ALLOW_ORIGIN}e env=CORS_ALLOW_ORIGIN
     Header merge Access-Control-Allow-Origin "*" env=!CORS_ALLOW_ORIGIN
     
@@ -42,6 +42,11 @@ RewriteRule ^ index.html [L]
     RewriteEngine On
     RewriteCond %{REQUEST_METHOD} OPTIONS
     RewriteRule ^(.*)$ $1 [R=200,L]
+    
+    # Special handling for Cloudflare Turnstile resources
+    <FilesMatch "^cdn-cgi/.*$">
+        Header always set Access-Control-Allow-Origin "*"
+    </FilesMatch>
 </IfModule>
 
 # Set default character set

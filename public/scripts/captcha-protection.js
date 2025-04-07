@@ -352,7 +352,7 @@ function renderCaptcha(containerId) {
         
         // Use the updated site key
         // Get the site key from environment if available
-        let siteKey = '0x4AAAAAABE4vb5aDnASXiYA'; // Updated Cloudflare Turnstile site key
+        let siteKey = '0x4AAAAAAGG0F6yl_U8Q86P'; // Production Cloudflare Turnstile site key for automaticpetfeeder.redwancodes.com
         
         // Render new widget
         turnstileWidgets[containerId] = turnstile.render(container, {
@@ -386,6 +386,9 @@ function renderCaptcha(containerId) {
                 
                 // Verify token on server-side if available (for enhanced security)
                 verifyTokenServerSide(token);
+                
+                // Log successful verification for debugging
+                console.log('Turnstile verification successful');
             },
             'error-callback': function(error) {
                 console.warn('Turnstile encountered an error:', error);
@@ -468,9 +471,10 @@ function renderCaptcha(containerId) {
  * @param {string} token - The Turnstile token to verify
  */
 function verifyTokenServerSide(token) {
-    // Only verify if we have a token and are not in fallback mode
-    if (!token || window.turnstileFallbackMode) return;
+    // Skip verification if in fallback mode
+    if (window.turnstileFallbackMode) return;
     
+    // Verify token with server-side endpoint
     try {
         fetch('/api/turnstile-verify.php', {
             method: 'POST',
@@ -483,18 +487,24 @@ function verifyTokenServerSide(token) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Turnstile verification response:', data);
-            // If verification failed on server side, we could handle it here
             if (!data.success) {
-                console.warn('Server-side token verification failed');
+                console.error('Server-side token verification failed:', data.error);
+                // Log additional information for debugging
+                console.log('Verification response:', data);
+                // Don't enable fallback mode here, just log the error
+            } else {
+                console.log('Server-side verification successful');
             }
         })
         .catch(error => {
-            console.warn('Token verification error:', error);
-            // We'll still allow the form submission even if server verification fails
-            // as the client-side validation passed
+            console.warn('Error verifying token with server:', error);
+            // Check if it's a CORS or network error
+            if (error.message && (error.message.includes('CORS') || error.message.includes('network'))) {
+                console.log('Possible CORS or network issue with verification endpoint');
+            }
+            // Don't enable fallback mode for network errors
         });
     } catch (e) {
-        console.warn('Error sending verification request:', e);
+        console.warn('Error sending token verification:', e);
     }
 }

@@ -23,6 +23,10 @@ RewriteCond %{HTTP_REFERER} ^https?://(www\.)?automaticpetfeeder\.redwancodes\.c
 RewriteCond %{REQUEST_URI} ^/cdn-cgi/challenge-platform/
 RewriteRule ^ - [L]
 
+# Allow direct access to Cloudflare Turnstile resources
+RewriteCond %{REQUEST_URI} ^/cdn-cgi/challenge-platform/
+RewriteRule ^ - [L]
+
 # Special handling for Turnstile API verification endpoint
 RewriteRule ^api/turnstile-verify\.php$ public/api/turnstile-verify.php [L]
 
