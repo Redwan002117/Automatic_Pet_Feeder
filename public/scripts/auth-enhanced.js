@@ -206,8 +206,8 @@ function initMagicLinkSubmission() {
             const { error } = await window.supabase.auth.signInWithOtp({
                 email,
                 options: {
-                    emailRedirectTo: redirectTo,
-                    captchaToken: document.getElementById('magic-link-captcha-container-token')?.value
+                    emailRedirectTo: redirectTo
+                    // Captcha token removed
                 }
             });
             
