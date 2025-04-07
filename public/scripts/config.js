@@ -7,7 +7,7 @@
 
 // Supabase configuration
 const SUPABASE_URL = 'https://mgqtlgpcdswfmvgheeff.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ncXRsZ3BjZHN3Zm12Z2hlZWZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI4NzE2MzUsImV4cCI6MjAyODQ0NzYzNX0.k4cHHPBjdpnlbZt2Xb-yNKZF0i_XEDXcJsxLrjFKLsk';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ncXRsZ3BjZHN3Zm12Z2hlZWZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5NjUxOTUsImV4cCI6MjA1OTU0MTE5NX0.bIQBXBmi4x1GYjh7nFRZ0vcFb-Rs2yn2hKMROxt5r3w';
 
 // API endpoints
 const API_BASE_URL = 'api.php';

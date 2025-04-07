@@ -4,6 +4,10 @@ RewriteEngine On
 # Set base directory
 RewriteBase /
 
+# Add these options to fix common cPanel issues
+Options +FollowSymLinks
+RewriteOptions Inherit
+
 # If the request is for an actual file or directory that exists in the root, serve it directly
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
@@ -11,7 +15,7 @@ RewriteRule ^ - [L]
 
 # Otherwise, rewrite all requests to the public directory
 # But don't show "public" in the URL
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /public/([^\ ]*)\ HTTP/
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /public/([^\ ]*)\  HTTP/
 RewriteRule ^public/(.*)$ /$1 [R=301,L]
 
 # Special handling for Cloudflare Turnstile requests - pass through directly to avoid rewriting
@@ -20,7 +24,10 @@ RewriteCond %{REQUEST_URI} ^/cdn-cgi/challenge-platform/
 RewriteRule ^ - [L]
 
 # Special handling for Turnstile API verification endpoint
-RewriteRule ^api/turnstile-verify.php$ public/api/turnstile-verify.php [L]
+RewriteRule ^api/turnstile-verify\.php$ public/api/turnstile-verify.php [L]
+
+# Special handling for API endpoints
+RewriteRule ^api/(.*)$ public/api.php?request=$1 [QSA,L]
 
 # Internally rewrite requests to the public directory
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -30,21 +37,23 @@ RewriteRule ^(.*)$ public/$1 [L]
 # Handle the case where someone requests the root
 RewriteRule ^$ public/index.html [L]
 
-# Add special CORS headers for Cloudflare Turnstile
+# Add special CORS headers for Cloudflare Turnstile and API requests
 <IfModule mod_headers.c>
-    # Enable CORS for Cloudflare Turnstile and API requests
-    <FilesMatch "\.(html|js|php)$">
-        Header set Access-Control-Allow-Origin "*"
-        Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-        Header set Access-Control-Allow-Headers "Content-Type"
-        
-        # Handle preflight OPTIONS requests
-        RewriteEngine On
-        RewriteCond %{REQUEST_METHOD} OPTIONS
-        RewriteRule ^(.*)$ $1 [R=200,L]
-    </FilesMatch>
+    # Enable CORS with better Supabase and Cloudflare Turnstile compatibility
+    SetEnvIf Origin "^https?://(www\.)?(mgqtlgpcdswfmvgheeff\.supabase\.co|challenges\.cloudflare\.com|localhost:3000|localhost:5000|localhost:5173|petfeeder\.redwancodes\.com|automaticpetfeeder\.redwancodes\.com)$" CORS_ALLOW_ORIGIN=$0
+    Header always set Access-Control-Allow-Origin %{CORS_ALLOW_ORIGIN}e env=CORS_ALLOW_ORIGIN
+    Header merge Access-Control-Allow-Origin "*" env=!CORS_ALLOW_ORIGIN
     
-    # Set specific header for Turnstile domain
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
+    Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization, apikey, x-client-info"
+    Header always set Access-Control-Allow-Credentials "true"
+    
+    # Handle preflight OPTIONS requests
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
+    
+    # Special handling for Turnstile verification
     <FilesMatch "turnstile-verify\.php$">
         Header set Access-Control-Allow-Origin "https://challenges.cloudflare.com"
     </FilesMatch>
