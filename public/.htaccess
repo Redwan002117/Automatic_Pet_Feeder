@@ -5,6 +5,12 @@ RewriteEngine On
 # For cPanel, you may need to adjust this based on your setup
 RewriteBase /
 
+# Prevent directory listing
+Options -Indexes
+
+# Set default index file
+DirectoryIndex index.html
+
 # If the request is for an actual file or directory, don't rewrite
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
